@@ -1,0 +1,455 @@
+##
+ #
+ #
+export tissueType="COAD";
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.control.txt $tissueType/htSeqCount/matrix.genes.expression.stagei.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.stageii.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.stageiii.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.stageiv.txt > $tissueType/htSeqCount/matrix.genes.all
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.stagei.txt $tissueType/htSeqCount/matrix.genes.expression.stageii.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.stageiii.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.stageiv.txt > $tissueType/htSeqCount/matrix.genes.all.withoutNorm
+
+export tissueType="BRCA";
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.control.txt $tissueType/htSeqCount/matrix.genes.expression.stagei.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.stageii.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.stageiii.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.stageiv.txt > $tissueType/htSeqCount/matrix.genes.all
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.stagei.txt $tissueType/htSeqCount/matrix.genes.expression.stageii.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.stageiii.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.stageiv.txt > $tissueType/htSeqCount/matrix.genes.all.withoutNorm
+
+export tissueType="PRAD";
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.control.txt $tissueType/htSeqCount/matrix.genes.expression.tumor.txt > $tissueType/htSeqCount/matrix.genes.all
+cat $tissueType/htSeqCount/matrix.genes.expression.tumor.txt > $tissueType/htSeqCount/matrix.genes.all.withoutNorm
+
+export tissueType="PAAD";
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.control.txt $tissueType/htSeqCount/matrix.genes.expression.stagei.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.stageii.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.stageiii.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.stageiv.txt > $tissueType/htSeqCount/matrix.genes.all
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.stagei.txt $tissueType/htSeqCount/matrix.genes.expression.stageii.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.stageiii.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.stageiv.txt > $tissueType/htSeqCount/matrix.genes.all.withoutNorm
+
+
+export tissueType="COAD";
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.control.txt $tissueType/htSeqCount/matrix.genes.expression.t1.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.t2.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.t3.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.t4.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.tis.txt > $tissueType/htSeqCount/matrix.genes.t.all
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.t1.txt $tissueType/htSeqCount/matrix.genes.expression.t2.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.t3.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.t4.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.tis.txt > $tissueType/htSeqCount/matrix.genes.t.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.control.txt $tissueType/htSeqCount/matrix.genes.expression.n0.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.n1.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.n2.txt > $tissueType/htSeqCount/matrix.genes.n.all
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.n0.txt $tissueType/htSeqCount/matrix.genes.expression.n1.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.n2.txt > $tissueType/htSeqCount/matrix.genes.n.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.control.txt $tissueType/htSeqCount/matrix.genes.expression.m0.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.m1.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.mx.txt > $tissueType/htSeqCount/matrix.genes.m.all
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.m0.txt $tissueType/htSeqCount/matrix.genes.expression.m1.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.mx.txt > $tissueType/htSeqCount/matrix.genes.m.all.withoutNorm
+
+
+export tissueType="BRCA";
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.control.txt $tissueType/htSeqCount/matrix.genes.expression.t1.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.t2.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.t3.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.t4.txt > $tissueType/htSeqCount/matrix.genes.t.all
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.t1.txt $tissueType/htSeqCount/matrix.genes.expression.t2.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.t3.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.t4.txt > $tissueType/htSeqCount/matrix.genes.t.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.control.txt $tissueType/htSeqCount/matrix.genes.expression.n0.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.n1.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.n2.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.n3.txt  | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.nx.txt > $tissueType/htSeqCount/matrix.genes.n.all
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.n0.txt $tissueType/htSeqCount/matrix.genes.expression.n1.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.n2.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.n3.txt  | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.nx.txt > $tissueType/htSeqCount/matrix.genes.n.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.control.txt $tissueType/htSeqCount/matrix.genes.expression.m0.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.m1.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.mx.txt > $tissueType/htSeqCount/matrix.genes.m.all
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.m0.txt $tissueType/htSeqCount/matrix.genes.expression.m1.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.mx.txt > $tissueType/htSeqCount/matrix.genes.m.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.control.txt $tissueType/htSeqCount/matrix.genes.expression.basal.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.her2.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.luma.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.lumb.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.pcnormal.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.pcna.txt > $tissueType/htSeqCount/matrix.genes.pc.all
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.basal.txt  $tissueType/htSeqCount/matrix.genes.expression.her2.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.luma.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.lumb.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.pcnormal.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.pcna.txt > $tissueType/htSeqCount/matrix.genes.pc.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.control.txt $tissueType/htSeqCount/matrix.genes.expression.erneg.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.erpos.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.erna.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.ernotavailable.txt > $tissueType/htSeqCount/matrix.genes.er.all
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.erneg.txt $tissueType/htSeqCount/matrix.genes.expression.erpos.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.erna.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.ernotavailable.txt > $tissueType/htSeqCount/matrix.genes.er.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.control.txt $tissueType/htSeqCount/matrix.genes.expression.her2neg.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.her2pos.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.her2na.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.her2equivocal.txt > $tissueType/htSeqCount/matrix.genes.her2.all
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.her2neg.txt $tissueType/htSeqCount/matrix.genes.expression.her2pos.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.her2na.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.her2equivocal.txt > $tissueType/htSeqCount/matrix.genes.her2.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.control.txt $tissueType/htSeqCount/matrix.genes.expression.prneg.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.prpos.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.prna.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.prnotavailable.txt > $tissueType/htSeqCount/matrix.genes.pr.all
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.prneg.txt $tissueType/htSeqCount/matrix.genes.expression.prpos.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.prna.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.prnotavailable.txt > $tissueType/htSeqCount/matrix.genes.pr.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.control.txt $tissueType/htSeqCount/matrix.genes.expression.tn.txt > $tissueType/htSeqCount/matrix.genes.tn.all
+cat $tissueType/htSeqCount/matrix.genes.expression.tn.txt > $tissueType/htSeqCount/matrix.genes.tn.all.withoutNorm
+
+
+export tissueType="PRAD";
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.control.txt $tissueType/htSeqCount/matrix.genes.expression.t2.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.t3.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.t4.txt > $tissueType/htSeqCount/matrix.genes.t.all
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.t2.txt $tissueType/htSeqCount/matrix.genes.expression.t3.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.t4.txt > $tissueType/htSeqCount/matrix.genes.t.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.control.txt $tissueType/htSeqCount/matrix.genes.expression.n0.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.n1.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.na.txt > $tissueType/htSeqCount/matrix.genes.n.all
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.n0.txt $tissueType/htSeqCount/matrix.genes.expression.n1.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.na.txt > $tissueType/htSeqCount/matrix.genes.n.all.withoutNorm
+
+
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.control.txt $tissueType/htSeqCount/matrix.genes.expression.lessequal6.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.equal7.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.moreequal8.txt > $tissueType/htSeqCount/matrix.genes.gleason.all
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.lessequal6.txt $tissueType/htSeqCount/matrix.genes.expression.equal7.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.moreequal8.txt > $tissueType/htSeqCount/matrix.genes.gleason.all.withoutNorm
+
+
+
+export tissueType="PAAD";
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.control.txt $tissueType/htSeqCount/matrix.genes.expression.t1.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.t2.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.t3.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.t4.txt > $tissueType/htSeqCount/matrix.genes.t.all
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.t1.txt $tissueType/htSeqCount/matrix.genes.expression.t2.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.t3.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.t4.txt  > $tissueType/htSeqCount/matrix.genes.t.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.control.txt $tissueType/htSeqCount/matrix.genes.expression.n0.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.n1.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.na.txt > $tissueType/htSeqCount/matrix.genes.n.all
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.n0.txt $tissueType/htSeqCount/matrix.genes.expression.n1.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.na.txt > $tissueType/htSeqCount/matrix.genes.n.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.control.txt $tissueType/htSeqCount/matrix.genes.expression.m0.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.m1.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.mx.txt > $tissueType/htSeqCount/matrix.genes.m.all
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.m0.txt $tissueType/htSeqCount/matrix.genes.expression.m1.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.mx.txt > $tissueType/htSeqCount/matrix.genes.m.all.withoutNorm
+
+
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.control.txt $tissueType/htSeqCount/matrix.genes.expression.g1.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.g2.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.g3.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.g4.txt > $tissueType/htSeqCount/matrix.genes.g.all
+join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.g1.txt $tissueType/htSeqCount/matrix.genes.expression.g2.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.g3.txt | join -1 1 -2 1 -t $'\t' - $tissueType/htSeqCount/matrix.genes.expression.g4.txt > $tissueType/htSeqCount/matrix.genes.g.all.withoutNorm
+
+
+
+##
+ #
+ #
+ #
+
+export tissueType="COAD";
+cat $tissueType/htSeqCount/sampleHeader_ajcc.control.txt $tissueType/htSeqCount/sampleHeader_ajcc.stagei.txt $tissueType/htSeqCount/sampleHeader_ajcc.stageii.txt $tissueType/htSeqCount/sampleHeader_ajcc.stageiii.txt $tissueType/htSeqCount/sampleHeader_ajcc.stageiv.txt > $tissueType/htSeqCount/sampleHeader.all
+cat $tissueType/htSeqCount/sampleHeader_ajcc.stagei.txt $tissueType/htSeqCount/sampleHeader_ajcc.stageii.txt $tissueType/htSeqCount/sampleHeader_ajcc.stageiii.txt $tissueType/htSeqCount/sampleHeader_ajcc.stageiv.txt > $tissueType/htSeqCount/sampleHeader.all.withoutNorm
+
+export tissueType="BRCA";
+cat $tissueType/htSeqCount/sampleHeader_ajcc.control.txt $tissueType/htSeqCount/sampleHeader_ajcc.stagei.txt $tissueType/htSeqCount/sampleHeader_ajcc.stageii.txt $tissueType/htSeqCount/sampleHeader_ajcc.stageiii.txt $tissueType/htSeqCount/sampleHeader_ajcc.stageiv.txt > $tissueType/htSeqCount/sampleHeader.all
+cat $tissueType/htSeqCount/sampleHeader_ajcc.stagei.txt $tissueType/htSeqCount/sampleHeader_ajcc.stageii.txt $tissueType/htSeqCount/sampleHeader_ajcc.stageiii.txt $tissueType/htSeqCount/sampleHeader_ajcc.stageiv.txt > $tissueType/htSeqCount/sampleHeader.all.withoutNorm
+
+export tissueType="PRAD";
+cat $tissueType/htSeqCount/sampleHeader_ajcc.control.txt $tissueType/htSeqCount/sampleHeader_ajcc.tumor.txt > $tissueType/htSeqCount/sampleHeader.all
+cat $tissueType/htSeqCount/sampleHeader_ajcc.tumor.txt > $tissueType/htSeqCount/sampleHeader.all.withoutNorm
+
+export tissueType="PAAD";
+cat $tissueType/htSeqCount/sampleHeader_ajcc.control.txt $tissueType/htSeqCount/sampleHeader_ajcc.stagei.txt $tissueType/htSeqCount/sampleHeader_ajcc.stageii.txt $tissueType/htSeqCount/sampleHeader_ajcc.stageiii.txt $tissueType/htSeqCount/sampleHeader_ajcc.stageiv.txt > $tissueType/htSeqCount/sampleHeader.all
+cat $tissueType/htSeqCount/sampleHeader_ajcc.stagei.txt $tissueType/htSeqCount/sampleHeader_ajcc.stageii.txt $tissueType/htSeqCount/sampleHeader_ajcc.stageiii.txt $tissueType/htSeqCount/sampleHeader_ajcc.stageiv.txt > $tissueType/htSeqCount/sampleHeader.all.withoutNorm
+
+
+export tissueType="COAD";
+cat $tissueType/htSeqCount/sampleHeader_ajcc.control.txt $tissueType/htSeqCount/sampleHeader_ajcc.t1.txt $tissueType/htSeqCount/sampleHeader_ajcc.t2.txt $tissueType/htSeqCount/sampleHeader_ajcc.t3.txt $tissueType/htSeqCount/sampleHeader_ajcc.t4.txt $tissueType/htSeqCount/sampleHeader_ajcc.tis.txt > $tissueType/htSeqCount/sampleHeader.t.all
+cat $tissueType/htSeqCount/sampleHeader_ajcc.t1.txt $tissueType/htSeqCount/sampleHeader_ajcc.t2.txt $tissueType/htSeqCount/sampleHeader_ajcc.t3.txt $tissueType/htSeqCount/sampleHeader_ajcc.t4.txt $tissueType/htSeqCount/sampleHeader_ajcc.tis.txt > $tissueType/htSeqCount/sampleHeader.t.all.withoutNorm
+
+cat $tissueType/htSeqCount/sampleHeader_ajcc.control.txt $tissueType/htSeqCount/sampleHeader_ajcc.n0.txt $tissueType/htSeqCount/sampleHeader_ajcc.n1.txt $tissueType/htSeqCount/sampleHeader_ajcc.n2.txt > $tissueType/htSeqCount/sampleHeader.n.all
+cat $tissueType/htSeqCount/sampleHeader_ajcc.n0.txt $tissueType/htSeqCount/sampleHeader_ajcc.n1.txt $tissueType/htSeqCount/sampleHeader_ajcc.n2.txt > $tissueType/htSeqCount/sampleHeader.n.all.withoutNorm
+
+cat $tissueType/htSeqCount/sampleHeader_ajcc.control.txt $tissueType/htSeqCount/sampleHeader_ajcc.m0.txt $tissueType/htSeqCount/sampleHeader_ajcc.m1.txt $tissueType/htSeqCount/sampleHeader_ajcc.mx.txt > $tissueType/htSeqCount/sampleHeader.m.all
+cat $tissueType/htSeqCount/sampleHeader_ajcc.m0.txt $tissueType/htSeqCount/sampleHeader_ajcc.m1.txt $tissueType/htSeqCount/sampleHeader_ajcc.mx.txt > $tissueType/htSeqCount/sampleHeader.m.all.withoutNorm
+
+
+export tissueType="BRCA";
+cat $tissueType/htSeqCount/sampleHeader_ajcc.control.txt $tissueType/htSeqCount/sampleHeader_ajcc.t1.txt $tissueType/htSeqCount/sampleHeader_ajcc.t2.txt $tissueType/htSeqCount/sampleHeader_ajcc.t3.txt $tissueType/htSeqCount/sampleHeader_ajcc.t4.txt > $tissueType/htSeqCount/sampleHeader.t.all
+cat $tissueType/htSeqCount/sampleHeader_ajcc.t1.txt $tissueType/htSeqCount/sampleHeader_ajcc.t2.txt $tissueType/htSeqCount/sampleHeader_ajcc.t3.txt $tissueType/htSeqCount/sampleHeader_ajcc.t4.txt > $tissueType/htSeqCount/sampleHeader.t.all.withoutNorm
+
+cat $tissueType/htSeqCount/sampleHeader_ajcc.control.txt $tissueType/htSeqCount/sampleHeader_ajcc.n0.txt $tissueType/htSeqCount/sampleHeader_ajcc.n1.txt $tissueType/htSeqCount/sampleHeader_ajcc.n2.txt $tissueType/htSeqCount/sampleHeader_ajcc.n3.txt $tissueType/htSeqCount/sampleHeader_ajcc.nx.txt > $tissueType/htSeqCount/sampleHeader.n.all
+cat $tissueType/htSeqCount/sampleHeader_ajcc.n0.txt $tissueType/htSeqCount/sampleHeader_ajcc.n1.txt $tissueType/htSeqCount/sampleHeader_ajcc.n2.txt $tissueType/htSeqCount/sampleHeader_ajcc.n3.txt $tissueType/htSeqCount/sampleHeader_ajcc.nx.txt > $tissueType/htSeqCount/sampleHeader.n.all.withoutNorm
+
+cat $tissueType/htSeqCount/sampleHeader_ajcc.control.txt $tissueType/htSeqCount/sampleHeader_ajcc.m0.txt $tissueType/htSeqCount/sampleHeader_ajcc.m1.txt $tissueType/htSeqCount/sampleHeader_ajcc.mx.txt > $tissueType/htSeqCount/sampleHeader.m.all
+cat $tissueType/htSeqCount/sampleHeader_ajcc.m0.txt $tissueType/htSeqCount/sampleHeader_ajcc.m1.txt $tissueType/htSeqCount/sampleHeader_ajcc.mx.txt > $tissueType/htSeqCount/sampleHeader.m.all.withoutNorm
+
+
+cat $tissueType/htSeqCount/sampleHeader_ajcc.control.txt $tissueType/htSeqCount/sampleHeader_pancan.basal.txt $tissueType/htSeqCount/sampleHeader_pancan.her2.txt $tissueType/htSeqCount/sampleHeader_pancan.luma.txt $tissueType/htSeqCount/sampleHeader_pancan.lumb.txt $tissueType/htSeqCount/sampleHeader_pancan.pcnormal.txt $tissueType/htSeqCount/sampleHeader_pancan.pcna.txt > $tissueType/htSeqCount/sampleHeader.pc.all
+cat $tissueType/htSeqCount/sampleHeader_pancan.basal.txt $tissueType/htSeqCount/sampleHeader_pancan.her2.txt $tissueType/htSeqCount/sampleHeader_pancan.luma.txt $tissueType/htSeqCount/sampleHeader_pancan.lumb.txt $tissueType/htSeqCount/sampleHeader_pancan.pcnormal.txt $tissueType/htSeqCount/sampleHeader_pancan.pcna.txt > $tissueType/htSeqCount/sampleHeader.pc.all.withoutNorm
+
+cat $tissueType/htSeqCount/sampleHeader_ajcc.control.txt $tissueType/htSeqCount/sampleHeader_pancan.erneg.txt $tissueType/htSeqCount/sampleHeader_pancan.erpos.txt $tissueType/htSeqCount/sampleHeader_pancan.erna.txt $tissueType/htSeqCount/sampleHeader_pancan.ernotavailable.txt > $tissueType/htSeqCount/sampleHeader.er.all
+cat $tissueType/htSeqCount/sampleHeader_pancan.erneg.txt $tissueType/htSeqCount/sampleHeader_pancan.erpos.txt $tissueType/htSeqCount/sampleHeader_pancan.erna.txt $tissueType/htSeqCount/sampleHeader_pancan.ernotavailable.txt > $tissueType/htSeqCount/sampleHeader.er.all.withoutNorm
+
+cat $tissueType/htSeqCount/sampleHeader_ajcc.control.txt $tissueType/htSeqCount/sampleHeader_pancan.her2neg.txt $tissueType/htSeqCount/sampleHeader_pancan.her2pos.txt $tissueType/htSeqCount/sampleHeader_pancan.her2na.txt $tissueType/htSeqCount/sampleHeader_pancan.her2equivocal.txt > $tissueType/htSeqCount/sampleHeader.her2.all
+cat $tissueType/htSeqCount/sampleHeader_pancan.her2neg.txt $tissueType/htSeqCount/sampleHeader_pancan.her2pos.txt $tissueType/htSeqCount/sampleHeader_pancan.her2na.txt $tissueType/htSeqCount/sampleHeader_pancan.her2equivocal.txt > $tissueType/htSeqCount/sampleHeader.her2.all.withoutNorm
+
+cat $tissueType/htSeqCount/sampleHeader_ajcc.control.txt $tissueType/htSeqCount/sampleHeader_pancan.prneg.txt $tissueType/htSeqCount/sampleHeader_pancan.prpos.txt $tissueType/htSeqCount/sampleHeader_pancan.prna.txt $tissueType/htSeqCount/sampleHeader_pancan.prnotavailable.txt > $tissueType/htSeqCount/sampleHeader.pr.all
+cat $tissueType/htSeqCount/sampleHeader_pancan.prneg.txt $tissueType/htSeqCount/sampleHeader_pancan.prpos.txt $tissueType/htSeqCount/sampleHeader_pancan.prna.txt $tissueType/htSeqCount/sampleHeader_pancan.prnotavailable.txt > $tissueType/htSeqCount/sampleHeader.pr.all.withoutNorm
+
+cat $tissueType/htSeqCount/sampleHeader_ajcc.control.txt $tissueType/htSeqCount/sampleHeader_pancan.tn.txt > $tissueType/htSeqCount/sampleHeader.tn.all
+cat $tissueType/htSeqCount/sampleHeader_pancan.tn.txt > $tissueType/htSeqCount/sampleHeader.tn.all.withoutNorm
+
+
+export tissueType="PRAD";
+cat $tissueType/htSeqCount/sampleHeader_ajcc.control.txt $tissueType/htSeqCount/sampleHeader_ajcc.t2.txt $tissueType/htSeqCount/sampleHeader_ajcc.t3.txt $tissueType/htSeqCount/sampleHeader_ajcc.t4.txt > $tissueType/htSeqCount/sampleHeader.t.all
+cat $tissueType/htSeqCount/sampleHeader_ajcc.t2.txt $tissueType/htSeqCount/sampleHeader_ajcc.t3.txt $tissueType/htSeqCount/sampleHeader_ajcc.t4.txt > $tissueType/htSeqCount/sampleHeader.t.all.withoutNorm
+
+cat $tissueType/htSeqCount/sampleHeader_ajcc.control.txt $tissueType/htSeqCount/sampleHeader_ajcc.n0.txt $tissueType/htSeqCount/sampleHeader_ajcc.n1.txt $tissueType/htSeqCount/sampleHeader_ajcc.na.txt > $tissueType/htSeqCount/sampleHeader.n.all
+cat $tissueType/htSeqCount/sampleHeader_ajcc.n0.txt $tissueType/htSeqCount/sampleHeader_ajcc.n1.txt $tissueType/htSeqCount/sampleHeader_ajcc.na.txt > $tissueType/htSeqCount/sampleHeader.n.all.withoutNorm
+
+
+cat $tissueType/htSeqCount/sampleHeader_ajcc.control.txt $tissueType/htSeqCount/sampleHeader_pancan.lessequal6.txt $tissueType/htSeqCount/sampleHeader_pancan.equal7.txt $tissueType/htSeqCount/sampleHeader_pancan.moreequal8.txt > $tissueType/htSeqCount/sampleHeader.gleason.all
+cat $tissueType/htSeqCount/sampleHeader_pancan.lessequal6.txt $tissueType/htSeqCount/sampleHeader_pancan.equal7.txt $tissueType/htSeqCount/sampleHeader_pancan.moreequal8.txt > $tissueType/htSeqCount/sampleHeader.gleason.all.withoutNorm
+
+
+
+export tissueType="PAAD";
+cat $tissueType/htSeqCount/sampleHeader_ajcc.control.txt $tissueType/htSeqCount/sampleHeader_ajcc.t1.txt $tissueType/htSeqCount/sampleHeader_ajcc.t2.txt $tissueType/htSeqCount/sampleHeader_ajcc.t3.txt $tissueType/htSeqCount/sampleHeader_ajcc.t4.txt > $tissueType/htSeqCount/sampleHeader.t.all
+cat $tissueType/htSeqCount/sampleHeader_ajcc.t1.txt $tissueType/htSeqCount/sampleHeader_ajcc.t2.txt $tissueType/htSeqCount/sampleHeader_ajcc.t3.txt $tissueType/htSeqCount/sampleHeader_ajcc.t4.txt > $tissueType/htSeqCount/sampleHeader.t.all.withoutNorm
+
+cat $tissueType/htSeqCount/sampleHeader_ajcc.control.txt $tissueType/htSeqCount/sampleHeader_ajcc.n0.txt $tissueType/htSeqCount/sampleHeader_ajcc.n1.txt $tissueType/htSeqCount/sampleHeader_ajcc.na.txt > $tissueType/htSeqCount/sampleHeader.n.all
+cat $tissueType/htSeqCount/sampleHeader_ajcc.n0.txt $tissueType/htSeqCount/sampleHeader_ajcc.n1.txt $tissueType/htSeqCount/sampleHeader_ajcc.na.txt > $tissueType/htSeqCount/sampleHeader.n.all.withoutNorm
+
+cat $tissueType/htSeqCount/sampleHeader_ajcc.control.txt $tissueType/htSeqCount/sampleHeader_ajcc.m0.txt $tissueType/htSeqCount/sampleHeader_ajcc.m1.txt $tissueType/htSeqCount/sampleHeader_ajcc.mx.txt > $tissueType/htSeqCount/sampleHeader.m.all
+cat $tissueType/htSeqCount/sampleHeader_ajcc.m0.txt $tissueType/htSeqCount/sampleHeader_ajcc.m1.txt $tissueType/htSeqCount/sampleHeader_ajcc.mx.txt > $tissueType/htSeqCount/sampleHeader.m.all.withoutNorm
+
+
+cat $tissueType/htSeqCount/sampleHeader_ajcc.control.txt $tissueType/htSeqCount/sampleHeader_pancan.g1.txt $tissueType/htSeqCount/sampleHeader_pancan.g2.txt $tissueType/htSeqCount/sampleHeader_pancan.g3.txt $tissueType/htSeqCount/sampleHeader_pancan.g4.txt > $tissueType/htSeqCount/sampleHeader.g.all
+cat $tissueType/htSeqCount/sampleHeader_pancan.g1.txt $tissueType/htSeqCount/sampleHeader_pancan.g2.txt $tissueType/htSeqCount/sampleHeader_pancan.g3.txt $tissueType/htSeqCount/sampleHeader_pancan.g4.txt > $tissueType/htSeqCount/sampleHeader.g.all.withoutNorm
+
+
+##
+ #
+ #
+for eachFile in `ls COAD/htSeqCount/ | grep "sampleHeader\."`; do printf "\n" >> COAD/htSeqCount/$eachFile; done;
+for eachFile in `ls BRCA/htSeqCount/ | grep "sampleHeader\."`; do printf "\n" >> BRCA/htSeqCount/$eachFile; done;
+for eachFile in `ls PRAD/htSeqCount/ | grep "sampleHeader\."`; do printf "\n" >> PRAD/htSeqCount/$eachFile; done;
+for eachFile in `ls PAAD/htSeqCount/ | grep "sampleHeader\."`; do printf "\n" >> PAAD/htSeqCount/$eachFile; done;
+
+printf "\n" >> BRCA/htSeqCount/sampleHeader.all
+printf "\n" >> BRCA/htSeqCount/sampleHeader.all.withoutNorm
+
+##
+ #
+ #
+export tissueType="COAD";
+cat $tissueType/htSeqCount/sampleHeader.all $tissueType/htSeqCount/matrix.genes.all > $tissueType/htSeqCount/matrixCount.genes.all
+cat $tissueType/htSeqCount/sampleHeader.all.withoutNorm $tissueType/htSeqCount/matrix.genes.all.withoutNorm > $tissueType/htSeqCount/matrixCount.genes.all.withoutNorm
+
+export tissueType="BRCA";
+cat $tissueType/htSeqCount/sampleHeader.all $tissueType/htSeqCount/matrix.genes.all > $tissueType/htSeqCount/matrixCount.genes.all
+cat $tissueType/htSeqCount/sampleHeader.all.withoutNorm $tissueType/htSeqCount/matrix.genes.all.withoutNorm > $tissueType/htSeqCount/matrixCount.genes.all.withoutNorm
+
+export tissueType="PRAD";
+cat $tissueType/htSeqCount/sampleHeader.all $tissueType/htSeqCount/matrix.genes.all > $tissueType/htSeqCount/matrixCount.genes.all
+cat $tissueType/htSeqCount/sampleHeader.all.withoutNorm $tissueType/htSeqCount/matrix.genes.all.withoutNorm > $tissueType/htSeqCount/matrixCount.genes.all.withoutNorm
+
+export tissueType="PAAD";
+cat $tissueType/htSeqCount/sampleHeader.all $tissueType/htSeqCount/matrix.genes.all > $tissueType/htSeqCount/matrixCount.genes.all
+cat $tissueType/htSeqCount/sampleHeader.all.withoutNorm $tissueType/htSeqCount/matrix.genes.all.withoutNorm > $tissueType/htSeqCount/matrixCount.genes.all.withoutNorm
+
+
+export tissueType="COAD";
+cat $tissueType/htSeqCount/sampleHeader.t.all $tissueType/htSeqCount/matrix.genes.t.all > $tissueType/htSeqCount/matrixCount.genes.t.all
+cat $tissueType/htSeqCount/sampleHeader.t.all.withoutNorm $tissueType/htSeqCount/matrix.genes.t.all.withoutNorm > $tissueType/htSeqCount/matrixCount.genes.t.all.withoutNorm
+cat $tissueType/htSeqCount/sampleHeader.n.all $tissueType/htSeqCount/matrix.genes.n.all > $tissueType/htSeqCount/matrixCount.genes.n.all
+cat $tissueType/htSeqCount/sampleHeader.n.all.withoutNorm $tissueType/htSeqCount/matrix.genes.n.all.withoutNorm > $tissueType/htSeqCount/matrixCount.genes.n.all.withoutNorm
+cat $tissueType/htSeqCount/sampleHeader.m.all $tissueType/htSeqCount/matrix.genes.m.all > $tissueType/htSeqCount/matrixCount.genes.m.all
+cat $tissueType/htSeqCount/sampleHeader.m.all.withoutNorm $tissueType/htSeqCount/matrix.genes.m.all.withoutNorm > $tissueType/htSeqCount/matrixCount.genes.m.all.withoutNorm
+
+export tissueType="BRCA";
+cat $tissueType/htSeqCount/sampleHeader.t.all $tissueType/htSeqCount/matrix.genes.t.all > $tissueType/htSeqCount/matrixCount.genes.t.all
+cat $tissueType/htSeqCount/sampleHeader.t.all.withoutNorm $tissueType/htSeqCount/matrix.genes.t.all.withoutNorm > $tissueType/htSeqCount/matrixCount.genes.t.all.withoutNorm
+cat $tissueType/htSeqCount/sampleHeader.n.all $tissueType/htSeqCount/matrix.genes.n.all > $tissueType/htSeqCount/matrixCount.genes.n.all
+cat $tissueType/htSeqCount/sampleHeader.n.all.withoutNorm $tissueType/htSeqCount/matrix.genes.n.all.withoutNorm > $tissueType/htSeqCount/matrixCount.genes.n.all.withoutNorm
+cat $tissueType/htSeqCount/sampleHeader.m.all $tissueType/htSeqCount/matrix.genes.m.all > $tissueType/htSeqCount/matrixCount.genes.m.all
+cat $tissueType/htSeqCount/sampleHeader.m.all.withoutNorm $tissueType/htSeqCount/matrix.genes.m.all.withoutNorm > $tissueType/htSeqCount/matrixCount.genes.m.all.withoutNorm
+cat $tissueType/htSeqCount/sampleHeader.pc.all $tissueType/htSeqCount/matrix.genes.pc.all > $tissueType/htSeqCount/matrixCount.genes.pc.all
+cat $tissueType/htSeqCount/sampleHeader.pc.all.withoutNorm $tissueType/htSeqCount/matrix.genes.pc.all.withoutNorm > $tissueType/htSeqCount/matrixCount.genes.pc.all.withoutNorm
+cat $tissueType/htSeqCount/sampleHeader.er.all $tissueType/htSeqCount/matrix.genes.er.all > $tissueType/htSeqCount/matrixCount.genes.er.all
+cat $tissueType/htSeqCount/sampleHeader.er.all.withoutNorm $tissueType/htSeqCount/matrix.genes.er.all.withoutNorm > $tissueType/htSeqCount/matrixCount.genes.er.all.withoutNorm
+cat $tissueType/htSeqCount/sampleHeader.her2.all $tissueType/htSeqCount/matrix.genes.her2.all > $tissueType/htSeqCount/matrixCount.genes.her2.all
+cat $tissueType/htSeqCount/sampleHeader.her2.all.withoutNorm $tissueType/htSeqCount/matrix.genes.her2.all.withoutNorm > $tissueType/htSeqCount/matrixCount.genes.her2.all.withoutNorm
+cat $tissueType/htSeqCount/sampleHeader.pr.all $tissueType/htSeqCount/matrix.genes.pr.all > $tissueType/htSeqCount/matrixCount.genes.pr.all
+cat $tissueType/htSeqCount/sampleHeader.pr.all.withoutNorm $tissueType/htSeqCount/matrix.genes.pr.all.withoutNorm > $tissueType/htSeqCount/matrixCount.genes.pr.all.withoutNorm
+cat $tissueType/htSeqCount/sampleHeader.tn.all $tissueType/htSeqCount/matrix.genes.tn.all > $tissueType/htSeqCount/matrixCount.genes.tn.all
+cat $tissueType/htSeqCount/sampleHeader.tn.all.withoutNorm $tissueType/htSeqCount/matrix.genes.tn.all.withoutNorm > $tissueType/htSeqCount/matrixCount.genes.tn.all.withoutNorm
+
+export tissueType="PRAD";
+cat $tissueType/htSeqCount/sampleHeader.t.all $tissueType/htSeqCount/matrix.genes.t.all > $tissueType/htSeqCount/matrixCount.genes.t.all
+cat $tissueType/htSeqCount/sampleHeader.t.all.withoutNorm $tissueType/htSeqCount/matrix.genes.t.all.withoutNorm > $tissueType/htSeqCount/matrixCount.genes.t.all.withoutNorm
+cat $tissueType/htSeqCount/sampleHeader.n.all $tissueType/htSeqCount/matrix.genes.n.all > $tissueType/htSeqCount/matrixCount.genes.n.all
+cat $tissueType/htSeqCount/sampleHeader.n.all.withoutNorm $tissueType/htSeqCount/matrix.genes.n.all.withoutNorm > $tissueType/htSeqCount/matrixCount.genes.n.all.withoutNorm
+cat $tissueType/htSeqCount/sampleHeader.gleason.all $tissueType/htSeqCount/matrix.genes.gleason.all > $tissueType/htSeqCount/matrixCount.genes.gleason.all
+cat $tissueType/htSeqCount/sampleHeader.gleason.all.withoutNorm $tissueType/htSeqCount/matrix.genes.gleason.all.withoutNorm > $tissueType/htSeqCount/matrixCount.genes.gleason.all.withoutNorm
+
+export tissueType="PAAD";
+cat $tissueType/htSeqCount/sampleHeader.t.all $tissueType/htSeqCount/matrix.genes.t.all > $tissueType/htSeqCount/matrixCount.genes.t.all
+cat $tissueType/htSeqCount/sampleHeader.t.all.withoutNorm $tissueType/htSeqCount/matrix.genes.t.all.withoutNorm > $tissueType/htSeqCount/matrixCount.genes.t.all.withoutNorm
+cat $tissueType/htSeqCount/sampleHeader.n.all $tissueType/htSeqCount/matrix.genes.n.all > $tissueType/htSeqCount/matrixCount.genes.n.all
+cat $tissueType/htSeqCount/sampleHeader.n.all.withoutNorm $tissueType/htSeqCount/matrix.genes.n.all.withoutNorm > $tissueType/htSeqCount/matrixCount.genes.n.all.withoutNorm
+cat $tissueType/htSeqCount/sampleHeader.m.all $tissueType/htSeqCount/matrix.genes.m.all > $tissueType/htSeqCount/matrixCount.genes.m.all
+cat $tissueType/htSeqCount/sampleHeader.m.all.withoutNorm $tissueType/htSeqCount/matrix.genes.m.all.withoutNorm > $tissueType/htSeqCount/matrixCount.genes.m.all.withoutNorm
+cat $tissueType/htSeqCount/sampleHeader.g.all $tissueType/htSeqCount/matrix.genes.g.all > $tissueType/htSeqCount/matrixCount.genes.g.all
+cat $tissueType/htSeqCount/sampleHeader.g.all.withoutNorm $tissueType/htSeqCount/matrix.genes.g.all.withoutNorm > $tissueType/htSeqCount/matrixCount.genes.g.all.withoutNorm
+
+
+
+## 
+ #
+ #
+export tissueType="COAD";
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.all" 1 2 "$tissueType/htSeqCount/result.edger.genes.norxi" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.all" 1 3 "$tissueType/htSeqCount/result.edger.genes.norxii" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.all" 1 4 "$tissueType/htSeqCount/result.edger.genes.norxiii" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.all" 1 5 "$tissueType/htSeqCount/result.edger.genes.norxiv" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.all" 2 3 "$tissueType/htSeqCount/result.edger.genes.ixii" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.all" 3 4 "$tissueType/htSeqCount/result.edger.genes.iixiii" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.all" 4 5 "$tissueType/htSeqCount/result.edger.genes.iiixiv" &
+
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.t.all" 1 2 "$tissueType/htSeqCount/result.edger.genes.t.norxt1" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.t.all" 1 3 "$tissueType/htSeqCount/result.edger.genes.t.norxt2" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.t.all" 1 4 "$tissueType/htSeqCount/result.edger.genes.t.norxt3" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.t.all" 1 5 "$tissueType/htSeqCount/result.edger.genes.t.norxt4" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.t.all" 2 3 "$tissueType/htSeqCount/result.edger.genes.t.t1xt2" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.t.all" 3 4 "$tissueType/htSeqCount/result.edger.genes.t.t2xt3" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.t.all" 4 5 "$tissueType/htSeqCount/result.edger.genes.t.t3xt4" &
+
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.n.all" 1 2 "$tissueType/htSeqCount/result.edger.genes.n.norxn0" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.n.all" 1 3 "$tissueType/htSeqCount/result.edger.genes.n.norxn1" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.n.all" 1 4 "$tissueType/htSeqCount/result.edger.genes.n.norxn2" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.n.all" 2 3 "$tissueType/htSeqCount/result.edger.genes.n.n0xn1" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.n.all" 3 4 "$tissueType/htSeqCount/result.edger.genes.n.n1xn2" &
+
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.m.all" 1 2 "$tissueType/htSeqCount/result.edger.genes.m.norxm0" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.m.all" 1 3 "$tissueType/htSeqCount/result.edger.genes.m.norxm1" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.m.all" 2 3 "$tissueType/htSeqCount/result.edger.genes.m.m0xm1" &
+
+
+export tissueType="BRCA";
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.all" 1 2 "$tissueType/htSeqCount/result.edger.genes.norxi" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.all" 1 3 "$tissueType/htSeqCount/result.edger.genes.norxii" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.all" 1 4 "$tissueType/htSeqCount/result.edger.genes.norxiii" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.all" 1 5 "$tissueType/htSeqCount/result.edger.genes.norxiv" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.all" 2 3 "$tissueType/htSeqCount/result.edger.genes.ixii" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.all" 3 4 "$tissueType/htSeqCount/result.edger.genes.iixiii" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.all" 4 5 "$tissueType/htSeqCount/result.edger.genes.iiixiv" &
+
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.t.all" 1 2 "$tissueType/htSeqCount/result.edger.genes.t.norxt1" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.t.all" 1 3 "$tissueType/htSeqCount/result.edger.genes.t.norxt2" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.t.all" 1 4 "$tissueType/htSeqCount/result.edger.genes.t.norxt3" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.t.all" 1 5 "$tissueType/htSeqCount/result.edger.genes.t.norxt4" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.t.all" 2 3 "$tissueType/htSeqCount/result.edger.genes.t.t1xt2" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.t.all" 3 4 "$tissueType/htSeqCount/result.edger.genes.t.t2xt3" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.t.all" 4 5 "$tissueType/htSeqCount/result.edger.genes.t.t3xt4" &
+
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.n.all" 1 2 "$tissueType/htSeqCount/result.edger.genes.n.norxn0" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.n.all" 1 3 "$tissueType/htSeqCount/result.edger.genes.n.norxn1" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.n.all" 1 4 "$tissueType/htSeqCount/result.edger.genes.n.norxn2" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.n.all" 1 5 "$tissueType/htSeqCount/result.edger.genes.n.norxn3" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.n.all" 2 3 "$tissueType/htSeqCount/result.edger.genes.n.n0xn1" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.n.all" 3 4 "$tissueType/htSeqCount/result.edger.genes.n.n1xn2" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.n.all" 4 5 "$tissueType/htSeqCount/result.edger.genes.n.n2xn3" &
+
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.m.all" 1 2 "$tissueType/htSeqCount/result.edger.genes.m.norxm0" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.m.all" 1 3 "$tissueType/htSeqCount/result.edger.genes.m.norxm1" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.m.all" 2 3 "$tissueType/htSeqCount/result.edger.genes.m.m0xm1" &
+
+
+export tissueType="PRAD";
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.all" 1 2 "$tissueType/htSeqCount/result.edger.genes.norxtum" &
+
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.t.all" 1 3 "$tissueType/htSeqCount/result.edger.genes.t.norxt2" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.t.all" 1 4 "$tissueType/htSeqCount/result.edger.genes.t.norxt3" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.t.all" 1 5 "$tissueType/htSeqCount/result.edger.genes.t.norxt4" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.t.all" 3 4 "$tissueType/htSeqCount/result.edger.genes.t.t2xt3" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.t.all" 4 5 "$tissueType/htSeqCount/result.edger.genes.t.t3xt4" &
+
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.n.all" 1 2 "$tissueType/htSeqCount/result.edger.genes.n.norxn0" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.n.all" 1 3 "$tissueType/htSeqCount/result.edger.genes.n.norxn1" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.n.all" 2 3 "$tissueType/htSeqCount/result.edger.genes.n.n0xn1" &
+
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.gleason.all" 1 2 "$tissueType/htSeqCount/result.edger.genes.gleason.norxgleason1" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.gleason.all" 1 3 "$tissueType/htSeqCount/result.edger.genes.gleason.norxgleason2" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.gleason.all" 1 4 "$tissueType/htSeqCount/result.edger.genes.gleason.norxgleason3" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.gleason.all" 2 3 "$tissueType/htSeqCount/result.edger.genes.gleason.gleason1xgleason2" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.gleason.all" 3 4 "$tissueType/htSeqCount/result.edger.genes.gleason.gleason2xgleason3" &
+
+
+export tissueType="PAAD";
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.all" 1 2 "$tissueType/htSeqCount/result.edger.genes.norxi" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.all" 1 3 "$tissueType/htSeqCount/result.edger.genes.norxii" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.all" 1 4 "$tissueType/htSeqCount/result.edger.genes.norxiii" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.all" 1 5 "$tissueType/htSeqCount/result.edger.genes.norxiv" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.all" 2 3 "$tissueType/htSeqCount/result.edger.genes.ixii" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.all" 3 4 "$tissueType/htSeqCount/result.edger.genes.iixiii" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.all" 4 5 "$tissueType/htSeqCount/result.edger.genes.iiixiv" &
+
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.t.all" 1 2 "$tissueType/htSeqCount/result.edger.genes.t.norxt1" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.t.all" 1 3 "$tissueType/htSeqCount/result.edger.genes.t.norxt2" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.t.all" 1 4 "$tissueType/htSeqCount/result.edger.genes.t.norxt3" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.t.all" 1 5 "$tissueType/htSeqCount/result.edger.genes.t.norxt4" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.t.all" 2 3 "$tissueType/htSeqCount/result.edger.genes.t.t1xt2" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.t.all" 3 4 "$tissueType/htSeqCount/result.edger.genes.t.t2xt3" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.t.all" 4 5 "$tissueType/htSeqCount/result.edger.genes.t.t3xt4" &
+
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.n.all" 1 2 "$tissueType/htSeqCount/result.edger.genes.n.norxn0" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.n.all" 1 3 "$tissueType/htSeqCount/result.edger.genes.n.norxn1" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.n.all" 2 3 "$tissueType/htSeqCount/result.edger.genes.n.n0xn1" &
+
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.m.all" 1 2 "$tissueType/htSeqCount/result.edger.genes.m.norxm0" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.m.all" 1 3 "$tissueType/htSeqCount/result.edger.genes.m.norxm1" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.m.all" 2 3 "$tissueType/htSeqCount/result.edger.genes.m.m0xm1" &
+
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.g.all" 1 2 "$tissueType/htSeqCount/result.edger.genes.g.norxg1" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.g.all" 1 3 "$tissueType/htSeqCount/result.edger.genes.g.norxg2" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.g.all" 1 4 "$tissueType/htSeqCount/result.edger.genes.g.norxg3" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.g.all" 1 5 "$tissueType/htSeqCount/result.edger.genes.g.norxg4" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.g.all" 2 3 "$tissueType/htSeqCount/result.edger.genes.g.g1xg2" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.g.all" 3 4 "$tissueType/htSeqCount/result.edger.genes.g.g2xg3" &
+Rscript scripts/edger_pirna_genes.r "$tissueType/htSeqCount/matrixCount.genes.g.all" 4 5 "$tissueType/htSeqCount/result.edger.genes.g.g3xg4" &
+
+
+
+##
+ #
+ #
+export tissueType="COAD";
+Rscript scripts/plot_pcc.r "$tissueType/htSeqCount/matrixCount.genes.all.withoutNorm" "$tissueType/pcc/" "plotICL.pirnaGenes.$tissueType.all.pdf" "$tissueType" "pirnaGenes.all" &
+Rscript scripts/plot_pcc.r "$tissueType/htSeqCount/matrixCount.genes.t.all.withoutNorm" "$tissueType/pcc/" "plotICL.pirnaGenes.$tissueType.t.pdf" "$tissueType" "pirnaGenes.t" &
+Rscript scripts/plot_pcc.r "$tissueType/htSeqCount/matrixCount.genes.n.all.withoutNorm" "$tissueType/pcc/" "plotICL.pirnaGenes.$tissueType.n.pdf" "$tissueType" "pirnaGenes.n" &
+Rscript scripts/plot_pcc.r "$tissueType/htSeqCount/matrixCount.genes.m.all.withoutNorm" "$tissueType/pcc/" "plotICL.pirnaGenes.$tissueType.m.pdf" "$tissueType" "pirnaGenes.m" &
+
+export tissueType="BRCA";
+Rscript scripts/plot_pcc.r "$tissueType/htSeqCount/matrixCount.genes.all.withoutNorm" "$tissueType/pcc/" "plotICL.pirnaGenes.$tissueType.all.pdf" "$tissueType" "pirnaGenes.all" &
+Rscript scripts/plot_pcc.r "$tissueType/htSeqCount/matrixCount.genes.t.all.withoutNorm" "$tissueType/pcc/" "plotICL.pirnaGenes.$tissueType.t.pdf" "$tissueType" "pirnaGenes.t" &
+Rscript scripts/plot_pcc.r "$tissueType/htSeqCount/matrixCount.genes.n.all.withoutNorm" "$tissueType/pcc/" "plotICL.pirnaGenes.$tissueType.n.pdf" "$tissueType" "pirnaGenes.n" &
+Rscript scripts/plot_pcc.r "$tissueType/htSeqCount/matrixCount.genes.m.all.withoutNorm" "$tissueType/pcc/" "plotICL.pirnaGenes.$tissueType.m.pdf" "$tissueType" "pirnaGenes.m" &
+Rscript scripts/plot_pcc.r "$tissueType/htSeqCount/matrixCount.genes.er.all.withoutNorm" "$tissueType/pcc/" "plotICL.pirnaGenes.$tissueType.er.pdf" "$tissueType" "pirnaGenes.er" &
+Rscript scripts/plot_pcc.r "$tissueType/htSeqCount/matrixCount.genes.her2.all.withoutNorm" "$tissueType/pcc/" "plotICL.pirnaGenes.$tissueType.her2.pdf" "$tissueType" "pirnaGenes.her2" &
+Rscript scripts/plot_pcc.r "$tissueType/htSeqCount/matrixCount.genes.pr.all.withoutNorm" "$tissueType/pcc/" "plotICL.pirnaGenes.$tissueType.pr.pdf" "$tissueType" "pirnaGenes.pr" &
+Rscript scripts/plot_pcc.r "$tissueType/htSeqCount/matrixCount.genes.pc.all.withoutNorm" "$tissueType/pcc/" "plotICL.pirnaGenes.$tissueType.pc.pdf" "$tissueType" "pirnaGenes.pc" &
+
+export tissueType="PRAD";
+Rscript scripts/plot_pcc.r "$tissueType/htSeqCount/matrixCount.genes.all.withoutNorm" "$tissueType/pcc/" "plotICL.pirnaGenes.$tissueType.all.pdf" "$tissueType" "pirnaGenes.all" &
+Rscript scripts/plot_pcc.r "$tissueType/htSeqCount/matrixCount.genes.t.all.withoutNorm" "$tissueType/pcc/" "plotICL.pirnaGenes.$tissueType.t.pdf" "$tissueType" "pirnaGenes.all" &
+Rscript scripts/plot_pcc.r "$tissueType/htSeqCount/matrixCount.genes.n.all.withoutNorm" "$tissueType/pcc/" "plotICL.pirnaGenes.$tissueType.n.pdf" "$tissueType" "pirnaGenes.all" &
+
+export tissueType="PAAD";
+Rscript scripts/plot_pcc.r "$tissueType/htSeqCount/matrixCount.genes.all.withoutNorm" "$tissueType/pcc/" "plotICL.pirnaGenes.$tissueType.all.pdf" "$tissueType" "pirnaGenes.all" &
+Rscript scripts/plot_pcc.r "$tissueType/htSeqCount/matrixCount.genes.t.all.withoutNorm" "$tissueType/pcc/" "plotICL.pirnaGenes.$tissueType.t.pdf" "$tissueType" "pirnaGenes.t" &
+Rscript scripts/plot_pcc.r "$tissueType/htSeqCount/matrixCount.genes.n.all.withoutNorm" "$tissueType/pcc/" "plotICL.pirnaGenes.$tissueType.n.pdf" "$tissueType" "pirnaGenes.n" &
+Rscript scripts/plot_pcc.r "$tissueType/htSeqCount/matrixCount.genes.m.all.withoutNorm" "$tissueType/pcc/" "plotICL.pirnaGenes.$tissueType.m.pdf" "$tissueType" "pirnaGenes.m" &
+Rscript scripts/plot_pcc.r "$tissueType/htSeqCount/matrixCount.genes.g.all.withoutNorm" "$tissueType/pcc/" "plotICL.pirnaGenes.$tissueType.g.pdf" "$tissueType" "pirnaGenes.g" &
+
+
+
+
+## trocar os nomes dos genes para facilitar leitura
+ #
+ #
+
+awk -F "\t" '{if($3=="gene"){split($9,arr,";");gsub(/gene_id /, "", arr[1]);gsub(/\"/, "", arr[1]);gsub(/ gene_type /, "", arr[2]);gsub(/\"/, "", arr[2]);gsub(/ gene_name /, "", arr[3]);gsub(/\"/, "", arr[3]);if(substr(arr[1],(length(arr[1])-4))!="PAR_Y"){print arr[1]"\t"arr[3]"\t"arr[2]}}}' /home/projects2/databases/gencode/release28/gencode.v28.annotation.gtf > rawData/ensemblToGenes.v28.txt
+
+awk -F "\t" '{split($1,arr,".");printf "s/"arr[1]"/"$2"/\n"}' rawData/ensemblToGenes.v28.txt > rawData/codeToGene.ensembl.v28.sed
+
+sed -f rawData/codeToGene.ensembl.v28.sed COAD/htSeqCount/matrix.genes.expression.control.txt
+
+
+
+##
+ #
+ #
+for eachFile in `ls COAD/htSeqCount/matrixCount.*.all`; do IFS='.' read -a arrOne <<< "$eachFile"; IFS='/' read -a arrTwo <<< "$eachFile"; printf "Rscript scripts/shapiroWilcoxTest.r \""$eachFile"\" \"rawData/list.pirnaEnsembl.txt\" \""${arrTwo[0]}"\" \""${arrOne[2]}"\" & \n" >> sourceTeste; done
+for eachFile in `ls BRCA/htSeqCount/matrixCount.*.all`; do IFS='.' read -a arrOne <<< "$eachFile"; IFS='/' read -a arrTwo <<< "$eachFile"; printf "Rscript scripts/shapiroWilcoxTest.r \""$eachFile"\" \"rawData/list.pirnaEnsembl.txt\" \""${arrTwo[0]}"\" \""${arrOne[2]}"\" & \n" >> sourceTeste2; done
+for eachFile in `ls PRAD/htSeqCount/matrixCount.*.all`; do IFS='.' read -a arrOne <<< "$eachFile"; IFS='/' read -a arrTwo <<< "$eachFile"; printf "Rscript scripts/shapiroWilcoxTest.r \""$eachFile"\" \"rawData/list.pirnaEnsembl.txt\" \""${arrTwo[0]}"\" \""${arrOne[2]}"\" & \n" >> sourceTeste3; done
+for eachFile in `ls PAAD/htSeqCount/matrixCount.*.all`; do IFS='.' read -a arrOne <<< "$eachFile"; IFS='/' read -a arrTwo <<< "$eachFile"; printf "Rscript scripts/shapiroWilcoxTest.r \""$eachFile"\" \"rawData/list.pirnaEnsembl.txt\" \""${arrTwo[0]}"\" \""${arrOne[2]}"\" & \n" >> sourceTeste4; done
+
+
+
+##
+ #
+ #
+ #Note that, unpaired two-samples t-test can be used only under certain conditions:
+ #|-when the two groups of samples (A and B), being compared, are normally distributed. This can be checked using Shapiro-Wilk test.
+
+ #shapiro.test(data$value)
+ #|-W = 0.96743, p-value = 0.1091
+ #|-From the output, the p-value > 0.05 implying that the distribution of the data are not significantly different from normal distribution. 
+ #|-In other words, we can assume the normality.
+
+ #wilcox.test(value, value2) -> 0.02711657
+ #|-As you can see, the two methods give the same results.
+ #|-The p-value of the test is 0.02712, which is less than the significance level alpha = 0.05. 
+ #|-We can conclude that men’s median weight is significantly different from women’s median weight with a p-value = 0.02712.
+
+for eachFile in `ls COAD/htSeqCount/matrixCount.*.all`; do IFS='.' read -a arrOne <<< "$eachFile"; IFS='/' read -a arrTwo <<< "$eachFile"; printf "Rscript scripts/plot_boxplot_genes.r \""$eachFile"\" \"rawData/list.pirnaEnsembl.txt\" \""${arrTwo[0]}"\" \""${arrOne[2]}"\" & \n" >> sourceTeste5; done
+for eachFile in `ls BRCA/htSeqCount/matrixCount.*.all`; do IFS='.' read -a arrOne <<< "$eachFile"; IFS='/' read -a arrTwo <<< "$eachFile"; printf "Rscript scripts/plot_boxplot_genes.r \""$eachFile"\" \"rawData/list.pirnaEnsembl.txt\" \""${arrTwo[0]}"\" \""${arrOne[2]}"\" & \n" >> sourceTeste6; done
+for eachFile in `ls PRAD/htSeqCount/matrixCount.*.all`; do IFS='.' read -a arrOne <<< "$eachFile"; IFS='/' read -a arrTwo <<< "$eachFile"; printf "Rscript scripts/plot_boxplot_genes.r \""$eachFile"\" \"rawData/list.pirnaEnsembl.txt\" \""${arrTwo[0]}"\" \""${arrOne[2]}"\" & \n" >> sourceTeste7; done
+for eachFile in `ls PAAD/htSeqCount/matrixCount.*.all`; do IFS='.' read -a arrOne <<< "$eachFile"; IFS='/' read -a arrTwo <<< "$eachFile"; printf "Rscript scripts/plot_boxplot_genes.r \""$eachFile"\" \"rawData/list.pirnaEnsembl.txt\" \""${arrTwo[0]}"\" \""${arrOne[2]}"\" & \n" >> sourceTeste8; done
+
+
+
+
+##
+ #
+ #
+
+#TODO pegar shapiro/wilcox e plotar boxplot dos genes targets de pirnas em cada tipo
+for eachFile in `cut -d "." -f 1 rawData/list.pirnaEnsembl.txt`; do grep $eachFile -w BRCA/htSeqCount/result.edger.genes.n.norxn0; done
+
+

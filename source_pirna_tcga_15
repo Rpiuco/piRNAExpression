@@ -1,0 +1,226 @@
+
+
+cat > lista.uniprot.unique
+A-152E5.7
+ALP1
+AMYB
+ANAPC10
+ANKL1
+APC10
+ASZ1
+BTBD18
+C14orf75
+C1orf59
+C7orf7
+DDX4
+ECAT8
+EXD1
+EXDL1
+FKBP36
+FKBP6
+GASZ
+GPAT2
+HENMT1
+HILI
+HIWI
+HIWI2
+HSP90A
+HSP90AA1
+HSPC1
+HSPCA
+KIAA0430
+LKAP
+MAEL
+MARF1
+MOV10L1
+MYBL1
+PIWI
+PIWIL1
+PIWIL2
+PIWIL3
+PIWIL4
+PLD6
+POLR2
+POLR2A
+POLR2B
+POLR2C
+POLR2D
+POLR2E
+POLR2F
+POLR2G
+POLR2H
+POLR2I
+POLR2J
+POLR2J1
+POLR2K
+POLR2L
+POLRF
+RPB7
+TDRD1
+TDRD12
+TDRD2
+TDRD5
+TDRD6
+TDRD9
+TDRKH
+TEX19
+TUDOR3
+VASA
+hCG_22573
+hCG_37994
+
+
+cat > list.string.unique
+ASZ1
+DDX4
+EXD1
+FKBP6
+GPAT2
+HENMT1
+HSP90AA1
+MAEL
+MOV10L1
+PIWIL2
+PIWIL3
+PIWIL4
+PLD6
+POLR2A
+POLR2B
+POLR2D
+POLR2E
+POLR2F
+POLR2G
+POLR2H
+POLR2I
+POLR2J
+POLR2K
+POLR2L
+TDRD1
+TDRD12
+TDRD5
+TDRD6
+TDRD9
+TDRKH
+
+
+cat lista.uniprot.unique list.string.unique | sort -k1,1 | uniq -c | sort -k1,1 -n | awk -F " " '{if($1==2){print$2}}' list.both.txt
+ASZ1
+DDX4
+EXD1
+FKBP6
+GPAT2
+HENMT1
+HSP90AA1
+MAEL
+MOV10L1
+PIWIL2
+PIWIL3
+PIWIL4
+PLD6
+POLR2A
+POLR2B
+POLR2D
+POLR2E
+POLR2F
+POLR2G
+POLR2H
+POLR2I
+POLR2J
+POLR2K
+POLR2L
+TDRD1
+TDRD12
+TDRD5
+TDRD6
+TDRD9
+TDRKH
+
+
+grep -w -f rawData/list.both.txt rawData/ensemblToGenes.v28.txt > rawData/list.pirnaEnsembl.txt
+ENSG00000162639.15      HENMT1  protein_coding
+ENSG00000182134.15      TDRKH   protein_coding
+ENSG00000143194.12      MAEL    protein_coding
+ENSG00000162782.15      TDRD5   protein_coding
+ENSG00000186281.12      GPAT2   protein_coding
+ENSG00000144231.10      POLR2D  protein_coding
+ENSG00000163882.9       POLR2H  protein_coding
+ENSG00000047315.15      POLR2B  protein_coding
+ENSG00000164162.13      ANAPC10 protein_coding
+ENSG00000152670.18      DDX4    protein_coding
+ENSG00000180113.15      TDRD6   protein_coding
+ENSG00000077800.11      FKBP6   protein_coding
+ENSG00000005075.15      POLR2J  protein_coding
+ENSG00000154438.7       ASZ1    protein_coding
+ENSG00000197181.11      PIWIL2  protein_coding
+ENSG00000185697.16      MYBL1   protein_coding
+ENSG00000147669.10      POLR2K  protein_coding
+ENSG00000095627.9       TDRD1   protein_coding
+ENSG00000177700.5       POLR2L  protein_coding
+ENSG00000233436.7       BTBD18  protein_coding
+ENSG00000168002.11      POLR2G  protein_coding
+ENSG00000134627.11      PIWIL4  protein_coding
+ENSG00000125207.7       PIWIL1  protein_coding
+ENSG00000080824.18      HSP90AA1        protein_coding
+ENSG00000156414.18      TDRD9   protein_coding
+ENSG00000178997.11      EXD1    protein_coding
+ENSG00000166783.21      KIAA0430        protein_coding
+ENSG00000102978.12      POLR2C  protein_coding
+ENSG00000181222.15      POLR2A  protein_coding
+ENSG00000179598.5       PLD6    protein_coding
+ENSG00000182459.4       TEX19   protein_coding
+ENSG00000099817.11      POLR2E  protein_coding
+ENSG00000173809.18      TDRD12  protein_coding
+ENSG00000105258.8       POLR2I  protein_coding
+ENSG00000184571.13      PIWIL3  protein_coding
+ENSG00000100142.14      POLR2F  protein_coding
+ENSG00000073146.15      MOV10L1 protein_coding
+ENSG00000146453.12      PNLDC1  protein_coding
+ENSG00000170627.10      GTSF1   protein_coding
+
+
+cat > rawData/list.pirnaReactome.txt
+POLR2C
+PRMT6
+DDT4L
+TAX
+INCA1
+TRAF2
+LANC2
+FM25C
+ZFP90
+SNRNP25
+MYBL1
+TAX1
+CREBBP
+MYB
+MYBL2
+EP300
+HDAC3
+RBBP4
+HDAC1
+TFDP2
+RBBP7
+TFDP3
+HTL1C
+LIN37
+LIN9
+LIN54
+NLK
+NCL
+DDIT4L
+FAM25C
+ZFP90
+SNSNR25
+LANCL2
+NUDC
+DNAJC7
+
+cat rawData/list.uniprot.txt rawData/list.string.unique rawData/list.pirnaReactome.txt | sort -k 1,1 | uniq > rawData/list.pirnaGenes.all.txt
+
+grep -w -f rawData/list.pirnaGenes.all.txt rawData/ensemblToGenes.v28.txt > rawData/list.pirnaEnsembl.txt
+grep "PNLDC1" rawData/ensemblToGenes.v28.txt >> rawData/list.pirnaEnsembl.txt
+grep -w "GTSF1" rawData/ensemblToGenes.v28.txt >> rawData/list.pirnaEnsembl.txt
+
+mv rawData/list.pirnaEnsembl.txt rawData/list.pirnaEnsembl.txt.toSort
+sort -k2,2 rawData/list.pirnaEnsembl.txt.toSort > rawData/list.pirnaEnsembl.txt
+

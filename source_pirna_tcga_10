@@ -1,0 +1,454 @@
+##
+ #
+ #
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.control COAD/expression_ajcc/matrix.pirna.expression.tumor > COAD/expression_ajcc/matrix.pirna.norxtum
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.control COAD/expression_ajcc/matrix.pirna.expression.stagei > COAD/expression_ajcc/matrix.pirna.norxi
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.control COAD/expression_ajcc/matrix.pirna.expression.stageii > COAD/expression_ajcc/matrix.pirna.norxii
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.control COAD/expression_ajcc/matrix.pirna.expression.stageiii > COAD/expression_ajcc/matrix.pirna.norxiii
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.control COAD/expression_ajcc/matrix.pirna.expression.stageiv > COAD/expression_ajcc/matrix.pirna.norxiv
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.stagei COAD/expression_ajcc/matrix.pirna.expression.stageii > COAD/expression_ajcc/matrix.pirna.ixii
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.stageii COAD/expression_ajcc/matrix.pirna.expression.stageiii > COAD/expression_ajcc/matrix.pirna.iixiii
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.stageiii COAD/expression_ajcc/matrix.pirna.expression.stageiv > COAD/expression_ajcc/matrix.pirna.iiixiv
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.control COAD/expression_ajcc/matrix.pirna.expression.stagei | join -1 1 -2 1 -t $'\t' - COAD/expression_ajcc/matrix.pirna.expression.stageii | join -1 1 -2 1 -t $'\t' - COAD/expression_ajcc/matrix.pirna.expression.stageiii | join -1 1 -2 1 -t $'\t' - COAD/expression_ajcc/matrix.pirna.expression.stageiv > COAD/expression_ajcc/matrix.pirna.all
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.stagei COAD/expression_ajcc/matrix.pirna.expression.stageii | join -1 1 -2 1 -t $'\t' - COAD/expression_ajcc/matrix.pirna.expression.stageiii | join -1 1 -2 1 -t $'\t' - COAD/expression_ajcc/matrix.pirna.expression.stageiv > COAD/expression_ajcc/matrix.pirna.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_ajcc/matrix.pirna.expression.tumor > BRCA/expression_ajcc/matrix.pirna.norxtum
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_ajcc/matrix.pirna.expression.stagei > BRCA/expression_ajcc/matrix.pirna.norxi
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_ajcc/matrix.pirna.expression.stageii > BRCA/expression_ajcc/matrix.pirna.norxii
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_ajcc/matrix.pirna.expression.stageiii > BRCA/expression_ajcc/matrix.pirna.norxiii
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_ajcc/matrix.pirna.expression.stageiv > BRCA/expression_ajcc/matrix.pirna.norxiv
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.stagei BRCA/expression_ajcc/matrix.pirna.expression.stageii > BRCA/expression_ajcc/matrix.pirna.ixii
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.stageii BRCA/expression_ajcc/matrix.pirna.expression.stageiii > BRCA/expression_ajcc/matrix.pirna.iixiii
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.stageiii BRCA/expression_ajcc/matrix.pirna.expression.stageiv > BRCA/expression_ajcc/matrix.pirna.iiixiv
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_ajcc/matrix.pirna.expression.stagei | join -1 1 -2 1 -t $'\t' - BRCA/expression_ajcc/matrix.pirna.expression.stageii | join -1 1 -2 1 -t $'\t' - BRCA/expression_ajcc/matrix.pirna.expression.stageiii | join -1 1 -2 1 -t $'\t' - BRCA/expression_ajcc/matrix.pirna.expression.stageiv > BRCA/expression_ajcc/matrix.pirna.all
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.stagei BRCA/expression_ajcc/matrix.pirna.expression.stageii | join -1 1 -2 1 -t $'\t' - BRCA/expression_ajcc/matrix.pirna.expression.stageiii | join -1 1 -2 1 -t $'\t' - BRCA/expression_ajcc/matrix.pirna.expression.stageiv > BRCA/expression_ajcc/matrix.pirna.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' PRAD/expression_ajcc/matrix.pirna.expression.control PRAD/expression_ajcc/matrix.pirna.expression.tumor > PRAD/expression_ajcc/matrix.pirna.norxtum
+cat PRAD/expression_ajcc/matrix.pirna.expression.tumor > PRAD/expression_ajcc/matrix.pirna.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_ajcc/matrix.pirna.expression.tumor > PAAD/expression_ajcc/matrix.pirna.norxtum
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_ajcc/matrix.pirna.expression.stagei > PAAD/expression_ajcc/matrix.pirna.norxi
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_ajcc/matrix.pirna.expression.stageii > PAAD/expression_ajcc/matrix.pirna.norxii
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_ajcc/matrix.pirna.expression.stageiii > PAAD/expression_ajcc/matrix.pirna.norxiii
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_ajcc/matrix.pirna.expression.stageiv > PAAD/expression_ajcc/matrix.pirna.norxiv
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.stagei PAAD/expression_ajcc/matrix.pirna.expression.stageii > PAAD/expression_ajcc/matrix.pirna.ixii
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.stageii PAAD/expression_ajcc/matrix.pirna.expression.stageiii > PAAD/expression_ajcc/matrix.pirna.iixiii
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.stageiii PAAD/expression_ajcc/matrix.pirna.expression.stageiv > PAAD/expression_ajcc/matrix.pirna.iiixiv
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_ajcc/matrix.pirna.expression.stagei | join -1 1 -2 1 -t $'\t' - PAAD/expression_ajcc/matrix.pirna.expression.stageii | join -1 1 -2 1 -t $'\t' - PAAD/expression_ajcc/matrix.pirna.expression.stageiii | join -1 1 -2 1 -t $'\t' - PAAD/expression_ajcc/matrix.pirna.expression.stageiv > PAAD/expression_ajcc/matrix.pirna.all
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.stagei PAAD/expression_ajcc/matrix.pirna.expression.stageii | join -1 1 -2 1 -t $'\t' - PAAD/expression_ajcc/matrix.pirna.expression.stageiii | join -1 1 -2 1 -t $'\t' - PAAD/expression_ajcc/matrix.pirna.expression.stageiv > PAAD/expression_ajcc/matrix.pirna.all.withoutNorm
+
+
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.control COAD/expression_ajcc/matrix.pirna.expression.tis > COAD/expression_ajcc/matrix.pirna.norxtis
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.control COAD/expression_ajcc/matrix.pirna.expression.t1 > COAD/expression_ajcc/matrix.pirna.norxt1
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.control COAD/expression_ajcc/matrix.pirna.expression.t2 > COAD/expression_ajcc/matrix.pirna.norxt2
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.control COAD/expression_ajcc/matrix.pirna.expression.t3 > COAD/expression_ajcc/matrix.pirna.norxt3
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.control COAD/expression_ajcc/matrix.pirna.expression.t4 > COAD/expression_ajcc/matrix.pirna.norxt4
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.tis COAD/expression_ajcc/matrix.pirna.expression.t1 > COAD/expression_ajcc/matrix.pirna.tisxt1
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.t1 COAD/expression_ajcc/matrix.pirna.expression.t2 > COAD/expression_ajcc/matrix.pirna.t1xt2
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.t2 COAD/expression_ajcc/matrix.pirna.expression.t3 > COAD/expression_ajcc/matrix.pirna.t2xt3
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.t3 COAD/expression_ajcc/matrix.pirna.expression.t4 > COAD/expression_ajcc/matrix.pirna.t3xt4
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.control COAD/expression_ajcc/matrix.pirna.expression.tis | join -1 1 -2 1 -t $'\t' - COAD/expression_ajcc/matrix.pirna.expression.t1 | join -1 1 -2 1 -t $'\t' - COAD/expression_ajcc/matrix.pirna.expression.t2 | join -1 1 -2 1 -t $'\t' - COAD/expression_ajcc/matrix.pirna.expression.t3 | join -1 1 -2 1 -t $'\t' - COAD/expression_ajcc/matrix.pirna.expression.t4 | join -1 1 -2 1 -t $'\t' - COAD/expression_ajcc/matrix.pirna.expression.tna > COAD/expression_ajcc/matrix.pirna.t.all
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.tis COAD/expression_ajcc/matrix.pirna.expression.t1 | join -1 1 -2 1 -t $'\t' - COAD/expression_ajcc/matrix.pirna.expression.t2 | join -1 1 -2 1 -t $'\t' - COAD/expression_ajcc/matrix.pirna.expression.t3 | join -1 1 -2 1 -t $'\t' - COAD/expression_ajcc/matrix.pirna.expression.t4 | join -1 1 -2 1 -t $'\t' - COAD/expression_ajcc/matrix.pirna.expression.tna > COAD/expression_ajcc/matrix.pirna.t.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.control COAD/expression_ajcc/matrix.pirna.expression.n0 > COAD/expression_ajcc/matrix.pirna.norxn0
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.control COAD/expression_ajcc/matrix.pirna.expression.n1 > COAD/expression_ajcc/matrix.pirna.norxn1
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.control COAD/expression_ajcc/matrix.pirna.expression.n2 > COAD/expression_ajcc/matrix.pirna.norxn2
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.n0 COAD/expression_ajcc/matrix.pirna.expression.n1 > COAD/expression_ajcc/matrix.pirna.n0xn1
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.n1 COAD/expression_ajcc/matrix.pirna.expression.n2 > COAD/expression_ajcc/matrix.pirna.n1xn2
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.control COAD/expression_ajcc/matrix.pirna.expression.n0 | join -1 1 -2 1 -t $'\t' - COAD/expression_ajcc/matrix.pirna.expression.n1 | join -1 1 -2 1 -t $'\t' - COAD/expression_ajcc/matrix.pirna.expression.n2 | join -1 1 -2 1 -t $'\t' - COAD/expression_ajcc/matrix.pirna.expression.nna > COAD/expression_ajcc/matrix.pirna.n.all
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.n0 COAD/expression_ajcc/matrix.pirna.expression.n1 | join -1 1 -2 1 -t $'\t' - COAD/expression_ajcc/matrix.pirna.expression.n2 | join -1 1 -2 1 -t $'\t' - COAD/expression_ajcc/matrix.pirna.expression.nna > COAD/expression_ajcc/matrix.pirna.n.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.control COAD/expression_ajcc/matrix.pirna.expression.m0 > COAD/expression_ajcc/matrix.pirna.norxm0
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.control COAD/expression_ajcc/matrix.pirna.expression.m1 > COAD/expression_ajcc/matrix.pirna.norxm1
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.control COAD/expression_ajcc/matrix.pirna.expression.mx > COAD/expression_ajcc/matrix.pirna.norxmx
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.m0 COAD/expression_ajcc/matrix.pirna.expression.mx > COAD/expression_ajcc/matrix.pirna.m0xmx
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.m0 COAD/expression_ajcc/matrix.pirna.expression.m1 > COAD/expression_ajcc/matrix.pirna.m0xm1
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.m1 COAD/expression_ajcc/matrix.pirna.expression.mx > COAD/expression_ajcc/matrix.pirna.m1xmx
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.control COAD/expression_ajcc/matrix.pirna.expression.m0 | join -1 1 -2 1 -t $'\t' - COAD/expression_ajcc/matrix.pirna.expression.m1 | join -1 1 -2 1 -t $'\t' - COAD/expression_ajcc/matrix.pirna.expression.mx | join -1 1 -2 1 -t $'\t' - COAD/expression_ajcc/matrix.pirna.expression.mna > COAD/expression_ajcc/matrix.pirna.m.all
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.m0 COAD/expression_ajcc/matrix.pirna.expression.m1 | join -1 1 -2 1 -t $'\t' - COAD/expression_ajcc/matrix.pirna.expression.mx | join -1 1 -2 1 -t $'\t' - COAD/expression_ajcc/matrix.pirna.expression.mna > COAD/expression_ajcc/matrix.pirna.m.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.control COAD/expression_pancan/matrix.pirna.expression.cin > COAD/expression_pancan/matrix.pirna.norxcin
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.control COAD/expression_pancan/matrix.pirna.expression.gs > COAD/expression_pancan/matrix.pirna.norxgs
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.control COAD/expression_pancan/matrix.pirna.expression.msi > COAD/expression_pancan/matrix.pirna.norxmsi
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.control COAD/expression_pancan/matrix.pirna.expression.pole > COAD/expression_pancan/matrix.pirna.norxpole
+join -1 1 -2 1 -t $'\t' COAD/expression_pancan/matrix.pirna.expression.cin COAD/expression_pancan/matrix.pirna.expression.gs > COAD/expression_pancan/matrix.pirna.cinxgs
+join -1 1 -2 1 -t $'\t' COAD/expression_pancan/matrix.pirna.expression.gs COAD/expression_pancan/matrix.pirna.expression.msi > COAD/expression_pancan/matrix.pirna.gsxmsi
+join -1 1 -2 1 -t $'\t' COAD/expression_pancan/matrix.pirna.expression.msi COAD/expression_pancan/matrix.pirna.expression.pole > COAD/expression_pancan/matrix.pirna.msixpole
+join -1 1 -2 1 -t $'\t' COAD/expression_ajcc/matrix.pirna.expression.control COAD/expression_pancan/matrix.pirna.expression.cin | join -1 1 -2 1 -t $'\t' - COAD/expression_pancan/matrix.pirna.expression.gs | join -1 1 -2 1 -t $'\t' - COAD/expression_pancan/matrix.pirna.expression.msi | join -1 1 -2 1 -t $'\t' - COAD/expression_pancan/matrix.pirna.expression.pole | join -1 1 -2 1 -t $'\t' - COAD/expression_pancan/matrix.pirna.expression.coadna > COAD/expression_pancan/matrix.pirna.sub.all
+join -1 1 -2 1 -t $'\t' COAD/expression_pancan/matrix.pirna.expression.cin COAD/expression_pancan/matrix.pirna.expression.gs | join -1 1 -2 1 -t $'\t' - COAD/expression_pancan/matrix.pirna.expression.msi | join -1 1 -2 1 -t $'\t' - COAD/expression_pancan/matrix.pirna.expression.pole | join -1 1 -2 1 -t $'\t' - COAD/expression_pancan/matrix.pirna.expression.coadna > COAD/expression_pancan/matrix.pirna.sub.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.tx > BRCA/expression_pancan/matrix.pirna.norxtx
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.t1 > BRCA/expression_pancan/matrix.pirna.norxt1
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.t2 > BRCA/expression_pancan/matrix.pirna.norxt2
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.t3 > BRCA/expression_pancan/matrix.pirna.norxt3
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.t4 > BRCA/expression_pancan/matrix.pirna.norxt4
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.tx BRCA/expression_pancan/matrix.pirna.expression.t1 > BRCA/expression_pancan/matrix.pirna.txxt1
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.t1 BRCA/expression_pancan/matrix.pirna.expression.t2 > BRCA/expression_pancan/matrix.pirna.t1xt2
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.t2 BRCA/expression_pancan/matrix.pirna.expression.t3 > BRCA/expression_pancan/matrix.pirna.t2xt3
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.t3 BRCA/expression_pancan/matrix.pirna.expression.t4 > BRCA/expression_pancan/matrix.pirna.t3xt4
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.t1 | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.t2 | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.t3 | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.t4 | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.tx > BRCA/expression_pancan/matrix.pirna.t.all
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.t1 BRCA/expression_pancan/matrix.pirna.expression.t2 | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.t3 | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.t4 | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.tx > BRCA/expression_pancan/matrix.pirna.t.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.n0 > BRCA/expression_pancan/matrix.pirna.norxn0
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.n1 > BRCA/expression_pancan/matrix.pirna.norxn1
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.n2 > BRCA/expression_pancan/matrix.pirna.norxn2
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.n3 > BRCA/expression_pancan/matrix.pirna.norxn3
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.n0 BRCA/expression_pancan/matrix.pirna.expression.n1 > BRCA/expression_pancan/matrix.pirna.n0xn1
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.n1 BRCA/expression_pancan/matrix.pirna.expression.n2 > BRCA/expression_pancan/matrix.pirna.n1xn2
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.n2 BRCA/expression_pancan/matrix.pirna.expression.n3 > BRCA/expression_pancan/matrix.pirna.n2xn3
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.n0 | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.n1 | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.n2 | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.n3 > BRCA/expression_pancan/matrix.pirna.n.all
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.n0 BRCA/expression_pancan/matrix.pirna.expression.n1 | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.n2 | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.n3 > BRCA/expression_pancan/matrix.pirna.n.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.m0 > BRCA/expression_pancan/matrix.pirna.norxm0
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.m1 > BRCA/expression_pancan/matrix.pirna.norxm1
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.m0 BRCA/expression_pancan/matrix.pirna.expression.m1 > BRCA/expression_pancan/matrix.pirna.m0xm1
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.m0 | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.m1 | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.mx > BRCA/expression_pancan/matrix.pirna.m.all
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.m0 BRCA/expression_pancan/matrix.pirna.expression.m1 | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.mx > BRCA/expression_pancan/matrix.pirna.m.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.basal > BRCA/expression_pancan/matrix.pirna.norxbasal
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.her2 > BRCA/expression_pancan/matrix.pirna.norxher2
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.luma > BRCA/expression_pancan/matrix.pirna.norxluma
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.lumb > BRCA/expression_pancan/matrix.pirna.norxlumb
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.pcnormal > BRCA/expression_pancan/matrix.pirna.norxpcnormal
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.basal BRCA/expression_pancan/matrix.pirna.expression.her2 > BRCA/expression_pancan/matrix.pirna.basalxher2
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.basal BRCA/expression_pancan/matrix.pirna.expression.luma > BRCA/expression_pancan/matrix.pirna.basalxluma
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.basal BRCA/expression_pancan/matrix.pirna.expression.lumb > BRCA/expression_pancan/matrix.pirna.basalxlumb
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.basal BRCA/expression_pancan/matrix.pirna.expression.pcnormal > BRCA/expression_pancan/matrix.pirna.basalxpcnormal
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.her2 BRCA/expression_pancan/matrix.pirna.expression.luma > BRCA/expression_pancan/matrix.pirna.her2xluma
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.her2 BRCA/expression_pancan/matrix.pirna.expression.lumb > BRCA/expression_pancan/matrix.pirna.her2xlumb
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.her2 BRCA/expression_pancan/matrix.pirna.expression.pcnormal > BRCA/expression_pancan/matrix.pirna.her2xpcnormal
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.luma BRCA/expression_pancan/matrix.pirna.expression.lumb > BRCA/expression_pancan/matrix.pirna.lumaxlumb
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.luma BRCA/expression_pancan/matrix.pirna.expression.pcnormal > BRCA/expression_pancan/matrix.pirna.lumaxpcnormal
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.lumb BRCA/expression_pancan/matrix.pirna.expression.pcnormal > BRCA/expression_pancan/matrix.pirna.lumbxpcnormal
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.basal | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.her2 | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.luma | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.lumb | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.pcnormal | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.pcna > BRCA/expression_pancan/matrix.pirna.pc.all
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.basal BRCA/expression_pancan/matrix.pirna.expression.her2 | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.luma | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.lumb | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.pcnormal | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.pcna > BRCA/expression_pancan/matrix.pirna.pc.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.ernegativo > BRCA/expression_pancan/matrix.pirna.norxernegativo
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.erpositivo > BRCA/expression_pancan/matrix.pirna.norxerpositivo
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.ernegativo BRCA/expression_pancan/matrix.pirna.expression.erpositivo > BRCA/expression_pancan/matrix.pirna.ernegativoxerpositivo
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.ernegativo | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.erpositivo | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.erna | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.ernotavailable > BRCA/expression_pancan/matrix.pirna.er.all
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.ernegativo BRCA/expression_pancan/matrix.pirna.expression.erpositivo | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.erna | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.ernotavailable > BRCA/expression_pancan/matrix.pirna.er.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.her2negativo > BRCA/expression_pancan/matrix.pirna.norxher2negativo
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.her2positivo > BRCA/expression_pancan/matrix.pirna.norxher2positivo
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.her2negativo BRCA/expression_pancan/matrix.pirna.expression.her2positivo > BRCA/expression_pancan/matrix.pirna.her2negativoxher2positivo
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.her2negativo | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.her2positivo | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.her2na | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.her2equivocal > BRCA/expression_pancan/matrix.pirna.her2.all
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.her2negativo BRCA/expression_pancan/matrix.pirna.expression.her2positivo | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.her2na | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.her2equivocal > BRCA/expression_pancan/matrix.pirna.her2.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.prnegativo > BRCA/expression_pancan/matrix.pirna.norxprnegativo
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.prpositivo > BRCA/expression_pancan/matrix.pirna.norxprpositivo
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.prnegativo BRCA/expression_pancan/matrix.pirna.expression.prpositivo > BRCA/expression_pancan/matrix.pirna.prnegativoxprpositivo
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.prnegativo | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.prpositivo | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.prna | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.prnotavailable > BRCA/expression_pancan/matrix.pirna.pr.all
+join -1 1 -2 1 -t $'\t' BRCA/expression_pancan/matrix.pirna.expression.prnegativo BRCA/expression_pancan/matrix.pirna.expression.prpositivo | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.prna | join -1 1 -2 1 -t $'\t' - BRCA/expression_pancan/matrix.pirna.expression.prnotavailable > BRCA/expression_pancan/matrix.pirna.pr.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' BRCA/expression_ajcc/matrix.pirna.expression.control BRCA/expression_pancan/matrix.pirna.expression.tn > BRCA/expression_pancan/matrix.pirna.tn.all
+cat BRCA/expression_pancan/matrix.pirna.expression.tn > BRCA/expression_pancan/matrix.pirna.tn.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' PRAD/expression_ajcc/matrix.pirna.expression.control PRAD/expression_pancan/matrix.pirna.expression.t2 > PRAD/expression_pancan/matrix.pirna.norxt2
+join -1 1 -2 1 -t $'\t' PRAD/expression_ajcc/matrix.pirna.expression.control PRAD/expression_pancan/matrix.pirna.expression.t3 > PRAD/expression_pancan/matrix.pirna.norxt3
+join -1 1 -2 1 -t $'\t' PRAD/expression_ajcc/matrix.pirna.expression.control PRAD/expression_pancan/matrix.pirna.expression.t4 > PRAD/expression_pancan/matrix.pirna.norxt4
+join -1 1 -2 1 -t $'\t' PRAD/expression_pancan/matrix.pirna.expression.t2 PRAD/expression_pancan/matrix.pirna.expression.t3 > PRAD/expression_pancan/matrix.pirna.t2xt3
+join -1 1 -2 1 -t $'\t' PRAD/expression_pancan/matrix.pirna.expression.t3 PRAD/expression_pancan/matrix.pirna.expression.t4 > PRAD/expression_pancan/matrix.pirna.t3xt4
+join -1 1 -2 1 -t $'\t' PRAD/expression_ajcc/matrix.pirna.expression.control PRAD/expression_pancan/matrix.pirna.expression.t2 | join -1 1 -2 1 -t $'\t' - PRAD/expression_pancan/matrix.pirna.expression.t3 | join -1 1 -2 1 -t $'\t' - PRAD/expression_pancan/matrix.pirna.expression.t4 | join -1 1 -2 1 -t $'\t' - PRAD/expression_pancan/matrix.pirna.expression.tna > PRAD/expression_pancan/matrix.pirna.t.all
+join -1 1 -2 1 -t $'\t' PRAD/expression_pancan/matrix.pirna.expression.t2 PRAD/expression_pancan/matrix.pirna.expression.t3 | join -1 1 -2 1 -t $'\t' - PRAD/expression_pancan/matrix.pirna.expression.t4 | join -1 1 -2 1 -t $'\t' - PRAD/expression_pancan/matrix.pirna.expression.tna > PRAD/expression_pancan/matrix.pirna.t.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' PRAD/expression_ajcc/matrix.pirna.expression.control PRAD/expression_pancan/matrix.pirna.expression.n0 > PRAD/expression_pancan/matrix.pirna.norxn0
+join -1 1 -2 1 -t $'\t' PRAD/expression_ajcc/matrix.pirna.expression.control PRAD/expression_pancan/matrix.pirna.expression.n1 > PRAD/expression_pancan/matrix.pirna.norxn1
+join -1 1 -2 1 -t $'\t' PRAD/expression_pancan/matrix.pirna.expression.n0 PRAD/expression_pancan/matrix.pirna.expression.n1 > PRAD/expression_pancan/matrix.pirna.n0xn1
+join -1 1 -2 1 -t $'\t' PRAD/expression_ajcc/matrix.pirna.expression.control PRAD/expression_pancan/matrix.pirna.expression.n0 | join -1 1 -2 1 -t $'\t' - PRAD/expression_pancan/matrix.pirna.expression.n1 | join -1 1 -2 1 -t $'\t' - PRAD/expression_pancan/matrix.pirna.expression.nna > PRAD/expression_pancan/matrix.pirna.n.all
+join -1 1 -2 1 -t $'\t' PRAD/expression_pancan/matrix.pirna.expression.n0 PRAD/expression_pancan/matrix.pirna.expression.n1 | join -1 1 -2 1 -t $'\t' - PRAD/expression_pancan/matrix.pirna.expression.nna > PRAD/expression_pancan/matrix.pirna.n.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' PRAD/expression_ajcc/matrix.pirna.expression.control PRAD/expression_pancan/matrix.pirna.expression.acinartype > PRAD/expression_pancan/matrix.pirna.norxacinartype
+join -1 1 -2 1 -t $'\t' PRAD/expression_ajcc/matrix.pirna.expression.control PRAD/expression_pancan/matrix.pirna.expression.othertype > PRAD/expression_pancan/matrix.pirna.norxothertype
+join -1 1 -2 1 -t $'\t' PRAD/expression_pancan/matrix.pirna.expression.acinartype PRAD/expression_pancan/matrix.pirna.expression.othertype > PRAD/expression_pancan/matrix.pirna.acinartypexothertype
+join -1 1 -2 1 -t $'\t' PRAD/expression_ajcc/matrix.pirna.expression.control PRAD/expression_pancan/matrix.pirna.expression.acinartype | join -1 1 -2 1 -t $'\t' - PRAD/expression_pancan/matrix.pirna.expression.othertype > PRAD/expression_pancan/matrix.pirna.sub.all
+join -1 1 -2 1 -t $'\t' PRAD/expression_pancan/matrix.pirna.expression.acinartype PRAD/expression_pancan/matrix.pirna.expression.othertype > PRAD/expression_pancan/matrix.pirna.sub.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' PRAD/expression_ajcc/matrix.pirna.expression.control PRAD/expression_pancan/matrix.pirna.expression.lessequal6 > PRAD/expression_pancan/matrix.pirna.norxlessequal6
+join -1 1 -2 1 -t $'\t' PRAD/expression_ajcc/matrix.pirna.expression.control PRAD/expression_pancan/matrix.pirna.expression.equal7 > PRAD/expression_pancan/matrix.pirna.norxequal7
+join -1 1 -2 1 -t $'\t' PRAD/expression_ajcc/matrix.pirna.expression.control PRAD/expression_pancan/matrix.pirna.expression.moreequal8 > PRAD/expression_pancan/matrix.pirna.norxmoreequal8
+join -1 1 -2 1 -t $'\t' PRAD/expression_pancan/matrix.pirna.expression.lessequal6 PRAD/expression_pancan/matrix.pirna.expression.equal7 > PRAD/expression_pancan/matrix.pirna.lessequal6xequal7
+join -1 1 -2 1 -t $'\t' PRAD/expression_pancan/matrix.pirna.expression.equal7 PRAD/expression_pancan/matrix.pirna.expression.moreequal8 > PRAD/expression_pancan/matrix.pirna.equal7xmoreequal8
+join -1 1 -2 1 -t $'\t' PRAD/expression_ajcc/matrix.pirna.expression.control PRAD/expression_pancan/matrix.pirna.expression.lessequal6 | join -1 1 -2 1 -t $'\t' - PRAD/expression_pancan/matrix.pirna.expression.equal7 | join -1 1 -2 1 -t $'\t' - PRAD/expression_pancan/matrix.pirna.expression.moreequal8 > PRAD/expression_pancan/matrix.pirna.gleason.all
+join -1 1 -2 1 -t $'\t' PRAD/expression_pancan/matrix.pirna.expression.lessequal6 PRAD/expression_pancan/matrix.pirna.expression.equal7 | join -1 1 -2 1 -t $'\t' - PRAD/expression_pancan/matrix.pirna.expression.moreequal8 > PRAD/expression_pancan/matrix.pirna.gleason.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_pancan/matrix.pirna.expression.t1 > PAAD/expression_pancan/matrix.pirna.norxt1
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_pancan/matrix.pirna.expression.t2 > PAAD/expression_pancan/matrix.pirna.norxt2
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_pancan/matrix.pirna.expression.t3 > PAAD/expression_pancan/matrix.pirna.norxt3
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_pancan/matrix.pirna.expression.t4 > PAAD/expression_pancan/matrix.pirna.norxt4
+join -1 1 -2 1 -t $'\t' PAAD/expression_pancan/matrix.pirna.expression.t1 PAAD/expression_pancan/matrix.pirna.expression.t2 > PAAD/expression_pancan/matrix.pirna.t1xt2
+join -1 1 -2 1 -t $'\t' PAAD/expression_pancan/matrix.pirna.expression.t2 PAAD/expression_pancan/matrix.pirna.expression.t3 > PAAD/expression_pancan/matrix.pirna.t2xt3
+join -1 1 -2 1 -t $'\t' PAAD/expression_pancan/matrix.pirna.expression.t3 PAAD/expression_pancan/matrix.pirna.expression.t4 > PAAD/expression_pancan/matrix.pirna.t3xt4
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_pancan/matrix.pirna.expression.t1 | join -1 1 -2 1 -t $'\t' - PAAD/expression_pancan/matrix.pirna.expression.t2 | join -1 1 -2 1 -t $'\t' - PAAD/expression_pancan/matrix.pirna.expression.t3 | join -1 1 -2 1 -t $'\t' - PAAD/expression_pancan/matrix.pirna.expression.t4 > PAAD/expression_pancan/matrix.pirna.t.all
+join -1 1 -2 1 -t $'\t' PAAD/expression_pancan/matrix.pirna.expression.t1 PAAD/expression_pancan/matrix.pirna.expression.t2 | join -1 1 -2 1 -t $'\t' - PAAD/expression_pancan/matrix.pirna.expression.t3 | join -1 1 -2 1 -t $'\t' - PAAD/expression_pancan/matrix.pirna.expression.t4 > PAAD/expression_pancan/matrix.pirna.t.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_pancan/matrix.pirna.expression.n0 > PAAD/expression_pancan/matrix.pirna.norxn0
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_pancan/matrix.pirna.expression.n1 > PAAD/expression_pancan/matrix.pirna.norxn1
+join -1 1 -2 1 -t $'\t' PAAD/expression_pancan/matrix.pirna.expression.n0 PAAD/expression_pancan/matrix.pirna.expression.n1 > PAAD/expression_pancan/matrix.pirna.n0xn1
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_pancan/matrix.pirna.expression.n0 | join -1 1 -2 1 -t $'\t' - PAAD/expression_pancan/matrix.pirna.expression.n1 | join -1 1 -2 1 -t $'\t' - PAAD/expression_pancan/matrix.pirna.expression.nx > PAAD/expression_pancan/matrix.pirna.n.all
+join -1 1 -2 1 -t $'\t' PAAD/expression_pancan/matrix.pirna.expression.n0 PAAD/expression_pancan/matrix.pirna.expression.n1 | join -1 1 -2 1 -t $'\t' - PAAD/expression_pancan/matrix.pirna.expression.nx > PAAD/expression_pancan/matrix.pirna.n.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_pancan/matrix.pirna.expression.m0 > PAAD/expression_pancan/matrix.pirna.norxm0
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_pancan/matrix.pirna.expression.m1 > PAAD/expression_pancan/matrix.pirna.norxm1
+join -1 1 -2 1 -t $'\t' PAAD/expression_pancan/matrix.pirna.expression.m0 PAAD/expression_pancan/matrix.pirna.expression.m1 > PAAD/expression_pancan/matrix.pirna.m0xm1
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_pancan/matrix.pirna.expression.m0 | join -1 1 -2 1 -t $'\t' - PAAD/expression_pancan/matrix.pirna.expression.m1 | join -1 1 -2 1 -t $'\t' - PAAD/expression_pancan/matrix.pirna.expression.mx > PAAD/expression_pancan/matrix.pirna.m.all
+join -1 1 -2 1 -t $'\t' PAAD/expression_pancan/matrix.pirna.expression.m0 PAAD/expression_pancan/matrix.pirna.expression.m1 | join -1 1 -2 1 -t $'\t' - PAAD/expression_pancan/matrix.pirna.expression.mx > PAAD/expression_pancan/matrix.pirna.m.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_pancan/matrix.pirna.expression.g1 > PAAD/expression_pancan/matrix.pirna.norxg1
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_pancan/matrix.pirna.expression.g2 > PAAD/expression_pancan/matrix.pirna.norxg2
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_pancan/matrix.pirna.expression.g3 > PAAD/expression_pancan/matrix.pirna.norxg3
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_pancan/matrix.pirna.expression.g4 > PAAD/expression_pancan/matrix.pirna.norxg4
+join -1 1 -2 1 -t $'\t' PAAD/expression_pancan/matrix.pirna.expression.g1 PAAD/expression_pancan/matrix.pirna.expression.g2 > PAAD/expression_pancan/matrix.pirna.g1xg2
+join -1 1 -2 1 -t $'\t' PAAD/expression_pancan/matrix.pirna.expression.g2 PAAD/expression_pancan/matrix.pirna.expression.g3 > PAAD/expression_pancan/matrix.pirna.g2xg3
+join -1 1 -2 1 -t $'\t' PAAD/expression_pancan/matrix.pirna.expression.g3 PAAD/expression_pancan/matrix.pirna.expression.g4 > PAAD/expression_pancan/matrix.pirna.g3xg4
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_pancan/matrix.pirna.expression.g1 | join -1 1 -2 1 -t $'\t' - PAAD/expression_pancan/matrix.pirna.expression.g2 | join -1 1 -2 1 -t $'\t' - PAAD/expression_pancan/matrix.pirna.expression.g3 | join -1 1 -2 1 -t $'\t' - PAAD/expression_pancan/matrix.pirna.expression.g4 | join -1 1 -2 1 -t $'\t' - PAAD/expression_pancan/matrix.pirna.expression.gx > PAAD/expression_pancan/matrix.pirna.g.all
+join -1 1 -2 1 -t $'\t' PAAD/expression_pancan/matrix.pirna.expression.g1 PAAD/expression_pancan/matrix.pirna.expression.g2 | join -1 1 -2 1 -t $'\t' - PAAD/expression_pancan/matrix.pirna.expression.g3 | join -1 1 -2 1 -t $'\t' - PAAD/expression_pancan/matrix.pirna.expression.g4 | join -1 1 -2 1 -t $'\t' - PAAD/expression_pancan/matrix.pirna.expression.gx > PAAD/expression_pancan/matrix.pirna.g.all.withoutNorm
+
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_pancan/matrix.pirna.expression.ductaltype > PAAD/expression_pancan/matrix.pirna.norxductaltype
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_pancan/matrix.pirna.expression.othertype > PAAD/expression_pancan/matrix.pirna.norxothertype
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_pancan/matrix.pirna.expression.colloidtype > PAAD/expression_pancan/matrix.pirna.norxcolloidtype
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_pancan/matrix.pirna.expression.undifftype > PAAD/expression_pancan/matrix.pirna.norxundifftype
+join -1 1 -2 1 -t $'\t' PAAD/expression_pancan/matrix.pirna.expression.ductaltype PAAD/expression_pancan/matrix.pirna.expression.othertype > PAAD/expression_pancan/matrix.pirna.ductaltypexothertype
+join -1 1 -2 1 -t $'\t' PAAD/expression_pancan/matrix.pirna.expression.ductaltype PAAD/expression_pancan/matrix.pirna.expression.colloidtype > PAAD/expression_pancan/matrix.pirna.ductaltypexcolloidtype
+join -1 1 -2 1 -t $'\t' PAAD/expression_pancan/matrix.pirna.expression.ductaltype PAAD/expression_pancan/matrix.pirna.expression.undifftype > PAAD/expression_pancan/matrix.pirna.ductaltypexundifftype
+join -1 1 -2 1 -t $'\t' PAAD/expression_pancan/matrix.pirna.expression.othertype PAAD/expression_pancan/matrix.pirna.expression.colloidtype > PAAD/expression_pancan/matrix.pirna.othertypexcolloidtype
+join -1 1 -2 1 -t $'\t' PAAD/expression_pancan/matrix.pirna.expression.othertype PAAD/expression_pancan/matrix.pirna.expression.undifftype > PAAD/expression_pancan/matrix.pirna.othertypexundifftype
+join -1 1 -2 1 -t $'\t' PAAD/expression_pancan/matrix.pirna.expression.colloidtype PAAD/expression_pancan/matrix.pirna.expression.undifftype > PAAD/expression_pancan/matrix.pirna.colloidtypexundifftype
+join -1 1 -2 1 -t $'\t' PAAD/expression_ajcc/matrix.pirna.expression.control PAAD/expression_pancan/matrix.pirna.expression.ductaltype | join -1 1 -2 1 -t $'\t' - PAAD/expression_pancan/matrix.pirna.expression.othertype | join -1 1 -2 1 -t $'\t' - PAAD/expression_pancan/matrix.pirna.expression.colloidtype | join -1 1 -2 1 -t $'\t' - PAAD/expression_pancan/matrix.pirna.expression.undifftype > PAAD/expression_pancan/matrix.pirna.sub.all
+join -1 1 -2 1 -t $'\t' PAAD/expression_pancan/matrix.pirna.expression.ductaltype PAAD/expression_pancan/matrix.pirna.expression.othertype | join -1 1 -2 1 -t $'\t' - PAAD/expression_pancan/matrix.pirna.expression.colloidtype | join -1 1 -2 1 -t $'\t' - PAAD/expression_pancan/matrix.pirna.expression.undifftype > PAAD/expression_pancan/matrix.pirna.sub.all.withoutNorm
+
+
+
+##
+ #
+ #
+ #((NF-1)*0.1) -> percentagem minima de colunas que precisam ter valor maior que X. -1 quando a primeira coluna for um identificador
+ #$i>0 -> se a coluna da linha possui valor maior que X ele adiciona um para a contagem
+ #a[$1]>perc -> se a contagem for maior que a porcentagem minima printa a linha
+ #for(i=X;i<=Y;i++ -> quando precisar pegar da coluna X(X=X+1) ate a Y (Y=Y+1)
+ ## Nesse caso o NF tambem muda para a contagem de colunas usadas
+ #
+ # Usar cut -f1,X-Y para pegar as colunas quando for pegar os estagios diferentes
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.norxtum > COAD/expression_ajcc/matrix.pirna.norxtum.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.norxi > COAD/expression_ajcc/matrix.pirna.norxi.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.norxii > COAD/expression_ajcc/matrix.pirna.norxii.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.norxii > COAD/expression_ajcc/matrix.pirna.norxii.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.norxiv > COAD/expression_ajcc/matrix.pirna.norxiv.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.ixii > COAD/expression_ajcc/matrix.pirna.ixii.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.iixiii > COAD/expression_ajcc/matrix.pirna.iixiii.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.iiixiv > COAD/expression_ajcc/matrix.pirna.iiixiv.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.all > COAD/expression_ajcc/matrix.pirna.all.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.all.withoutNorm > COAD/expression_ajcc/matrix.pirna.all.withoutNorm.10p
+
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_ajcc/matrix.pirna.norxtum > BRCA/expression_ajcc/matrix.pirna.norxtum.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_ajcc/matrix.pirna.norxi > BRCA/expression_ajcc/matrix.pirna.norxi.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_ajcc/matrix.pirna.norxii > BRCA/expression_ajcc/matrix.pirna.norxii.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_ajcc/matrix.pirna.norxiii > BRCA/expression_ajcc/matrix.pirna.norxiii.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_ajcc/matrix.pirna.norxiv > BRCA/expression_ajcc/matrix.pirna.norxiv.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_ajcc/matrix.pirna.ixii > BRCA/expression_ajcc/matrix.pirna.ixii.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_ajcc/matrix.pirna.iixiii > BRCA/expression_ajcc/matrix.pirna.iixiii.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_ajcc/matrix.pirna.iiixiv > BRCA/expression_ajcc/matrix.pirna.iiixiv.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_ajcc/matrix.pirna.all > BRCA/expression_ajcc/matrix.pirna.all.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_ajcc/matrix.pirna.all.withoutNorm > BRCA/expression_ajcc/matrix.pirna.all.withoutNorm.10p
+
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PRAD/expression_ajcc/matrix.pirna.norxtum > PRAD/expression_ajcc/matrix.pirna.norxtum.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PRAD/expression_ajcc/matrix.pirna.all.withoutNorm > PRAD/expression_ajcc/matrix.pirna.all.withoutNorm.10p
+
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_ajcc/matrix.pirna.norxtum > PAAD/expression_ajcc/matrix.pirna.norxtum.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_ajcc/matrix.pirna.norxi > PAAD/expression_ajcc/matrix.pirna.norxi.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_ajcc/matrix.pirna.norxii > PAAD/expression_ajcc/matrix.pirna.norxii.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_ajcc/matrix.pirna.norxiii > PAAD/expression_ajcc/matrix.pirna.norxiii.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_ajcc/matrix.pirna.norxiv > PAAD/expression_ajcc/matrix.pirna.norxiv.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_ajcc/matrix.pirna.ixii > PAAD/expression_ajcc/matrix.pirna.ixii.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_ajcc/matrix.pirna.iixiii > PAAD/expression_ajcc/matrix.pirna.iixiii.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_ajcc/matrix.pirna.iiixiv > PAAD/expression_ajcc/matrix.pirna.iiixiv.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_ajcc/matrix.pirna.all > PAAD/expression_ajcc/matrix.pirna.all.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_ajcc/matrix.pirna.all.withoutNorm > PAAD/expression_ajcc/matrix.pirna.all.withoutNorm.10p
+
+
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.norxtis > COAD/expression_ajcc/matrix.pirna.norxtis.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.norxt1 > COAD/expression_ajcc/matrix.pirna.norxt1.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.norxt2 > COAD/expression_ajcc/matrix.pirna.norxt2.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.norxt3 > COAD/expression_ajcc/matrix.pirna.norxt3.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.norxt4 > COAD/expression_ajcc/matrix.pirna.norxt4.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.tisxt1 > COAD/expression_ajcc/matrix.pirna.tisxt1.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.t1xt2 > COAD/expression_ajcc/matrix.pirna.t1xt2.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.t2xt3 > COAD/expression_ajcc/matrix.pirna.t2xt3.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.t3xt4 > COAD/expression_ajcc/matrix.pirna.t3xt4.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.t.all > COAD/expression_ajcc/matrix.pirna.t.all.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.t.all.withoutNorm > COAD/expression_ajcc/matrix.pirna.t.all.withoutNorm.10p
+
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.norxn0 > COAD/expression_ajcc/matrix.pirna.norxn0.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.norxn1 > COAD/expression_ajcc/matrix.pirna.norxn1.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.norxn2 > COAD/expression_ajcc/matrix.pirna.norxn2.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.n0xn1 > COAD/expression_ajcc/matrix.pirna.n0xn1.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.n1xn2 > COAD/expression_ajcc/matrix.pirna.n1xn2.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.n.all > COAD/expression_ajcc/matrix.pirna.n.all.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.n.all.withoutNorm > COAD/expression_ajcc/matrix.pirna.n.all.withoutNorm.10p
+
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.norxm0 > COAD/expression_ajcc/matrix.pirna.norxm0.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.norxm1 > COAD/expression_ajcc/matrix.pirna.norxm1.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.norxmx > COAD/expression_ajcc/matrix.pirna.norxmx.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.m0xm1 > COAD/expression_ajcc/matrix.pirna.m0xm1.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.m1xmx > COAD/expression_ajcc/matrix.pirna.m1xmx.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.m0xmx > COAD/expression_ajcc/matrix.pirna.m0xmx.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.m.all > COAD/expression_ajcc/matrix.pirna.m.all.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.n.all.withoutNorm > COAD/expression_ajcc/matrix.pirna.n.all.withoutNorm.10p
+
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_pancan/matrix.pirna.norxcin > COAD/expression_pancan/matrix.pirna.norxcin.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_pancan/matrix.pirna.norxgs > COAD/expression_pancan/matrix.pirna.norxgs.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_pancan/matrix.pirna.norxmsi > COAD/expression_pancan/matrix.pirna.norxmsi.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_pancan/matrix.pirna.norxpole > COAD/expression_pancan/matrix.pirna.norxpole.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_pancan/matrix.pirna.cinxgs > COAD/expression_pancan/matrix.pirna.cinxgs.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_pancan/matrix.pirna.gsxmsi > COAD/expression_pancan/matrix.pirna.gsxmsi.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_pancan/matrix.pirna.msixpole > COAD/expression_pancan/matrix.pirna.msixpole.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_pancan/matrix.pirna.sub.all > COAD/expression_pancan/matrix.pirna.sub.all.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' COAD/expression_ajcc/matrix.pirna.n.all.withoutNorm > COAD/expression_ajcc/matrix.pirna.n.all.withoutNorm.10p
+
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.norxtx > BRCA/expression_pancan/matrix.pirna.norxtx.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.norxt1 > BRCA/expression_pancan/matrix.pirna.norxt1.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.norxt2 > BRCA/expression_pancan/matrix.pirna.norxt2.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.norxt3 > BRCA/expression_pancan/matrix.pirna.norxt3.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.norxt4 > BRCA/expression_pancan/matrix.pirna.norxt4.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.txxt1 > BRCA/expression_pancan/matrix.pirna.txxt1.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.t1xt2 > BRCA/expression_pancan/matrix.pirna.t1xt2.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.t2xt3 > BRCA/expression_pancan/matrix.pirna.t2xt3.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.t3xt4 > BRCA/expression_pancan/matrix.pirna.t3xt4.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.t.all > BRCA/expression_pancan/matrix.pirna.t.all.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.t.all.withoutNorm > BRCA/expression_pancan/matrix.pirna.t.all.withoutNorm.10p
+
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.norxn0 > BRCA/expression_pancan/matrix.pirna.norxn0.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.norxn1 > BRCA/expression_pancan/matrix.pirna.norxn1.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.norxn2 > BRCA/expression_pancan/matrix.pirna.norxn2.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.norxn3 > BRCA/expression_pancan/matrix.pirna.norxn3.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.n0xn1 > BRCA/expression_pancan/matrix.pirna.n0xn1.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.n1xn2 > BRCA/expression_pancan/matrix.pirna.n1xn2.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.n2xn3 > BRCA/expression_pancan/matrix.pirna.n2xn3.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.n.all > BRCA/expression_pancan/matrix.pirna.n.all.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.n.all.withoutNorm > BRCA/expression_pancan/matrix.pirna.n.all.withoutNorm.10p
+
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.norxm0 > BRCA/expression_pancan/matrix.pirna.norxm0.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.norxm1 > BRCA/expression_pancan/matrix.pirna.norxm1.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.m0xm1 > BRCA/expression_pancan/matrix.pirna.m0xm1.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.m.all > BRCA/expression_pancan/matrix.pirna.m.all.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.m.all.withoutNorm > BRCA/expression_pancan/matrix.pirna.m.all.withoutNorm.10p
+
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.norxbasal > BRCA/expression_pancan/matrix.pirna.norxbasal.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.norxher2 > BRCA/expression_pancan/matrix.pirna.norxher2.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.norxluma > BRCA/expression_pancan/matrix.pirna.norxluma.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.norxlumb > BRCA/expression_pancan/matrix.pirna.norxlumb.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.norxpcnormal > BRCA/expression_pancan/matrix.pirna.norxpcnormal.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.basalxher2 > BRCA/expression_pancan/matrix.pirna.basalxher2.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.basalxluma > BRCA/expression_pancan/matrix.pirna.basalxluma.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.basalxlumb > BRCA/expression_pancan/matrix.pirna.basalxlumb.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.basalxpcnormal > BRCA/expression_pancan/matrix.pirna.basalxpcnormal.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.her2xluma > BRCA/expression_pancan/matrix.pirna.her2xluma.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.her2xlumb > BRCA/expression_pancan/matrix.pirna.her2xlumb.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.her2xpcnormal > BRCA/expression_pancan/matrix.pirna.her2xpcnormal.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.lumaxlumb > BRCA/expression_pancan/matrix.pirna.lumaxlumb.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.lumaxpcnormal > BRCA/expression_pancan/matrix.pirna.lumaxpcnormal.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.lumbxpcnormal > BRCA/expression_pancan/matrix.pirna.lumbxpcnormal.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.pc.all > BRCA/expression_pancan/matrix.pirna.pc.all.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.pc.all.withoutNorm > BRCA/expression_pancan/matrix.pirna.pc.all.withoutNorm.10p
+
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.norxernegativo > BRCA/expression_pancan/matrix.pirna.norxernegativo.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.norxerpositivo > BRCA/expression_pancan/matrix.pirna.norxerpositivo.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.ernegativoxerpositivo > BRCA/expression_pancan/matrix.pirna.ernegativoxerpositivo.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.er.all > BRCA/expression_pancan/matrix.pirna.er.all.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.er.all.withoutNorm > BRCA/expression_pancan/matrix.pirna.er.all.withoutNorm.10p
+
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.norxher2negativo > BRCA/expression_pancan/matrix.pirna.norxher2negativo.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.norxher2positivo > BRCA/expression_pancan/matrix.pirna.norxher2positivo.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.her2negativoxher2positivo > BRCA/expression_pancan/matrix.pirna.her2negativoxher2positivo.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.her2.all > BRCA/expression_pancan/matrix.pirna.her2.all.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.her2.all.withoutNorm > BRCA/expression_pancan/matrix.pirna.her2.all.withoutNorm.10p
+
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.norxprnegativo > BRCA/expression_pancan/matrix.pirna.norxprnegativo.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.norxprpositivo > BRCA/expression_pancan/matrix.pirna.norxprpositivo.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.prnegativoxprpositivo > BRCA/expression_pancan/matrix.pirna.prnegativoxprpositivo.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.pr.all > BRCA/expression_pancan/matrix.pirna.pr.all.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.pr.all.withoutNorm > BRCA/expression_pancan/matrix.pirna.pr.all.withoutNorm.10p
+
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.tn.all > BRCA/expression_pancan/matrix.pirna.tn.all.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' BRCA/expression_pancan/matrix.pirna.tn.all.withoutNorm > BRCA/expression_pancan/matrix.pirna.tn.all.withoutNorm.10p
+
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PRAD/expression_pancan/matrix.pirna.norxt2 > PRAD/expression_pancan/matrix.pirna.norxt2.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PRAD/expression_pancan/matrix.pirna.norxt3 > PRAD/expression_pancan/matrix.pirna.norxt3.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PRAD/expression_pancan/matrix.pirna.norxt4 > PRAD/expression_pancan/matrix.pirna.norxt4.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PRAD/expression_pancan/matrix.pirna.t2xt3 > PRAD/expression_pancan/matrix.pirna.t2xt3.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PRAD/expression_pancan/matrix.pirna.t3xt4 > PRAD/expression_pancan/matrix.pirna.t3xt4.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PRAD/expression_pancan/matrix.pirna.t.all > PRAD/expression_pancan/matrix.pirna.t.all.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PRAD/expression_pancan/matrix.pirna.t.all.withoutNorm > PRAD/expression_pancan/matrix.pirna.t.all.withoutNorm.10p
+
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PRAD/expression_pancan/matrix.pirna.norxn0 > PRAD/expression_pancan/matrix.pirna.norxn0.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PRAD/expression_pancan/matrix.pirna.norxn1 > PRAD/expression_pancan/matrix.pirna.norxn1.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PRAD/expression_pancan/matrix.pirna.n0xn1 > PRAD/expression_pancan/matrix.pirna.n0xn1.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PRAD/expression_pancan/matrix.pirna.n.all > PRAD/expression_pancan/matrix.pirna.n.all.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PRAD/expression_pancan/matrix.pirna.n.all.withoutNorm > PRAD/expression_pancan/matrix.pirna.n.all.withoutNorm.10p
+
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PRAD/expression_pancan/matrix.pirna.norxacinartype > PRAD/expression_pancan/matrix.pirna.norxacinartype.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PRAD/expression_pancan/matrix.pirna.norxothertype > PRAD/expression_pancan/matrix.pirna.norxothertype.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PRAD/expression_pancan/matrix.pirna.acinartypexothertype > PRAD/expression_pancan/matrix.pirna.acinartypexothertype.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PRAD/expression_pancan/matrix.pirna.sub.all > PRAD/expression_pancan/matrix.pirna.sub.all.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PRAD/expression_pancan/matrix.pirna.sub.all.withoutNorm > PRAD/expression_pancan/matrix.pirna.sub.all.withoutNorm.10p
+
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PRAD/expression_pancan/matrix.pirna.norxlessequal6 > PRAD/expression_pancan/matrix.pirna.norxlessequal6.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PRAD/expression_pancan/matrix.pirna.norxequal7 > PRAD/expression_pancan/matrix.pirna.norxequal7.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PRAD/expression_pancan/matrix.pirna.norxmoreequal8 > PRAD/expression_pancan/matrix.pirna.norxmoreequal8.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PRAD/expression_pancan/matrix.pirna.lessequal6xequal7 > PRAD/expression_pancan/matrix.pirna.lessequal6xequal7.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PRAD/expression_pancan/matrix.pirna.equal7xmoreequal8 > PRAD/expression_pancan/matrix.pirna.equal7xmoreequal8.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PRAD/expression_pancan/matrix.pirna.gleason.all > PRAD/expression_pancan/matrix.pirna.gleason.all.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PRAD/expression_pancan/matrix.pirna.gleason.all.withoutNorm > PRAD/expression_pancan/matrix.pirna.gleason.all.withoutNorm.10p
+
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.norxt1 > PAAD/expression_pancan/matrix.pirna.norxt1.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.norxt2 > PAAD/expression_pancan/matrix.pirna.norxt2.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.norxt3 > PAAD/expression_pancan/matrix.pirna.norxt3.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.norxt4 > PAAD/expression_pancan/matrix.pirna.norxt4.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.t1xt2 > PAAD/expression_pancan/matrix.pirna.t1xt2.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.t2xt3 > PAAD/expression_pancan/matrix.pirna.t2xt3.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.t3xt4 > PAAD/expression_pancan/matrix.pirna.t3xt4.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.t.all > PAAD/expression_pancan/matrix.pirna.t.all.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.t.all.withoutNorm > PAAD/expression_pancan/matrix.pirna.t.all.withoutNorm.10p
+
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.norxn0 > PAAD/expression_pancan/matrix.pirna.norxn0.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.norxn1 > PAAD/expression_pancan/matrix.pirna.norxn1.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.n0xn1 > PAAD/expression_pancan/matrix.pirna.n0xn1.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.n.all > PAAD/expression_pancan/matrix.pirna.n.all.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.n.all.withoutNorm > PAAD/expression_pancan/matrix.pirna.n.all.withoutNorm.10p
+
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.norxm0 > PAAD/expression_pancan/matrix.pirna.norxm0.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.norxm1 > PAAD/expression_pancan/matrix.pirna.norxm1.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.m0xm1 > PAAD/expression_pancan/matrix.pirna.m0xm1.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.m.all > PAAD/expression_pancan/matrix.pirna.m.all.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.m.all.withoutNorm > PAAD/expression_pancan/matrix.pirna.m.all.withoutNorm.10p
+
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.norxg1 > PAAD/expression_pancan/matrix.pirna.norxg1.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.norxg2 > PAAD/expression_pancan/matrix.pirna.norxg2.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.norxg3 > PAAD/expression_pancan/matrix.pirna.norxg3.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.norxg4 > PAAD/expression_pancan/matrix.pirna.norxg4.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.g1xg2 > PAAD/expression_pancan/matrix.pirna.g1xg2.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.g2xg3 > PAAD/expression_pancan/matrix.pirna.g2xg3.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.g3xg4 > PAAD/expression_pancan/matrix.pirna.g3xg4.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.g.all > PAAD/expression_pancan/matrix.pirna.g.all.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.g.all.withoutNorm > PAAD/expression_pancan/matrix.pirna.g.all.withoutNorm.10p
+
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.norxductaltype > PAAD/expression_pancan/matrix.pirna.norxductaltype.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.norxothertype > PAAD/expression_pancan/matrix.pirna.norxothertype.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.norxcolloidtype > PAAD/expression_pancan/matrix.pirna.norxcolloidtype.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.norxundifftype > PAAD/expression_pancan/matrix.pirna.norxundifftype.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.ductaltypexothertype > PAAD/expression_pancan/matrix.pirna.ductaltypexothertype.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.ductaltypexcolloidtype > PAAD/expression_pancan/matrix.pirna.ductaltypexcolloidtype.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.ductaltypexcolloidtype > PAAD/expression_pancan/matrix.pirna.ductaltypexcolloidtype.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.othertypexcolloidtype > PAAD/expression_pancan/matrix.pirna.othertypexcolloidtype.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.othertypexundifftype > PAAD/expression_pancan/matrix.pirna.othertypexundifftype.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.colloidtypexundifftype > PAAD/expression_pancan/matrix.pirna.colloidtypexundifftype.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.sub.all > PAAD/expression_pancan/matrix.pirna.sub.all.10p
+awk '{a[$1]=0;perc=((NF-1)*0.1)}{for(i=2;i<=NF;i++){if($i>0){a[$1]++}}}{if(a[$1]>perc){print $0}}' PAAD/expression_pancan/matrix.pirna.sub.all.withoutNorm > PAAD/expression_pancan/matrix.pirna.sub.all.withoutNorm.10p
+
+
+##
+ #
+ #
+
+for eachFile in `ls COAD/expression_ajcc/*.10p | sed 's/.10p//g'`; do rm -r $eachFile; done
+for eachFile in `ls COAD/expression_pancan/*.10p | sed 's/.10p//g'`; do rm -r $eachFile; done

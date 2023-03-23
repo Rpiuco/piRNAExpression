@@ -1,0 +1,505 @@
+##
+ #
+ #
+gunzip rawData/htSeqCountRaw/*.gz
+
+
+##
+ #
+ #
+awk -F "\t" '{print "mv rawData/htSeqCountRaw/"$2".htseq.counts rawData/htSeqCountRaw/"$1".htseq.counts"}' rawData/caseId.COAD.tumor.txt > sourceTeste2
+awk -F "\t" '{print "mv rawData/htSeqCountRaw/"$2"A.htseq.counts rawData/htSeqCountRaw/"$1".htseq.counts"}' rawData/caseId.COAD.normal.txt >> sourceTeste2
+awk -F "\t" '{print "mv rawData/htSeqCountRaw/"$2".htseq.counts rawData/htSeqCountRaw/"$1".htseq.counts"}' rawData/caseId.BRCA.tumor.txt >> sourceTeste2
+awk -F "\t" '{print "mv rawData/htSeqCountRaw/"$2"A.htseq.counts rawData/htSeqCountRaw/"$1".htseq.counts"}' rawData/caseId.BRCA.normal.txt >> sourceTeste2
+awk -F "\t" '{print "mv rawData/htSeqCountRaw/"$2".htseq.counts rawData/htSeqCountRaw/"$1".htseq.counts"}' rawData/caseId.PRAD.tumor.txt >> sourceTeste2
+awk -F "\t" '{print "mv rawData/htSeqCountRaw/"$2"A.htseq.counts rawData/htSeqCountRaw/"$1".htseq.counts"}' rawData/caseId.PRAD.normal.txt >> sourceTeste2
+awk -F "\t" '{print "mv rawData/htSeqCountRaw/"$2".htseq.counts rawData/htSeqCountRaw/"$1".htseq.counts"}' rawData/caseId.PAAD.tumor.txt >> sourceTeste2
+awk -F "\t" '{print "mv rawData/htSeqCountRaw/"$2"A.htseq.counts rawData/htSeqCountRaw/"$1".htseq.counts"}' rawData/caseId.PAAD.normal.txt >> sourceTeste2
+
+
+##
+ #
+ #
+awk -F "\t" '{print "ln -sf /home/scratch60/pirnaExpressionTcga5/rawData/htSeqCountRaw/"$2".htseq.counts /home/scratch60/pirnaExpressionTcga5/rawData/htSeqCountRaw/"$1".htseq.counts"}' rawData/oldAndNewUuids.coad.txt > sourceTeste4
+awk -F "\t" '{print "ln -sf /home/scratch60/pirnaExpressionTcga5/rawData/htSeqCountRaw/"$2".htseq.counts /home/scratch60/pirnaExpressionTcga5/rawData/htSeqCountRaw/"$1".htseq.counts"}' rawData/oldAndNewUuids.brca.txt >> sourceTeste4
+awk -F "\t" '{print "ln -sf /home/scratch60/pirnaExpressionTcga5/rawData/htSeqCountRaw/"$2".htseq.counts /home/scratch60/pirnaExpressionTcga5/rawData/htSeqCountRaw/"$1".htseq.counts"}' rawData/oldAndNewUuids.prad.txt >> sourceTeste4
+awk -F "\t" '{print "ln -sf /home/scratch60/pirnaExpressionTcga5/rawData/htSeqCountRaw/"$2".htseq.counts /home/scratch60/pirnaExpressionTcga5/rawData/htSeqCountRaw/"$1".htseq.counts"}' rawData/oldAndNewUuids.paad.txt >> sourceTeste4
+
+
+##
+ #
+ #
+export tissueType="COAD";
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt
+for eachRow in `cut -f1 $tissueType/metadata_ajcc.control`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression.txt.temp $tissueType/htSeqCount/matrix.genes.expression.txt; printf "\tC_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.control.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression.txt $tissueType/htSeqCount/matrix.genes.expression.control.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt
+for eachRow in `cut -f1 $tissueType/metadata_ajcc.tumor`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression.txt.temp $tissueType/htSeqCount/matrix.genes.expression.txt; printf "\tT_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.tumor.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression.txt $tissueType/htSeqCount/matrix.genes.expression.tumor.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt
+for eachRow in `cut -f1 $tissueType/metadata_ajcc.stagei`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression.txt.temp $tissueType/htSeqCount/matrix.genes.expression.txt; printf "\tSI_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.stagei.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression.txt $tissueType/htSeqCount/matrix.genes.expression.stagei.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt
+for eachRow in `cut -f1 $tissueType/metadata_ajcc.stageii`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression.txt.temp $tissueType/htSeqCount/matrix.genes.expression.txt; printf "\tSII_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.stageii.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression.txt $tissueType/htSeqCount/matrix.genes.expression.stageii.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt
+for eachRow in `cut -f1 $tissueType/metadata_ajcc.stageiii`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression.txt.temp $tissueType/htSeqCount/matrix.genes.expression.txt; printf "\tSIII_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.stageiii.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression.txt $tissueType/htSeqCount/matrix.genes.expression.stageiii.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt
+for eachRow in `cut -f1 $tissueType/metadata_ajcc.stageiv`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression.txt.temp $tissueType/htSeqCount/matrix.genes.expression.txt; printf "\tSIV_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.stageiv.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression.txt $tissueType/htSeqCount/matrix.genes.expression.stageiv.txt;
+
+
+
+
+rm -r BRCA/htSeqCount/sampleHeader_ajcc.control.txt
+rm -r BRCA/htSeqCount/sampleHeader_ajcc.tumor.txt
+rm -r BRCA/htSeqCount/sampleHeader_ajcc.stage*.txt
+rm -r BRCA/htSeqCount/matrix.genes.expression.control.txt
+rm -r BRCA/htSeqCount/matrix.genes.expression.tumor.txt
+rm -r BRCA/htSeqCount/matrix.genes.expression.stage*.txt
+
+
+export tissueType="BRCA";
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt
+for eachRow in `cut -f1 $tissueType/metadata_ajcc.control`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression.txt.temp $tissueType/htSeqCount/matrix.genes.expression.txt; printf "\tC_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.control.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression.txt $tissueType/htSeqCount/matrix.genes.expression.control.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt
+for eachRow in `cut -f1 $tissueType/metadata_ajcc.tumor`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression.txt.temp $tissueType/htSeqCount/matrix.genes.expression.txt; printf "\tT_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.tumor.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression.txt $tissueType/htSeqCount/matrix.genes.expression.tumor.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt
+for eachRow in `cut -f1 $tissueType/metadata_ajcc.stagei`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression.txt.temp $tissueType/htSeqCount/matrix.genes.expression.txt; printf "\tSI_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.stagei.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression.txt $tissueType/htSeqCount/matrix.genes.expression.stagei.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt
+for eachRow in `cut -f1 $tissueType/metadata_ajcc.stageii`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression.txt.temp $tissueType/htSeqCount/matrix.genes.expression.txt; printf "\tSII_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.stageii.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression.txt $tissueType/htSeqCount/matrix.genes.expression.stageii.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt
+for eachRow in `cut -f1 $tissueType/metadata_ajcc.stageiii`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression.txt.temp $tissueType/htSeqCount/matrix.genes.expression.txt; printf "\tSIII_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.stageiii.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression.txt $tissueType/htSeqCount/matrix.genes.expression.stageiii.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt
+for eachRow in `cut -f1 $tissueType/metadata_ajcc.stageiv`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression.txt.temp $tissueType/htSeqCount/matrix.genes.expression.txt; printf "\tSIV_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.stageiv.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression.txt $tissueType/htSeqCount/matrix.genes.expression.stageiv.txt;
+
+
+export tissueType="PRAD";
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt
+for eachRow in `cut -f1 $tissueType/metadata_ajcc.control`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression.txt.temp $tissueType/htSeqCount/matrix.genes.expression.txt; printf "\tC_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.control.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression.txt $tissueType/htSeqCount/matrix.genes.expression.control.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt
+for eachRow in `cut -f1 $tissueType/metadata_ajcc.tumor `; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -e 0 -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression.txt.temp $tissueType/htSeqCount/matrix.genes.expression.txt; printf "\tT_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.tumor.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression.txt $tissueType/htSeqCount/matrix.genes.expression.tumor.txt;
+
+
+export tissueType="PAAD";
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt
+for eachRow in `cut -f1 $tissueType/metadata_ajcc.control`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression.txt.temp $tissueType/htSeqCount/matrix.genes.expression.txt; printf "\tC_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.control.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression.txt $tissueType/htSeqCount/matrix.genes.expression.control.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt
+for eachRow in `cut -f1 $tissueType/metadata_ajcc.tumor`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression.txt.temp $tissueType/htSeqCount/matrix.genes.expression.txt; printf "\tT_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.tumor.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression.txt $tissueType/htSeqCount/matrix.genes.expression.tumor.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt
+for eachRow in `cut -f1 $tissueType/metadata_ajcc.stagei`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression.txt.temp $tissueType/htSeqCount/matrix.genes.expression.txt; printf "\tSI_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.stagei.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression.txt $tissueType/htSeqCount/matrix.genes.expression.stagei.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt
+for eachRow in `cut -f1 $tissueType/metadata_ajcc.stageii`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression.txt.temp $tissueType/htSeqCount/matrix.genes.expression.txt; printf "\tSII_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.stageii.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression.txt $tissueType/htSeqCount/matrix.genes.expression.stageii.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt
+for eachRow in `cut -f1 $tissueType/metadata_ajcc.stageiii`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression.txt.temp $tissueType/htSeqCount/matrix.genes.expression.txt; printf "\tSIII_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.stageiii.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression.txt $tissueType/htSeqCount/matrix.genes.expression.stageiii.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt
+for eachRow in `cut -f1 $tissueType/metadata_ajcc.stageiv`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression.txt.temp $tissueType/htSeqCount/matrix.genes.expression.txt; printf "\tSIV_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.stageiv.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression.txt $tissueType/htSeqCount/matrix.genes.expression.stageiv.txt;
+
+
+
+export tissueType="COAD";
+export tissueTypeLow="coad";
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($13 =="T1"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tT1_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.t1.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.t1.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($13 =="T2"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tT2_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.t2.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.t2.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($13 =="T3"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tT3_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.t3.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.t3.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($13 =="T4" || $13 =="T4A" || $13 =="T4B"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tT4_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.t4.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.t4.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($13 =="TIS"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tTIS_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.tis.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.tis.txt;
+
+
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($12 =="N0"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tN0_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.n0.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.n0.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($12 =="N1" || $12 =="N1A" || $12 =="N1B" || $12 =="N1C"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tN1_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.n1.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.n1.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($12 =="N2" || $12 =="N2A" || $12 =="N2B"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tN2_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.n2.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.n2.txt;
+
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($11 =="M0"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tM0_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.m0.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.m0.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($11 =="M1" || $11 =="M1A" || $11 =="M1B"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tM1_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.m1.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.m1.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($11 =="MX"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tMX_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.mx.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.mx.txt;
+
+
+export tissueType="BRCA";
+export tissueTypeLow="brca";
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($13 =="T1" || $13 =="T1A" || $13 =="T1B" || $13 =="T1C"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tT1_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.t1.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.t1.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($13 =="T2" || $13 =="T2A" || $13 =="T2B"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tT2_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.t2.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.t2.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($13 =="T3" || $13 =="T3A"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tT3_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.t3.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.t3.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($13 =="T4" || $13 =="T4B" || $13 =="T4D"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tT4_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.t4.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.t4.txt;
+
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($12 =="N0" || $12 =="N0 (I+)" || $12 =="N0 (I-)" || $12 =="N0 (MOL+)"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tN0_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.n0.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.n0.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($12 =="N1" || $12 =="N1A" || $12 =="N1B" || $12 =="N1C" || $12 =="N1MI"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tN1_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.n1.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.n1.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($12 =="N2" || $12 =="N2A"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tN2_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.n2.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.n2.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($12 =="N3" || $12 =="N3A" || $12 =="N3B" || $12 =="N3C"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tN3_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.n3.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.n3.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($12 =="NX"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tNX_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.nx.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.nx.txt;
+
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($11 =="CM0 (I+)" || $11 =="M0"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tM0_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.m0.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.m0.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($11 =="M1"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tM1_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.m1.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.m1.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($11 =="MX"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tMX_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.mx.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.mx.txt;
+
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($14 =="BRCA_Basal"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tBASAL_"$num >> $tissueType/htSeqCount/sampleHeader_pancan.basal.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.basal.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($14 =="BRCA_Her2"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tHER2_"$num >> $tissueType/htSeqCount/sampleHeader_pancan.her2.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.her2.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($14 =="BRCA_LumA"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tLUMA_"$num >> $tissueType/htSeqCount/sampleHeader_pancan.luma.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.luma.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($14 =="BRCA_LumB"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tLUMB_"$num >> $tissueType/htSeqCount/sampleHeader_pancan.lumb.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.lumb.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($14 =="BRCA_Normal"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tPCNORMAL_"$num >> $tissueType/htSeqCount/sampleHeader_pancan.pcnormal.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.pcnormal.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($14 =="NA"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tPCNA_"$num >> $tissueType/htSeqCount/sampleHeader_pancan.pcna.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.pcna.txt;
+
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($5 =="Negative"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_2012_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tERNEG_"$num >> $tissueType/htSeqCount/sampleHeader_pancan.erneg.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.erneg.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($5 =="Positive"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_2012_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tERPOS_"$num >> $tissueType/htSeqCount/sampleHeader_pancan.erpos.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.erpos.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($5 =="NA"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_2012_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tERNA_"$num >> $tissueType/htSeqCount/sampleHeader_pancan.erna.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.erna.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($5 =="Indeterminate" || $5 =="Not Performed" || $5 =="Performed but Not Available"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_2012_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tERNOTAVAILABLE_"$num >> $tissueType/htSeqCount/sampleHeader_pancan.ernotavailable.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.ernotavailable.txt;
+
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($7 =="Negative"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_2012_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tHER2NEG_"$num >> $tissueType/htSeqCount/sampleHeader_pancan.her2neg.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.her2neg.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($7 =="Positive"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_2012_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tHER2POS_"$num >> $tissueType/htSeqCount/sampleHeader_pancan.her2pos.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.her2pos.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($7 =="NA"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_2012_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tHER2NA_"$num >> $tissueType/htSeqCount/sampleHeader_pancan.her2na.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.her2na.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($7 =="Equivocal"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_2012_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tHER2EQUIVOCAL_"$num >> $tissueType/htSeqCount/sampleHeader_pancan.her2equivocal.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.her2equivocal.txt;
+
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($11 =="Negative"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_2012_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tPRNEG_"$num >> $tissueType/htSeqCount/sampleHeader_pancan.prneg.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.prneg.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($11 =="Positive"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_2012_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tPRPOS_"$num >> $tissueType/htSeqCount/sampleHeader_pancan.prpos.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.prpos.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($11 =="NA"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_2012_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tPRNA_"$num >> $tissueType/htSeqCount/sampleHeader_pancan.prna.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.prna.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($11 =="Indeterminate" || $11 =="Not Performed" || $11 =="Performed but Not Available"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_2012_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tPRNOTAVAILABLE_"$num >> $tissueType/htSeqCount/sampleHeader_pancan.prnotavailable.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.prnotavailable.txt;
+
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($5 =="Negative" || $7 =="Negative" || $11 =="Negative"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_2012_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tTN_"$num >> $tissueType/htSeqCount/sampleHeader_pancan.tn.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.tn.txt;
+
+
+
+export tissueType="PRAD";
+export tissueTypeLow="prad";
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($12 =="N0"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tN0_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.n0.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.n0.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($12 =="N1"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tN1_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.n1.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.n1.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($12 =="NA"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tNA_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.na.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.na.txt;
+
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($13 == "T2" || $13 == "T2A" || $13 == "T2B" || $13 == "T2C"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tT2_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.t2.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.t2.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($13 == "T3A" || $13 == "T3B"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tT3_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.t3.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.t3.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($13 == "T4"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tT4_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.t4.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.t4.txt;
+
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($11 <= 6){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_2015_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tLESSEQUAL6_"$num >> $tissueType/htSeqCount/sampleHeader_pancan.lessequal6.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.lessequal6.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($11 == 7){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_2015_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tEQUAL7_"$num >> $tissueType/htSeqCount/sampleHeader_pancan.equal7.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.equal7.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($11 >= 8){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_2015_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tMOREEQUAL8_"$num >> $tissueType/htSeqCount/sampleHeader_pancan.moreequal8.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.moreequal8.txt;
+
+
+
+export tissueType="PAAD";
+export tissueTypeLow="paad";
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($12 =="N0"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tN0_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.n0.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.n0.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($12 == "N1" || $12 == "N1B"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tN1_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.n1.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.n1.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($12 =="NA"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tNA_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.na.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.na.txt;
+
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($13 == "T1"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tT1_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.t1.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.t1.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($13 == "T2"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tT2_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.t2.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.t2.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($13 == "T3"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tT3_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.t3.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.t3.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($13 == "T4"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tT4_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.t4.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.t4.txt;
+
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($11 == "M0"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tM0_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.m0.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.m0.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($11 == "M1"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tM1_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.m0.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.m0.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($11 == "MX"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tMX_"$num >> $tissueType/htSeqCount/sampleHeader_ajcc.mx.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.mx.txt;
+
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($9 == "G1"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tG1_"$num >> $tissueType/htSeqCount/sampleHeader_pancan.g1.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.g1.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($9 == "G2"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tG2_"$num >> $tissueType/htSeqCount/sampleHeader_pancan.g2.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.g2.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($9 == "G3"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tG3_"$num >> $tissueType/htSeqCount/sampleHeader_pancan.g3.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.g3.txt;
+
+export num=0;
+cut -f 1 rawData/htSeqCountRaw/0000c4a9-f245-453e-956b-33aaa7edc88a.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt
+awk -F "\t" '{if($9 == "G4"){print$1}}' metadata/metadata$tissueType/metadata.$tissueTypeLow\_panCancer_data.txt | for eachRow in `cut -f1 -`; do if [ -f "rawData/htSeqCountRaw/$eachRow.htseq.counts" ]; then join -1 1 -2 1 -t $'\t' $tissueType/htSeqCount/matrix.genes.expression_split.txt rawData/htSeqCountRaw/$eachRow.htseq.counts > $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp; mv $tissueType/htSeqCount/matrix.genes.expression_split.txt.temp $tissueType/htSeqCount/matrix.genes.expression_split.txt; printf "\tG4_"$num >> $tissueType/htSeqCount/sampleHeader_pancan.g4.txt;let num++; fi; done
+mv $tissueType/htSeqCount/matrix.genes.expression_split.txt $tissueType/htSeqCount/matrix.genes.expression.g4.txt;

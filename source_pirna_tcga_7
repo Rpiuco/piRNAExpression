@@ -1,0 +1,83 @@
+##
+ #
+ #
+awk -F "\t" '{if(NR>1){print $3"\t"$4"\t"$5"\t"$7"\t"$10"\t"$18"\t"$19"\t"$26"\t"$30"\t"$31"\t"$32"\t"$79"\t"$82"\t"$83"\t"$84}}' rawData/coadread_tcga_pan_can_atlas_2018_clinical_data.tsv > rawData/coad_panCancer_data.txt
+awk -F "\t" '{if(NR>1){print $3"\t"$2}}' rawData/coadread_tcga_pan_can_atlas_2018_clinical_data.tsv > rawData/coad_panCancer_data_parxpar.txt
+awk -F "\t" '{if(NR>1){print $3"\t"$6"\t"$7"\t"$8"\t"$9"\t"$10"\t"$11"\t"$12"\t"$13"\t"$16"\t"$19}}' rawData/coadread_tcga_pub_clinical_data.tsv > rawData/coad_2012_data.txt
+
+awk -F "\t" '{if(NR>1){print $3"\t"$4"\t"$5"\t"$7"\t"$10"\t"$18"\t"$19"\t"$26"\t"$30"\t"$31"\t"$32"\t"$79"\t"$82"\t"$83"\t"$84}}' rawData/brca_tcga_pan_can_atlas_2018_clinical_data.tsv > rawData/brca_panCancer_data.txt
+awk -F "\t" '{if(NR>1){print $3"\t"$2}}' rawData/brca_tcga_pan_can_atlas_2018_clinical_data.tsv > rawData/brca_panCancer_data_parxpar.txt
+awk -F "\t" '{if(NR>1){print $3"\t"$7"\t"$9"\t"$10"\t"$11"\t"$17"\t"$18"\t"$23"\t"$26}}' rawData/brca_tcga_pub_clinical_data.tsv > rawData/brca_2012_data.txt
+
+awk -F "\t" '{if(NR>1){print $3"\t"$4"\t"$5"\t"$7"\t"$10"\t"$18"\t"$19"\t"$26"\t"$30"\t"$31"\t"$32"\t"$78"\t"$81"\t"$82"\t"$83}}' rawData/prad_tcga_pan_can_atlas_2018_clinical_data.tsv > rawData/prad_panCancer_data.txt
+awk -F "\t" '{if(NR>1){print $3"\t"$2}}' rawData/prad_tcga_pan_can_atlas_2018_clinical_data.tsv > rawData/prad_panCancer_data_parxpar.txt
+awk -F "\t" '{if(NR>1){print $3"\t"$51"\t"$53"\t"$61"\t"$62"\t"$63"\t"$74"\t"$77"\t"$78"\t"$86}}' rawData/prad_tcga_pub_clinical_data.tsv > rawData/prad_2015_data.txt
+
+awk -F "\t" '{if(NR>1){print $3"\t"$4"\t"$5"\t"$7"\t"$10"\t"$18"\t"$19"\t"$26"\t"$30"\t"$31"\t"$32"\t"$78"\t"$81"\t"$82"\t"$83}}' rawData/paad_tcga_pan_can_atlas_2018_clinical_data.tsv > rawData/paad_panCancer_data.txt
+awk -F "\t" '{if(NR>1){print $3"\t"$2}}' rawData/paad_tcga_pan_can_atlas_2018_clinical_data.tsv > rawData/paad_panCancer_data_parxpar.txt
+awk -F "\t" '{if(NR>1){print $3"\t"$36"\t"$38"\t"$64}}' rawData/paad_tcga_clinical_data.tsv > rawData/paad_2015_data.txt
+
+
+##
+ #
+ #
+awk -F "\t" 'NR==FNR{a[$2]=$0;next}{if($1"A" in a){print a[$1"A"]"\t"$0}else if($1"B" in a){print a[$1"B"]"\t"$0}else if($1"C" in a){print a[$1"C"]"\t"$0}}' rawData/caseId.COAD.tumor.txt rawData/coad_panCancer_data.txt > metadata/metadataCOAD/metadata.coad_panCancer_data.txt 
+awk -F "\t" 'NR==FNR{a[$2]=$0;next}{if($1"A" in a){print a[$1"A"]"\t"$0}else if($1"B" in a){print a[$1"B"]"\t"$0}else if($1"C" in a){print a[$1"C"]"\t"$0}}' rawData/caseId.COAD.tumor.txt rawData/coad_panCancer_data_parxpar.txt > metadata/metadataCOAD/metadata.coad_panCancer_data_parxpar.txt
+awk -F "\t" 'NR==FNR{a[$2]=$0;next}{if($1"A" in a){print a[$1"A"]"\t"$0}else if($1"B" in a){print a[$1"B"]"\t"$0}else if($1"C" in a){print a[$1"C"]"\t"$0}}' rawData/caseId.COAD.tumor.txt rawData/coad_2012_data.txt > metadata/metadataCOAD/metadata.coad_2012_data.txt
+
+awk -F "\t" 'NR==FNR{a[$2]=$0;next}{if($1"A" in a){print a[$1"A"]"\t"$0}else if($1"B" in a){print a[$1"B"]"\t"$0}else if($1"C" in a){print a[$1"C"]"\t"$0}}' rawData/caseId.BRCA.tumor.txt rawData/brca_panCancer_data.txt > metadata/metadataBRCA/metadata.brca_panCancer_data.txt 
+awk -F "\t" 'NR==FNR{a[$2]=$0;next}{if($1"A" in a){print a[$1"A"]"\t"$0}else if($1"B" in a){print a[$1"B"]"\t"$0}else if($1"C" in a){print a[$1"C"]"\t"$0}}' rawData/caseId.BRCA.tumor.txt rawData/brca_panCancer_data_parxpar.txt > metadata/metadataBRCA/metadata.brca_panCancer_data_parxpar.txt
+awk -F "\t" 'NR==FNR{a[$2]=$0;next}{if($1"A" in a){print a[$1"A"]"\t"$0}else if($1"B" in a){print a[$1"B"]"\t"$0}else if($1"C" in a){print a[$1"C"]"\t"$0}}' rawData/caseId.BRCA.tumor.txt rawData/brca_2012_data.txt > metadata/metadataBRCA/metadata.brca_2012_data.txt
+
+awk -F "\t" 'NR==FNR{a[$2]=$0;next}{if($1"A" in a){print a[$1"A"]"\t"$0}else if($1"B" in a){print a[$1"B"]"\t"$0}else if($1"C" in a){print a[$1"C"]"\t"$0}}' rawData/caseId.PRAD.tumor.txt rawData/prad_panCancer_data.txt > metadata/metadataPRAD/metadata.prad_panCancer_data.txt 
+awk -F "\t" 'NR==FNR{a[$2]=$0;next}{if($1"A" in a){print a[$1"A"]"\t"$0}else if($1"B" in a){print a[$1"B"]"\t"$0}else if($1"C" in a){print a[$1"C"]"\t"$0}}' rawData/caseId.PRAD.tumor.txt rawData/prad_panCancer_data_parxpar.txt > metadata/metadataPRAD/metadata.prad_panCancer_data_parxpar.txt
+awk -F "\t" 'NR==FNR{a[$2]=$0;next}{if($1"A" in a){print a[$1"A"]"\t"$0}else if($1"B" in a){print a[$1"B"]"\t"$0}else if($1"C" in a){print a[$1"C"]"\t"$0}}' rawData/caseId.PRAD.tumor.txt rawData/prad_2015_data.txt > metadata/metadataPRAD/metadata.prad_2015_data.txt
+
+awk -F "\t" 'NR==FNR{a[$2]=$0;next}{if($1"A" in a){print a[$1"A"]"\t"$0}else if($1"B" in a){print a[$1"B"]"\t"$0}else if($1"C" in a){print a[$1"C"]"\t"$0}}' rawData/caseId.PAAD.tumor.txt rawData/paad_panCancer_data.txt > metadata/metadataPAAD/metadata.paad_panCancer_data.txt 
+awk -F "\t" 'NR==FNR{a[$2]=$0;next}{if($1"A" in a){print a[$1"A"]"\t"$0}else if($1"B" in a){print a[$1"B"]"\t"$0}else if($1"C" in a){print a[$1"C"]"\t"$0}}' rawData/caseId.PAAD.tumor.txt rawData/paad_panCancer_data_parxpar.txt > metadata/metadataPAAD/metadata.paad_panCancer_data_parxpar.txt
+awk -F "\t" 'NR==FNR{a[$2]=$0;next}{if($1"A" in a){print a[$1"A"]"\t"$0}else if($1"B" in a){print a[$1"B"]"\t"$0}else if($1"C" in a){print a[$1"C"]"\t"$0}}' rawData/caseId.PAAD.tumor.txt rawData/paad_2015_data.txt > metadata/metadataPAAD/metadata.paad_2015_data.txt
+
+
+##
+ #
+ #
+ #
+#alternativo
+tar -cf metadata.all.tar manifest.*.control.txt
+wget -O rawData/metadata.all.tar 'https://docs.google.com/uc?export=download&id=1fDn_BcloQQSo1jV5Yd5b6od3Mvt4ODF8'
+cd rawData/
+tar -xvf metadata.all.tar
+cd ..
+rm -r rawData/metadata.all.tar
+
+
+
+cut -f 1 rawData/manifest.COAD.control.txt > metadata/files_ajcc.COAD.all.temp
+grep -v rawData/oldAndNewUuids.coad.txt -f metadata/files_ajcc.COAD.all.temp | cut -f 2 > metadata/files_ajcc.COAD.tumor
+grep rawData/oldAndNewUuids.coad.txt -f metadata/files_ajcc.COAD.all.temp | cut -f 2 > metadata/files_ajcc.COAD.normal
+rm -r metadata/files_ajcc.COAD.all.temp
+
+cut -f 1 rawData/manifest.BRCA.control.txt > metadata/files_ajcc.BRCA.all.temp
+grep -v rawData/oldAndNewUuids.brca.txt -f metadata/files_ajcc.BRCA.all.temp | cut -f 2 > metadata/files_ajcc.BRCA.tumor
+grep rawData/oldAndNewUuids.brca.txt -f metadata/files_ajcc.BRCA.all.temp | cut -f 2 > metadata/files_ajcc.BRCA.normal
+rm -r metadata/files_ajcc.BRCA.all.temp
+
+cut -f 1 rawData/manifest.PRAD.control.txt > metadata/files_ajcc.PRAD.all.temp
+grep -v rawData/oldAndNewUuids.prad.txt -f metadata/files_ajcc.PRAD.all.temp | cut -f 2 > metadata/files_ajcc.PRAD.tumor
+grep rawData/oldAndNewUuids.prad.txt -f metadata/files_ajcc.PRAD.all.temp | cut -f 2 > metadata/files_ajcc.PRAD.normal
+rm -r metadata/files_ajcc.PRAD.all.temp
+
+cut -f 1 rawData/manifest.PAAD.control.txt > metadata/files_ajcc.PAAD.all.temp
+grep -v rawData/oldAndNewUuids.paad.txt -f metadata/files_ajcc.PAAD.all.temp | cut -f 2 > metadata/files_ajcc.PAAD.tumor
+grep rawData/oldAndNewUuids.paad.txt -f metadata/files_ajcc.PAAD.all.temp | cut -f 2 > metadata/files_ajcc.PAAD.normal
+rm -r metadata/files_ajcc.PAAD.all.temp
+
+
+for eachFile in `more metadata/files_ajcc.COAD.normal`; do perl scripts/retrieveTcgaMetadata.pl -f $eachFile > metadata/metadataCOAD/metadata.$eachFile.txt; done;
+for eachFile in `more metadata/files_ajcc.COAD.tumor`; do perl scripts/retrieveTcgaMetadata.pl -f $eachFile > metadata/metadataCOAD/metadata.$eachFile.txt; done;
+for eachFile in `more metadata/files_ajcc.BRCA.normal`; do perl scripts/retrieveTcgaMetadata.pl -f $eachFile > metadata/metadataBRCA/metadata.$eachFile.txt; done;
+for eachFile in `more metadata/files_ajcc.BRCA.tumor`; do perl scripts/retrieveTcgaMetadata.pl -f $eachFile > metadata/metadataBRCA/metadata.$eachFile.txt; done;
+for eachFile in `more metadata/files_ajcc.PRAD.normal`; do perl scripts/retrieveTcgaMetadata.pl -f $eachFile > metadata/metadataPRAD/metadata.$eachFile.txt; done;
+for eachFile in `more metadata/files_ajcc.PRAD.tumor`; do perl scripts/retrieveTcgaMetadata.pl -f $eachFile > metadata/metadataPRAD/metadata.$eachFile.txt; done;
+for eachFile in `more metadata/files_ajcc.PAAD.normal`; do perl scripts/retrieveTcgaMetadata.pl -f $eachFile > metadata/metadataPAAD/metadata.$eachFile.txt; done;
+for eachFile in `more metadata/files_ajcc.PAAD.tumor`; do perl scripts/retrieveTcgaMetadata.pl -f $eachFile > metadata/metadataPAAD/metadata.$eachFile.txt; done;

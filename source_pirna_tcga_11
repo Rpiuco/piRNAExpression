@@ -1,0 +1,57 @@
+##
+ # LOGFC positivo indica que o pirna eh mais expresso no segundo condicao em relacao ao primeiro (norXtum, tem mais no tumor do que no normal)
+ # HEADER: ID_piRNA	logFC	logCPM	PValue	FDR
+
+rm -r sourceTeste2
+
+for eachFile in `ls COAD/expression_ajcc/*.10p | grep -v ".all." | sed 's/.10p//g;s/COAD\/expression_ajcc\/matrix\.pirna\.//g'`; do printf "Rscript scripts/edger_de.r \"COAD/expression_ajcc/matrix.pirna."$eachFile".10p\" 1 2 \"COAD/expression_ajcc/result.edger."$eachFile"\"\\n" >> sourceTeste2; done;
+for eachFile in `ls COAD/expression_pancan/*.10p | grep -v ".all." | sed 's/.10p//g;s/COAD\/expression_pancan\/matrix\.pirna\.//g'`; do printf "Rscript scripts/edger_de.r \"COAD/expression_pancan/matrix.pirna."$eachFile".10p\" 1 2 \"COAD/expression_pancan/result.edger."$eachFile"\"\\n" >> sourceTeste2; done;
+
+for eachFile in `ls BRCA/expression_ajcc/*.10p | grep -v ".all." | sed 's/.10p//g;s/BRCA\/expression_ajcc\/matrix\.pirna\.//g'`; do printf "Rscript scripts/edger_de.r \"BRCA/expression_ajcc/matrix.pirna."$eachFile".10p\" 1 2 \"BRCA/expression_ajcc/result.edger."$eachFile"\"\\n" >> sourceTeste2; done;
+for eachFile in `ls BRCA/expression_pancan/*.10p | grep -v ".all." | sed 's/.10p//g;s/BRCA\/expression_pancan\/matrix\.pirna\.//g'`; do printf "Rscript scripts/edger_de.r \"BRCA/expression_pancan/matrix.pirna."$eachFile".10p\" 1 2 \"BRCA/expression_pancan/result.edger."$eachFile"\"\\n" >> sourceTeste2; done;
+
+for eachFile in `ls PRAD/expression_ajcc/*.10p | grep -v ".all." | sed 's/.10p//g;s/PRAD\/expression_ajcc\/matrix\.pirna\.//g'`; do printf "Rscript scripts/edger_de.r \"PRAD/expression_ajcc/matrix.pirna."$eachFile".10p\" 1 2 \"PRAD/expression_ajcc/result.edger."$eachFile"\"\\n" >> sourceTeste2; done;
+for eachFile in `ls PRAD/expression_pancan/*.10p | grep -v ".all." | sed 's/.10p//g;s/PRAD\/expression_pancan\/matrix\.pirna\.//g'`; do printf "Rscript scripts/edger_de.r \"PRAD/expression_pancan/matrix.pirna."$eachFile".10p\" 1 2 \"PRAD/expression_pancan/result.edger."$eachFile"\"\\n" >> sourceTeste2; done;
+
+for eachFile in `ls PAAD/expression_ajcc/*.10p | grep -v ".all." | sed 's/.10p//g;s/PAAD\/expression_ajcc\/matrix\.pirna\.//g'`; do printf "Rscript scripts/edger_de.r \"PAAD/expression_ajcc/matrix.pirna."$eachFile".10p\" 1 2 \"PAAD/expression_ajcc/result.edger."$eachFile"\"\\n" >> sourceTeste2; done;
+for eachFile in `ls PAAD/expression_pancan/*.10p | grep -v ".all." | sed 's/.10p//g;s/PAAD\/expression_pancan\/matrix\.pirna\.//g'`; do printf "Rscript scripts/edger_de.r \"PAAD/expression_pancan/matrix.pirna."$eachFile".10p\" 1 2 \"PAAD/expression_pancan/result.edger."$eachFile"\"\\n" >> sourceTeste2; done;
+
+
+
+##
+ # Retrieve only p-value and fold change of piRNAs
+ # up tem mais no segundo da condicao (tum), enquanto que down tem mais no primeiro da condicao (norm)
+
+rm -r sourceTeste2
+
+for eachFile in `ls COAD/expression_ajcc/result.edger.* | grep -v ".all." | sed 's/COAD\/expression_ajcc\/result\.edger\.//g'`; do printf "awk -F \"\\\t\" '{if(\$5 <= 0.05 && \$2 >= 1){print\$0}}' COAD/expression_ajcc/result.edger."$eachFile" > COAD/expression_ajcc/heatmap_005_10_up."$eachFile".txt \\nawk -F \"\\\t\" '{if(\$5 <= 0.05 && \$2 <= -1){print\$0}}' COAD/expression_ajcc/result.edger."$eachFile" > COAD/expression_ajcc/heatmap_005_10_down."$eachFile".txt \\n" >> sourceTeste2; done;
+for eachFile in `ls COAD/expression_pancan/result.edger.* | grep -v ".all." | sed 's/COAD\/expression_pancan\/result\.edger\.//g'`; do printf "awk -F \"\\\t\" '{if(\$5 <= 0.05 && \$2 >= 1){print\$0}}' COAD/expression_pancan/result.edger."$eachFile" > COAD/expression_pancan/heatmap_005_10_up."$eachFile".txt \\nawk -F \"\\\t\" '{if(\$5 <= 0.05 && \$2 <= -1){print\$0}}' COAD/expression_pancan/result.edger."$eachFile" > COAD/expression_pancan/heatmap_005_10_down."$eachFile".txt \\n" >> sourceTeste2; done;
+
+for eachFile in `ls BRCA/expression_ajcc/result.edger.* | grep -v ".all." | sed 's/BRCA\/expression_ajcc\/result\.edger\.//g'`; do printf "awk -F \"\\\t\" '{if(\$5 <= 0.05 && \$2 >= 1){print\$0}}' BRCA/expression_ajcc/result.edger."$eachFile" > BRCA/expression_ajcc/heatmap_005_10_up."$eachFile".txt \\nawk -F \"\\\t\" '{if(\$5 <= 0.05 && \$2 <= -1){print\$0}}' BRCA/expression_ajcc/result.edger."$eachFile" > BRCA/expression_ajcc/heatmap_005_10_down."$eachFile".txt \\n" >> sourceTeste2; done;
+for eachFile in `ls BRCA/expression_pancan/result.edger.* | grep -v ".all." | sed 's/BRCA\/expression_pancan\/result\.edger\.//g'`; do printf "awk -F \"\\\t\" '{if(\$5 <= 0.05 && \$2 >= 1){print\$0}}' BRCA/expression_pancan/result.edger."$eachFile" > BRCA/expression_pancan/heatmap_005_10_up."$eachFile".txt \\nawk -F \"\\\t\" '{if(\$5 <= 0.05 && \$2 <= -1){print\$0}}' BRCA/expression_pancan/result.edger."$eachFile" > BRCA/expression_pancan/heatmap_005_10_down."$eachFile".txt \\n" >> sourceTeste2; done;
+
+for eachFile in `ls PRAD/expression_ajcc/result.edger.* | grep -v ".all." | sed 's/PRAD\/expression_ajcc\/result\.edger\.//g'`; do printf "awk -F \"\\\t\" '{if(\$5 <= 0.05 && \$2 >= 1){print\$0}}' PRAD/expression_ajcc/result.edger."$eachFile" > PRAD/expression_ajcc/heatmap_005_10_up."$eachFile".txt \\nawk -F \"\\\t\" '{if(\$5 <= 0.05 && \$2 <= -1){print\$0}}' PRAD/expression_ajcc/result.edger."$eachFile" > PRAD/expression_ajcc/heatmap_005_10_down."$eachFile".txt \\n" >> sourceTeste2; done;
+for eachFile in `ls PRAD/expression_pancan/result.edger.* | grep -v ".all." | sed 's/PRAD\/expression_pancan\/result\.edger\.//g'`; do printf "awk -F \"\\\t\" '{if(\$5 <= 0.05 && \$2 >= 1){print\$0}}' PRAD/expression_pancan/result.edger."$eachFile" > PRAD/expression_pancan/heatmap_005_10_up."$eachFile".txt \\nawk -F \"\\\t\" '{if(\$5 <= 0.05 && \$2 <= -1){print\$0}}' PRAD/expression_pancan/result.edger."$eachFile" > PRAD/expression_pancan/heatmap_005_10_down."$eachFile".txt \\n" >> sourceTeste2; done;
+
+for eachFile in `ls PAAD/expression_ajcc/result.edger.* | grep -v ".all." | sed 's/PAAD\/expression_ajcc\/result\.edger\.//g'`; do printf "awk -F \"\\\t\" '{if(\$5 <= 0.05 && \$2 >= 1){print\$0}}' PAAD/expression_ajcc/result.edger."$eachFile" > PAAD/expression_ajcc/heatmap_005_10_up."$eachFile".txt \\nawk -F \"\\\t\" '{if(\$5 <= 0.05 && \$2 <= -1){print\$0}}' PAAD/expression_ajcc/result.edger."$eachFile" > PAAD/expression_ajcc/heatmap_005_10_down."$eachFile".txt \\n" >> sourceTeste2; done;
+for eachFile in `ls PAAD/expression_pancan/result.edger.* | grep -v ".all." | sed 's/PAAD\/expression_pancan\/result\.edger\.//g'`; do printf "awk -F \"\\\t\" '{if(\$5 <= 0.05 && \$2 >= 1){print\$0}}' PAAD/expression_pancan/result.edger."$eachFile" > PAAD/expression_pancan/heatmap_005_10_up."$eachFile".txt \\nawk -F \"\\\t\" '{if(\$5 <= 0.05 && \$2 <= -1){print\$0}}' PAAD/expression_pancan/result.edger."$eachFile" > PAAD/expression_pancan/heatmap_005_10_down."$eachFile".txt \\n" >> sourceTeste2; done;
+
+
+##
+ #
+ #
+ #
+
+rm -r sourceTeste2
+
+for eachFile in `ls COAD/expression_ajcc/result.edger.* | grep -v ".all." | sed 's/COAD\/expression_ajcc\/result\.edger\.//g'`; do printf "cat COAD/expression_ajcc/heatmap_005_10_up."$eachFile".txt COAD/expression_ajcc/heatmap_005_10_down."$eachFile".txt > COAD/expression_ajcc/heatmap_005_10."$eachFile".all\\n" >> sourceTeste2; done;
+for eachFile in `ls COAD/expression_pancan/result.edger.* | grep -v ".all." | sed 's/COAD\/expression_pancan\/result\.edger\.//g'`; do printf "cat COAD/expression_pancan/heatmap_005_10_up."$eachFile".txt COAD/expression_pancan/heatmap_005_10_down."$eachFile".txt > COAD/expression_pancan/heatmap_005_10."$eachFile".all\\n" >> sourceTeste2; done;
+
+for eachFile in `ls BRCA/expression_ajcc/result.edger.* | grep -v ".all." | sed 's/BRCA\/expression_ajcc\/result\.edger\.//g'`; do printf "cat BRCA/expression_ajcc/heatmap_005_10_up."$eachFile".txt BRCA/expression_ajcc/heatmap_005_10_down."$eachFile".txt > BRCA/expression_ajcc/heatmap_005_10."$eachFile".all\\n" >> sourceTeste2; done;
+for eachFile in `ls BRCA/expression_pancan/result.edger.* | grep -v ".all." | sed 's/BRCA\/expression_pancan\/result\.edger\.//g'`; do printf "cat BRCA/expression_pancan/heatmap_005_10_up."$eachFile".txt BRCA/expression_pancan/heatmap_005_10_down."$eachFile".txt > BRCA/expression_pancan/heatmap_005_10."$eachFile".all\\n" >> sourceTeste2; done;
+
+for eachFile in `ls PRAD/expression_ajcc/result.edger.* | grep -v ".all." | sed 's/PRAD\/expression_ajcc\/result\.edger\.//g'`; do printf "cat PRAD/expression_ajcc/heatmap_005_10_up."$eachFile".txt PRAD/expression_ajcc/heatmap_005_10_down."$eachFile".txt > PRAD/expression_ajcc/heatmap_005_10."$eachFile".all\\n" >> sourceTeste2; done;
+for eachFile in `ls PRAD/expression_pancan/result.edger.* | grep -v ".all." | sed 's/PRAD\/expression_pancan\/result\.edger\.//g'`; do printf "cat PRAD/expression_pancan/heatmap_005_10_up."$eachFile".txt PRAD/expression_pancan/heatmap_005_10_down."$eachFile".txt > PRAD/expression_pancan/heatmap_005_10."$eachFile".all\\n" >> sourceTeste2; done;
+
+for eachFile in `ls PAAD/expression_ajcc/result.edger.* | grep -v ".all." | sed 's/PAAD\/expression_ajcc\/result\.edger\.//g'`; do printf "cat PAAD/expression_ajcc/heatmap_005_10_up."$eachFile".txt PAAD/expression_ajcc/heatmap_005_10_down."$eachFile".txt > PAAD/expression_ajcc/heatmap_005_10."$eachFile".all\\n" >> sourceTeste2; done;
+for eachFile in `ls PAAD/expression_pancan/result.edger.* | grep -v ".all." | sed 's/PAAD\/expression_pancan\/result\.edger\.//g'`; do printf "cat PAAD/expression_pancan/heatmap_005_10_up."$eachFile".txt PAAD/expression_pancan/heatmap_005_10_down."$eachFile".txt > PAAD/expression_pancan/heatmap_005_10."$eachFile".all\\n" >> sourceTeste2; done;

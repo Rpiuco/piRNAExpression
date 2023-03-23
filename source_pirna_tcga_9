@@ -1,0 +1,295 @@
+##
+ #
+ #
+cat COAD/metadata_ajcc.clean.control COAD/metadata_ajcc.clean.tumor > COAD/metadata_ajcc.clean.norxtum
+cat COAD/metadata_ajcc.clean.control COAD/metadata_ajcc.clean.stagei > COAD/metadata_ajcc.clean.norxi
+cat COAD/metadata_ajcc.clean.stagei COAD/metadata_ajcc.clean.stageii > COAD/metadata_ajcc.clean.ixii
+cat COAD/metadata_ajcc.clean.stageii COAD/metadata_ajcc.clean.stageiii > COAD/metadata_ajcc.clean.iixiii
+cat COAD/metadata_ajcc.clean.stageiii COAD/metadata_ajcc.clean.stageiv > COAD/metadata_ajcc.clean.iiixiv
+
+cat BRCA/metadata_ajcc.clean.control BRCA/metadata_ajcc.clean.tumor > BRCA/metadata_ajcc.clean.norxtum
+cat BRCA/metadata_ajcc.clean.control BRCA/metadata_ajcc.clean.stagei > BRCA/metadata_ajcc.clean.norxi
+cat BRCA/metadata_ajcc.clean.stagei BRCA/metadata_ajcc.clean.stageii > BRCA/metadata_ajcc.clean.ixii
+cat BRCA/metadata_ajcc.clean.stageii BRCA/metadata_ajcc.clean.stageiii > BRCA/metadata_ajcc.clean.iixiii
+cat BRCA/metadata_ajcc.clean.stageiii BRCA/metadata_ajcc.clean.stageiv > BRCA/metadata_ajcc.clean.iiixiv
+
+cat PRAD/metadata_ajcc.clean.control PRAD/metadata_ajcc.clean.tumor > PRAD/metadata_ajcc.clean.norxtum
+
+cat PAAD/metadata_ajcc.clean.control PAAD/metadata_ajcc.clean.tumor > PAAD/metadata_ajcc.clean.norxtum
+cat PAAD/metadata_ajcc.clean.control PAAD/metadata_ajcc.clean.stagei > PAAD/metadata_ajcc.clean.norxi
+cat PAAD/metadata_ajcc.clean.stagei PAAD/metadata_ajcc.clean.stageii > PAAD/metadata_ajcc.clean.ixii
+cat PAAD/metadata_ajcc.clean.stageii PAAD/metadata_ajcc.clean.stageiii > PAAD/metadata_ajcc.clean.iixiii
+cat PAAD/metadata_ajcc.clean.stageiii PAAD/metadata_ajcc.clean.stageiv > PAAD/metadata_ajcc.clean.iiixiv
+
+
+
+#########################
+#########################
+#########################
+## TALVEZ SEJA INUTIL???
+cat COAD/metadata_ajcc.clean.control COAD/metadata_ajcc.clean.tumor > COAD/metadata_ajcc.clean.norxtum
+
+##
+ #
+ #
+ #
+cat COAD/sampleHeader_ajcc.tumor.txt COAD/expression_ajcc/matrix.pirna.expression.temp.tumor > COAD/expression_ajcc/matrix.pirna.expression.tumor
+cat COAD/sampleHeader_ajcc.control.txt COAD/expression_ajcc/matrix.pirna.expression.temp.control > COAD/expression_ajcc/matrix.pirna.expression.control
+cat COAD/sampleHeader_ajcc.stagei.txt COAD/expression_ajcc/matrix.pirna.expression.temp.stagei > COAD/expression_ajcc/matrix.pirna.expression.stagei
+cat COAD/sampleHeader_ajcc.stageii.txt COAD/expression_ajcc/matrix.pirna.expression.temp.stageii > COAD/expression_ajcc/matrix.pirna.expression.stageii
+cat COAD/sampleHeader_ajcc.stageiii.txt COAD/expression_ajcc/matrix.pirna.expression.temp.stageiii > COAD/expression_ajcc/matrix.pirna.expression.stageiii
+cat COAD/sampleHeader_ajcc.stageiv.txt COAD/expression_ajcc/matrix.pirna.expression.temp.stageiv > COAD/expression_ajcc/matrix.pirna.expression.stageiv
+
+cat BRCA/sampleHeader_ajcc.tumor.txt BRCA/expression_ajcc/matrix.pirna.expression.temp.tumor > BRCA/expression_ajcc/matrix.pirna.expression.tumor
+cat BRCA/sampleHeader_ajcc.control.txt BRCA/expression_ajcc/matrix.pirna.expression.temp.control > BRCA/expression_ajcc/matrix.pirna.expression.control
+cat BRCA/sampleHeader_ajcc.stagei.txt BRCA/expression_ajcc/matrix.pirna.expression.temp.stagei > BRCA/expression_ajcc/matrix.pirna.expression.stagei
+cat BRCA/sampleHeader_ajcc.stageii.txt BRCA/expression_ajcc/matrix.pirna.expression.temp.stageii > BRCA/expression_ajcc/matrix.pirna.expression.stageii
+cat BRCA/sampleHeader_ajcc.stageiii.txt BRCA/expression_ajcc/matrix.pirna.expression.temp.stageiii > BRCA/expression_ajcc/matrix.pirna.expression.stageiii
+cat BRCA/sampleHeader_ajcc.stageiv.txt BRCA/expression_ajcc/matrix.pirna.expression.temp.stageiv > BRCA/expression_ajcc/matrix.pirna.expression.stageiv
+
+cat PRAD/sampleHeader_ajcc.tumor.txt PRAD/expression_ajcc/matrix.pirna.expression.temp.tumor > PRAD/expression_ajcc/matrix.pirna.expression.tumor
+cat PRAD/sampleHeader_ajcc.control.txt PRAD/expression_ajcc/matrix.pirna.expression.temp.control > PRAD/expression_ajcc/matrix.pirna.expression.control
+
+cat PAAD/sampleHeader_ajcc.tumor.txt PAAD/expression_ajcc/matrix.pirna.expression.temp.tumor > PAAD/expression_ajcc/matrix.pirna.expression.tumor
+cat PAAD/sampleHeader_ajcc.control.txt PAAD/expression_ajcc/matrix.pirna.expression.temp.control > PAAD/expression_ajcc/matrix.pirna.expression.control
+cat PAAD/sampleHeader_ajcc.stagei.txt PAAD/expression_ajcc/matrix.pirna.expression.temp.stagei > PAAD/expression_ajcc/matrix.pirna.expression.stagei
+cat PAAD/sampleHeader_ajcc.stageii.txt PAAD/expression_ajcc/matrix.pirna.expression.temp.stageii > PAAD/expression_ajcc/matrix.pirna.expression.stageii
+cat PAAD/sampleHeader_ajcc.stageiii.txt PAAD/expression_ajcc/matrix.pirna.expression.temp.stageiii > PAAD/expression_ajcc/matrix.pirna.expression.stageiii
+cat PAAD/sampleHeader_ajcc.stageiv.txt PAAD/expression_ajcc/matrix.pirna.expression.temp.stageiv > PAAD/expression_ajcc/matrix.pirna.expression.stageiv
+
+
+cat COAD/sampleHeader_ajcc.t1.txt COAD/expression_ajcc/matrix.pirna.expression.temp.t1 > COAD/expression_ajcc/matrix.pirna.expression.t1
+cat COAD/sampleHeader_ajcc.t2.txt COAD/expression_ajcc/matrix.pirna.expression.temp.t2 > COAD/expression_ajcc/matrix.pirna.expression.t2
+cat COAD/sampleHeader_ajcc.t3.txt COAD/expression_ajcc/matrix.pirna.expression.temp.t3 > COAD/expression_ajcc/matrix.pirna.expression.t3
+cat COAD/sampleHeader_ajcc.t4.txt COAD/expression_ajcc/matrix.pirna.expression.temp.t4 > COAD/expression_ajcc/matrix.pirna.expression.t4
+cat COAD/sampleHeader_ajcc.tis.txt COAD/expression_ajcc/matrix.pirna.expression.temp.tis > COAD/expression_ajcc/matrix.pirna.expression.tis
+cat COAD/sampleHeader_ajcc.tna.txt COAD/expression_ajcc/matrix.pirna.expression.temp.tna > COAD/expression_ajcc/matrix.pirna.expression.tna
+
+cat COAD/sampleHeader_ajcc.n0.txt COAD/expression_ajcc/matrix.pirna.expression.temp.n0 > COAD/expression_ajcc/matrix.pirna.expression.n0
+cat COAD/sampleHeader_ajcc.n1.txt COAD/expression_ajcc/matrix.pirna.expression.temp.n1 > COAD/expression_ajcc/matrix.pirna.expression.n1
+cat COAD/sampleHeader_ajcc.n2.txt COAD/expression_ajcc/matrix.pirna.expression.temp.n2 > COAD/expression_ajcc/matrix.pirna.expression.n2
+cat COAD/sampleHeader_ajcc.nna.txt COAD/expression_ajcc/matrix.pirna.expression.temp.nna > COAD/expression_ajcc/matrix.pirna.expression.nna
+
+cat COAD/sampleHeader_ajcc.m0.txt COAD/expression_ajcc/matrix.pirna.expression.temp.m0 > COAD/expression_ajcc/matrix.pirna.expression.m0
+cat COAD/sampleHeader_ajcc.m1.txt COAD/expression_ajcc/matrix.pirna.expression.temp.m1 > COAD/expression_ajcc/matrix.pirna.expression.m1
+cat COAD/sampleHeader_ajcc.mx.txt COAD/expression_ajcc/matrix.pirna.expression.temp.mx > COAD/expression_ajcc/matrix.pirna.expression.mx
+cat COAD/sampleHeader_ajcc.mna.txt COAD/expression_ajcc/matrix.pirna.expression.temp.mna > COAD/expression_ajcc/matrix.pirna.expression.mna
+
+cat COAD/sampleHeader_pancan.cin.txt COAD/expression_pancan/matrix.pirna.expression.temp.cin > COAD/expression_pancan/matrix.pirna.expression.cin
+cat COAD/sampleHeader_pancan.gs.txt COAD/expression_pancan/matrix.pirna.expression.temp.gs > COAD/expression_pancan/matrix.pirna.expression.gs
+cat COAD/sampleHeader_pancan.msi.txt COAD/expression_pancan/matrix.pirna.expression.temp.msi > COAD/expression_pancan/matrix.pirna.expression.msi
+cat COAD/sampleHeader_pancan.pole.txt COAD/expression_pancan/matrix.pirna.expression.temp.pole > COAD/expression_pancan/matrix.pirna.expression.pole
+cat COAD/sampleHeader_pancan.coadna.txt COAD/expression_pancan/matrix.pirna.expression.temp.coadna > COAD/expression_pancan/matrix.pirna.expression.coadna
+
+cat BRCA/sampleHeader_pancan.t1.txt BRCA/expression_pancan/matrix.pirna.expression.temp.t1 > BRCA/expression_pancan/matrix.pirna.expression.t1
+cat BRCA/sampleHeader_pancan.t2.txt BRCA/expression_pancan/matrix.pirna.expression.temp.t2 > BRCA/expression_pancan/matrix.pirna.expression.t2
+cat BRCA/sampleHeader_pancan.t3.txt BRCA/expression_pancan/matrix.pirna.expression.temp.t3 > BRCA/expression_pancan/matrix.pirna.expression.t3
+cat BRCA/sampleHeader_pancan.t4.txt BRCA/expression_pancan/matrix.pirna.expression.temp.t4 > BRCA/expression_pancan/matrix.pirna.expression.t4
+cat BRCA/sampleHeader_pancan.tx.txt BRCA/expression_pancan/matrix.pirna.expression.temp.tx > BRCA/expression_pancan/matrix.pirna.expression.tx
+
+cat BRCA/sampleHeader_pancan.n0.txt BRCA/expression_pancan/matrix.pirna.expression.temp.n0 > BRCA/expression_pancan/matrix.pirna.expression.n0
+cat BRCA/sampleHeader_pancan.n1.txt BRCA/expression_pancan/matrix.pirna.expression.temp.n1 > BRCA/expression_pancan/matrix.pirna.expression.n1
+cat BRCA/sampleHeader_pancan.n2.txt BRCA/expression_pancan/matrix.pirna.expression.temp.n2 > BRCA/expression_pancan/matrix.pirna.expression.n2
+cat BRCA/sampleHeader_pancan.n3.txt BRCA/expression_pancan/matrix.pirna.expression.temp.n3 > BRCA/expression_pancan/matrix.pirna.expression.n3
+
+cat BRCA/sampleHeader_pancan.m0.txt BRCA/expression_pancan/matrix.pirna.expression.temp.m0 > BRCA/expression_pancan/matrix.pirna.expression.m0
+cat BRCA/sampleHeader_pancan.m1.txt BRCA/expression_pancan/matrix.pirna.expression.temp.m1 > BRCA/expression_pancan/matrix.pirna.expression.m1
+cat BRCA/sampleHeader_pancan.mx.txt BRCA/expression_pancan/matrix.pirna.expression.temp.mx > BRCA/expression_pancan/matrix.pirna.expression.mx
+
+cat BRCA/sampleHeader_pancan.basal.txt BRCA/expression_pancan/matrix.pirna.expression.temp.basal > BRCA/expression_pancan/matrix.pirna.expression.basal
+cat BRCA/sampleHeader_pancan.her2.txt BRCA/expression_pancan/matrix.pirna.expression.temp.her2 > BRCA/expression_pancan/matrix.pirna.expression.her2
+cat BRCA/sampleHeader_pancan.luma.txt BRCA/expression_pancan/matrix.pirna.expression.temp.luma > BRCA/expression_pancan/matrix.pirna.expression.luma
+cat BRCA/sampleHeader_pancan.lumb.txt BRCA/expression_pancan/matrix.pirna.expression.temp.lumb > BRCA/expression_pancan/matrix.pirna.expression.lumb
+cat BRCA/sampleHeader_pancan.pcnormal.txt BRCA/expression_pancan/matrix.pirna.expression.temp.pcnormal > BRCA/expression_pancan/matrix.pirna.expression.pcnormal
+cat BRCA/sampleHeader_pancan.pcna.txt BRCA/expression_pancan/matrix.pirna.expression.temp.pcna > BRCA/expression_pancan/matrix.pirna.expression.pcna
+
+cat BRCA/sampleHeader_pancan.ernegativo.txt BRCA/expression_pancan/matrix.pirna.expression.temp.ernegativo > BRCA/expression_pancan/matrix.pirna.expression.ernegativo
+cat BRCA/sampleHeader_pancan.erpositivo.txt BRCA/expression_pancan/matrix.pirna.expression.temp.erpositivo > BRCA/expression_pancan/matrix.pirna.expression.erpositivo
+cat BRCA/sampleHeader_pancan.erna.txt BRCA/expression_pancan/matrix.pirna.expression.temp.erna > BRCA/expression_pancan/matrix.pirna.expression.erna
+cat BRCA/sampleHeader_pancan.ernotavailable.txt BRCA/expression_pancan/matrix.pirna.expression.temp.ernotavailable > BRCA/expression_pancan/matrix.pirna.expression.ernotavailable
+
+cat BRCA/sampleHeader_pancan.her2negativo.txt BRCA/expression_pancan/matrix.pirna.expression.temp.her2negativo > BRCA/expression_pancan/matrix.pirna.expression.her2negativo
+cat BRCA/sampleHeader_pancan.her2positivo.txt BRCA/expression_pancan/matrix.pirna.expression.temp.her2positivo > BRCA/expression_pancan/matrix.pirna.expression.her2positivo
+cat BRCA/sampleHeader_pancan.her2na.txt BRCA/expression_pancan/matrix.pirna.expression.temp.her2na > BRCA/expression_pancan/matrix.pirna.expression.her2na
+cat BRCA/sampleHeader_pancan.her2equivocal.txt BRCA/expression_pancan/matrix.pirna.expression.temp.her2equivocal > BRCA/expression_pancan/matrix.pirna.expression.her2equivocal
+
+cat BRCA/sampleHeader_pancan.prnegativo.txt BRCA/expression_pancan/matrix.pirna.expression.temp.prnegativo > BRCA/expression_pancan/matrix.pirna.expression.prnegativo
+cat BRCA/sampleHeader_pancan.prpositivo.txt BRCA/expression_pancan/matrix.pirna.expression.temp.prpositivo > BRCA/expression_pancan/matrix.pirna.expression.prpositivo
+cat BRCA/sampleHeader_pancan.prna.txt BRCA/expression_pancan/matrix.pirna.expression.temp.prna > BRCA/expression_pancan/matrix.pirna.expression.prna
+cat BRCA/sampleHeader_pancan.prnotavailable.txt BRCA/expression_pancan/matrix.pirna.expression.temp.prnotavailable > BRCA/expression_pancan/matrix.pirna.expression.prnotavailable
+
+cat BRCA/sampleHeader_pancan.tn.txt BRCA/expression_pancan/matrix.pirna.expression.temp.tn > BRCA/expression_pancan/matrix.pirna.expression.tn
+
+cat PRAD/sampleHeader_pancan.n0.txt PRAD/expression_pancan/matrix.pirna.expression.temp.n0 > PRAD/expression_pancan/matrix.pirna.expression.n0
+cat PRAD/sampleHeader_pancan.n1.txt PRAD/expression_pancan/matrix.pirna.expression.temp.n1 > PRAD/expression_pancan/matrix.pirna.expression.n1
+cat PRAD/sampleHeader_pancan.nna.txt PRAD/expression_pancan/matrix.pirna.expression.temp.nna > PRAD/expression_pancan/matrix.pirna.expression.nna
+
+cat PRAD/sampleHeader_pancan.t2.txt PRAD/expression_pancan/matrix.pirna.expression.temp.t2 > PRAD/expression_pancan/matrix.pirna.expression.t2
+cat PRAD/sampleHeader_pancan.t3.txt PRAD/expression_pancan/matrix.pirna.expression.temp.t3 > PRAD/expression_pancan/matrix.pirna.expression.t3
+cat PRAD/sampleHeader_pancan.t4.txt PRAD/expression_pancan/matrix.pirna.expression.temp.t4 > PRAD/expression_pancan/matrix.pirna.expression.t4
+cat PRAD/sampleHeader_pancan.tna.txt PRAD/expression_pancan/matrix.pirna.expression.temp.tna > PRAD/expression_pancan/matrix.pirna.expression.tna
+
+cat PRAD/sampleHeader_pancan.acinartype.txt PRAD/expression_pancan/matrix.pirna.expression.temp.acinartype > PRAD/expression_pancan/matrix.pirna.expression.acinartype
+cat PRAD/sampleHeader_pancan.othertype.txt PRAD/expression_pancan/matrix.pirna.expression.temp.othertype > PRAD/expression_pancan/matrix.pirna.expression.othertype
+
+cat PRAD/sampleHeader_pancan.lessequal6.txt PRAD/expression_pancan/matrix.pirna.expression.temp.lessequal6 > PRAD/expression_pancan/matrix.pirna.expression.lessequal6
+cat PRAD/sampleHeader_pancan.equal7.txt PRAD/expression_pancan/matrix.pirna.expression.temp.equal7 > PRAD/expression_pancan/matrix.pirna.expression.equal7
+cat PRAD/sampleHeader_pancan.moreequal8.txt PRAD/expression_pancan/matrix.pirna.expression.temp.moreequal8 > PRAD/expression_pancan/matrix.pirna.expression.moreequal8
+
+cat PAAD/sampleHeader_pancan.m0.txt PAAD/expression_pancan/matrix.pirna.expression.temp.m0 > PAAD/expression_pancan/matrix.pirna.expression.m0
+cat PAAD/sampleHeader_pancan.m1.txt PAAD/expression_pancan/matrix.pirna.expression.temp.m1 > PAAD/expression_pancan/matrix.pirna.expression.m1
+cat PAAD/sampleHeader_pancan.mx.txt PAAD/expression_pancan/matrix.pirna.expression.temp.mx > PAAD/expression_pancan/matrix.pirna.expression.mx
+
+cat PAAD/sampleHeader_pancan.n0.txt PAAD/expression_pancan/matrix.pirna.expression.temp.n0 > PAAD/expression_pancan/matrix.pirna.expression.n0
+cat PAAD/sampleHeader_pancan.n1.txt PAAD/expression_pancan/matrix.pirna.expression.temp.n1 > PAAD/expression_pancan/matrix.pirna.expression.n1
+cat PAAD/sampleHeader_pancan.nx.txt PAAD/expression_pancan/matrix.pirna.expression.temp.nx > PAAD/expression_pancan/matrix.pirna.expression.nx
+
+cat PAAD/sampleHeader_pancan.t1.txt PAAD/expression_pancan/matrix.pirna.expression.temp.t1 > PAAD/expression_pancan/matrix.pirna.expression.t1
+cat PAAD/sampleHeader_pancan.t2.txt PAAD/expression_pancan/matrix.pirna.expression.temp.t2 > PAAD/expression_pancan/matrix.pirna.expression.t2
+cat PAAD/sampleHeader_pancan.t3.txt PAAD/expression_pancan/matrix.pirna.expression.temp.t3 > PAAD/expression_pancan/matrix.pirna.expression.t3
+cat PAAD/sampleHeader_pancan.t4.txt PAAD/expression_pancan/matrix.pirna.expression.temp.t4 > PAAD/expression_pancan/matrix.pirna.expression.t4
+
+cat PAAD/sampleHeader_pancan.g1.txt PAAD/expression_pancan/matrix.pirna.expression.temp.g1 > PAAD/expression_pancan/matrix.pirna.expression.g1
+cat PAAD/sampleHeader_pancan.g2.txt PAAD/expression_pancan/matrix.pirna.expression.temp.g2 > PAAD/expression_pancan/matrix.pirna.expression.g2
+cat PAAD/sampleHeader_pancan.g3.txt PAAD/expression_pancan/matrix.pirna.expression.temp.g3 > PAAD/expression_pancan/matrix.pirna.expression.g3
+cat PAAD/sampleHeader_pancan.g4.txt PAAD/expression_pancan/matrix.pirna.expression.temp.g4 > PAAD/expression_pancan/matrix.pirna.expression.g4
+cat PAAD/sampleHeader_pancan.gx.txt PAAD/expression_pancan/matrix.pirna.expression.temp.gx > PAAD/expression_pancan/matrix.pirna.expression.gx
+
+cat PAAD/sampleHeader_pancan.ductaltype.txt PAAD/expression_pancan/matrix.pirna.expression.temp.ductaltype > PAAD/expression_pancan/matrix.pirna.expression.ductaltype
+cat PAAD/sampleHeader_pancan.othertype.txt PAAD/expression_pancan/matrix.pirna.expression.temp.othertype > PAAD/expression_pancan/matrix.pirna.expression.othertype
+cat PAAD/sampleHeader_pancan.colloidtype.txt PAAD/expression_pancan/matrix.pirna.expression.temp.colloidtype > PAAD/expression_pancan/matrix.pirna.expression.colloidtype
+cat PAAD/sampleHeader_pancan.undifftype.txt PAAD/expression_pancan/matrix.pirna.expression.temp.undifftype > PAAD/expression_pancan/matrix.pirna.expression.undifftype
+
+
+
+##
+ #
+ #
+ #
+rm -r COAD/expression/matrix.pirna.expression.temp.tumor
+rm -r COAD/expression/matrix.pirna.expression.temp.control
+rm -r COAD/expression/matrix.pirna.expression.temp.stagei
+rm -r COAD/expression/matrix.pirna.expression.temp.stageii
+rm -r COAD/expression/matrix.pirna.expression.temp.stageiii
+rm -r COAD/expression/matrix.pirna.expression.temp.stageiv
+
+rm -r BRCA/expression/matrix.pirna.expression.temp.tumor
+rm -r BRCA/expression/matrix.pirna.expression.temp.control
+rm -r BRCA/expression/matrix.pirna.expression.temp.stagei
+rm -r BRCA/expression/matrix.pirna.expression.temp.stageii
+rm -r BRCA/expression/matrix.pirna.expression.temp.stageiii
+rm -r BRCA/expression/matrix.pirna.expression.temp.stageiv
+
+rm -r PRAD/expression/matrix.pirna.expression.temp.tumor
+rm -r PRAD/expression/matrix.pirna.expression.temp.control
+
+rm -r PAAD/expression/matrix.pirna.expression.temp.tumor
+rm -r PAAD/expression/matrix.pirna.expression.temp.control
+rm -r PAAD/expression/matrix.pirna.expression.temp.stagei
+rm -r PAAD/expression/matrix.pirna.expression.temp.stageii
+rm -r PAAD/expression/matrix.pirna.expression.temp.stageiii
+rm -r PAAD/expression/matrix.pirna.expression.temp.stageiv
+
+
+rm -r COAD/expression_ajcc/matrix.pirna.expression.temp.t1
+rm -r COAD/expression_ajcc/matrix.pirna.expression.temp.t2
+rm -r COAD/expression_ajcc/matrix.pirna.expression.temp.t3
+rm -r COAD/expression_ajcc/matrix.pirna.expression.temp.t4
+rm -r COAD/expression_ajcc/matrix.pirna.expression.temp.tis
+rm -r COAD/expression_ajcc/matrix.pirna.expression.temp.tna
+
+rm -r COAD/expression_ajcc/matrix.pirna.expression.temp.n0
+rm -r COAD/expression_ajcc/matrix.pirna.expression.temp.n1
+rm -r COAD/expression_ajcc/matrix.pirna.expression.temp.n2
+rm -r COAD/expression_ajcc/matrix.pirna.expression.temp.nna
+
+rm -r COAD/expression_ajcc/matrix.pirna.expression.temp.m0
+rm -r COAD/expression_ajcc/matrix.pirna.expression.temp.m1
+rm -r COAD/expression_ajcc/matrix.pirna.expression.temp.mx
+rm -r COAD/expression_ajcc/matrix.pirna.expression.temp.mna
+
+rm -r COAD/expression_ajcc/matrix.pirna.expression.temp.cin
+rm -r COAD/expression_ajcc/matrix.pirna.expression.temp.gs
+rm -r COAD/expression_ajcc/matrix.pirna.expression.temp.msi
+rm -r COAD/expression_ajcc/matrix.pirna.expression.temp.pole
+rm -r COAD/expression_ajcc/matrix.pirna.expression.temp.coadna
+
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.t1
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.t2
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.t3
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.t4
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.tx
+
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.n0
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.n1
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.n2
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.n3
+
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.m0
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.m1
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.mx
+
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.basal
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.her2
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.luma
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.lumb
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.pcnormal
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.pcna
+
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.ernegativo
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.erpositivo
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.erna
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.ernotavailable
+
+
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.her2negativo
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.her2positivo
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.her2na
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.her2equivocal
+
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.prnegativo
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.prpositivo
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.prna
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.prnotavailable
+
+rm -r BRCA/expression_pancan/matrix.pirna.expression.temp.tn
+
+rm -r PRAD/expression_pancan/matrix.pirna.expression.temp.n0
+rm -r PRAD/expression_pancan/matrix.pirna.expression.temp.n1
+rm -r PRAD/expression_pancan/matrix.pirna.expression.temp.nna
+
+rm -r PRAD/expression_pancan/matrix.pirna.expression.temp.t2
+rm -r PRAD/expression_pancan/matrix.pirna.expression.temp.t3
+rm -r PRAD/expression_pancan/matrix.pirna.expression.temp.t4
+rm -r PRAD/expression_pancan/matrix.pirna.expression.temp.tna
+
+rm -r PRAD/expression_pancan/matrix.pirna.expression.temp.acinartype
+rm -r PRAD/expression_pancan/matrix.pirna.expression.temp.othertype
+
+rm -r PRAD/expression_pancan/matrix.pirna.expression.temp.lessequal6
+rm -r PRAD/expression_pancan/matrix.pirna.expression.temp.equal7
+rm -r PRAD/expression_pancan/matrix.pirna.expression.temp.moreequal8
+
+rm -r PAAD/expression_pancan/matrix.pirna.expression.temp.m0
+rm -r PAAD/expression_pancan/matrix.pirna.expression.temp.m1
+rm -r PAAD/expression_pancan/matrix.pirna.expression.temp.mx
+
+rm -r PAAD/expression_pancan/matrix.pirna.expression.temp.n0
+rm -r PAAD/expression_pancan/matrix.pirna.expression.temp.n1
+rm -r PAAD/expression_pancan/matrix.pirna.expression.temp.nx
+
+rm -r PAAD/expression_pancan/matrix.pirna.expression.temp.t1
+rm -r PAAD/expression_pancan/matrix.pirna.expression.temp.t2
+rm -r PAAD/expression_pancan/matrix.pirna.expression.temp.t3
+rm -r PAAD/expression_pancan/matrix.pirna.expression.temp.t4
+
+rm -r PAAD/expression_pancan/matrix.pirna.expression.temp.g1
+rm -r PAAD/expression_pancan/matrix.pirna.expression.temp.g2
+rm -r PAAD/expression_pancan/matrix.pirna.expression.temp.g3
+rm -r PAAD/expression_pancan/matrix.pirna.expression.temp.g4
+rm -r PAAD/expression_pancan/matrix.pirna.expression.temp.gx
+
+rm -r PAAD/expression_pancan/matrix.pirna.expression.temp.ductaltype
+rm -r PAAD/expression_pancan/matrix.pirna.expression.temp.othertype
+rm -r PAAD/expression_pancan/matrix.pirna.expression.temp.colloidtype
+rm -r PAAD/expression_pancan/matrix.pirna.expression.temp.undifftype

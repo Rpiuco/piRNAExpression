@@ -1,0 +1,115 @@
+##
+ #
+ #
+ #
+
+rm -r sourceTeste2
+
+for eachFile in `ls COAD/expression_ajcc/*.10p | grep -v ".all." | sed 's/.10p//g;s/COAD\/expression_ajcc\/matrix\.pirna\.//g'`; do IFS='x' read -a arr <<< "$eachFile"; printf "Rscript scripts/plot_heatmap.r \"COAD/expression_ajcc/matrix.pirna."$eachFile".10p\" \"COAD/expression_ajcc/heatmap_005_10."$eachFile".all\" \"COAD/heatmap/heatmap_ajcc."$eachFile".pdf\" \""${arr[0]^^}" vs "${arr[1]^^}"\" \""${arr[0]^^}"\" \""${arr[1]^^}"\"\n" >> sourceTeste2; done
+for eachFile in `ls COAD/expression_pancan/*.10p | grep -v ".all." | sed 's/.10p//g;s/COAD\/expression_pancan\/matrix\.pirna\.//g'`; do IFS='x' read -a arr <<< "$eachFile"; printf "Rscript scripts/plot_heatmap.r \"COAD/expression_pancan/matrix.pirna."$eachFile".10p\" \"COAD/expression_pancan/heatmap_005_10."$eachFile".all\" \"COAD/heatmap/heatmap_pancan."$eachFile".pdf\" \""${arr[0]^^}" vs "${arr[1]^^}"\" \""${arr[0]^^}"\" \""${arr[1]^^}"\"\n" >> sourceTeste2; done
+
+for eachFile in `ls BRCA/expression_ajcc/*.10p | grep -v ".all." | sed 's/.10p//g;s/BRCA\/expression_ajcc\/matrix\.pirna\.//g'`; do IFS='x' read -a arr <<< "$eachFile"; printf "Rscript scripts/plot_heatmap.r \"BRCA/expression_ajcc/matrix.pirna."$eachFile".10p\" \"BRCA/expression_ajcc/heatmap_005_10."$eachFile".all\" \"BRCA/heatmap/heatmap_ajcc."$eachFile".pdf\" \""${arr[0]^^}" vs "${arr[1]^^}"\" \""${arr[0]^^}"\" \""${arr[1]^^}"\"\n" >> sourceTeste2; done
+for eachFile in `ls BRCA/expression_pancan/*.10p | grep -v ".all." | sed 's/.10p//g;s/BRCA\/expression_pancan\/matrix\.pirna\.//g'`; do IFS='x' read -a arr <<< "$eachFile"; printf "Rscript scripts/plot_heatmap.r \"BRCA/expression_pancan/matrix.pirna."$eachFile".10p\" \"BRCA/expression_pancan/heatmap_005_10."$eachFile".all\" \"BRCA/heatmap/heatmap_pancan."$eachFile".pdf\" \""${arr[0]^^}" vs "${arr[1]^^}"\" \""${arr[0]^^}"\" \""${arr[1]^^}"\"\n" >> sourceTeste2; done
+
+for eachFile in `ls PRAD/expression_ajcc/*.10p | grep -v ".all." | sed 's/.10p//g;s/PRAD\/expression_ajcc\/matrix\.pirna\.//g'`; do IFS='x' read -a arr <<< "$eachFile"; printf "Rscript scripts/plot_heatmap.r \"PRAD/expression_ajcc/matrix.pirna."$eachFile".10p\" \"PRAD/expression_ajcc/heatmap_005_10."$eachFile".all\" \"PRAD/heatmap/heatmap_ajcc."$eachFile".pdf\" \""${arr[0]^^}" vs "${arr[1]^^}"\" \""${arr[0]^^}"\" \""${arr[1]^^}"\"\n" >> sourceTeste2; done
+for eachFile in `ls PRAD/expression_pancan/*.10p | grep -v ".all." | sed 's/.10p//g;s/PRAD\/expression_pancan\/matrix\.pirna\.//g'`; do IFS='x' read -a arr <<< "$eachFile"; printf "Rscript scripts/plot_heatmap.r \"PRAD/expression_pancan/matrix.pirna."$eachFile".10p\" \"PRAD/expression_pancan/heatmap_005_10."$eachFile".all\" \"PRAD/heatmap/heatmap_pancan."$eachFile".pdf\" \""${arr[0]^^}" vs "${arr[1]^^}"\" \""${arr[0]^^}"\" \""${arr[1]^^}"\"\n" >> sourceTeste2; done
+
+for eachFile in `ls PAAD/expression_ajcc/*.10p | grep -v ".all." | sed 's/.10p//g;s/PAAD\/expression_ajcc\/matrix\.pirna\.//g'`; do IFS='x' read -a arr <<< "$eachFile"; printf "Rscript scripts/plot_heatmap.r \"PAAD/expression_ajcc/matrix.pirna."$eachFile".10p\" \"PAAD/expression_ajcc/heatmap_005_10."$eachFile".all\" \"PAAD/heatmap/heatmap_ajcc."$eachFile".pdf\" \""${arr[0]^^}" vs "${arr[1]^^}"\" \""${arr[0]^^}"\" \""${arr[1]^^}"\"\n" >> sourceTeste2; done
+for eachFile in `ls PAAD/expression_pancan/*.10p | grep -v ".all." | sed 's/.10p//g;s/PAAD\/expression_pancan\/matrix\.pirna\.//g'`; do IFS='x' read -a arr <<< "$eachFile"; printf "Rscript scripts/plot_heatmap.r \"PAAD/expression_pancan/matrix.pirna."$eachFile".10p\" \"PAAD/expression_pancan/heatmap_005_10."$eachFile".all\" \"PAAD/heatmap/heatmap_pancan."$eachFile".pdf\" \""${arr[0]^^}" vs "${arr[1]^^}"\" \""${arr[0]^^}"\" \""${arr[1]^^}"\"\n" >> sourceTeste2; done
+
+
+
+##
+ #
+ #
+ #
+Rscript scripts/plot_pcc.r "COAD/expression_ajcc/matrix.pirna.all.withoutNorm.10p" "COAD/pcc/" "plotICL.COAD.all.pdf" "COAD" "pirna.all" &
+Rscript scripts/plot_pcc.r "BRCA/expression_ajcc/matrix.pirna.all.withoutNorm.10p" "BRCA/pcc/" "plotICL.BRCA.all.pdf" "BRCA" "pirna.all" &
+Rscript scripts/plot_pcc.r "PRAD/expression_ajcc/matrix.pirna.all.withoutNorm.10p" "PRAD/pcc/" "plotICL.PRAD.all.pdf" "PRAD" "pirna.all" &
+Rscript scripts/plot_pcc.r "PAAD/expression_ajcc/matrix.pirna.all.withoutNorm.10p" "PAAD/pcc/" "plotICL.PAAD.all.pdf" "PAAD" "pirna.all" &
+
+Rscript scripts/plot_pcc_upper.r "COAD/expression_ajcc/matrix.pirna.all.withoutNorm.10p" "COAD/pcc/" "plotICL.COAD.all.upperVar.pdf" "COAD" "pirna.upperVar" "upperVariance" &
+Rscript scripts/plot_pcc_upper.r "COAD/expression_ajcc/matrix.pirna.all.withoutNorm.10p" "COAD/pcc/" "plotICL.COAD.all.upperSum.pdf" "COAD" "pirna.upperSum" "upperSum" &
+Rscript scripts/plot_pcc_upper.r "BRCA/expression_ajcc/matrix.pirna.all.withoutNorm.10p" "BRCA/pcc/" "plotICL.BRCA.all.upperVar.pdf" "BRCA" "pirna.upperVar" "upperVariance" &
+Rscript scripts/plot_pcc_upper.r "BRCA/expression_ajcc/matrix.pirna.all.withoutNorm.10p" "BRCA/pcc/" "plotICL.BRCA.all.upperSum.pdf" "BRCA" "pirna.upperSum" "upperSum" &
+Rscript scripts/plot_pcc_upper.r "PRAD/expression_ajcc/matrix.pirna.all.withoutNorm.10p" "PRAD/pcc/" "plotICL.PRAD.all.upperVar.pdf" "PRAD" "pirna.upperVar" "upperVariance" &
+Rscript scripts/plot_pcc_upper.r "PRAD/expression_ajcc/matrix.pirna.all.withoutNorm.10p" "PRAD/pcc/" "plotICL.PRAD.all.upperSum.pdf" "PRAD" "pirna.upperSum" "upperSum" &
+Rscript scripts/plot_pcc_upper.r "PAAD/expression_ajcc/matrix.pirna.all.withoutNorm.10p" "PAAD/pcc/" "plotICL.PAAD.all.upperVar.pdf" "PAAD" "pirna.upperVar" "upperVariance" &
+Rscript scripts/plot_pcc_upper.r "PAAD/expression_ajcc/matrix.pirna.all.withoutNorm.10p" "PAAD/pcc/" "plotICL.PAAD.all.upperSum.pdf" "PAAD" "pirna.upperSum" "upperSum" &
+
+
+##
+ #
+ #
+ #
+
+rm -r sourceTeste2
+
+for eachFile in `ls COAD/expression_ajcc/*.10p | grep -v ".all." | sed 's/.10p//g;s/COAD\/expression_ajcc\/matrix\.pirna\.//g'`; do printf "Rscript scripts/plot_mds.r \"COAD/expression_ajcc/matrix.pirna."$eachFile".10p\" \"COAD/expression_ajcc/heatmap_005_10."$eachFile".all\" \"COAD/plots/plotMDS.COAD."$eachFile".pdf\"\n" >> sourceTeste2; done 
+for eachFile in `ls COAD/expression_pancan/*.10p | grep -v ".all." | sed 's/.10p//g;s/COAD\/expression_pancan\/matrix\.pirna\.//g'`; do printf "Rscript scripts/plot_mds.r \"COAD/expression_pancan/matrix.pirna."$eachFile".10p\" \"COAD/expression_pancan/heatmap_005_10."$eachFile".all\" \"COAD/plots/plotMDS.COAD."$eachFile".pdf\"\n" >> sourceTeste2; done 
+
+for eachFile in `ls BRCA/expression_ajcc/*.10p | grep -v ".all." | sed 's/.10p//g;s/BRCA\/expression_ajcc\/matrix\.pirna\.//g'`; do printf "Rscript scripts/plot_mds.r \"BRCA/expression_ajcc/matrix.pirna."$eachFile".10p\" \"BRCA/expression_ajcc/heatmap_005_10."$eachFile".all\" \"BRCA/plots/plotMDS.BRCA."$eachFile".pdf\"\n" >> sourceTeste2; done 
+for eachFile in `ls BRCA/expression_pancan/*.10p | grep -v ".all." | sed 's/.10p//g;s/BRCA\/expression_pancan\/matrix\.pirna\.//g'`; do printf "Rscript scripts/plot_mds.r \"BRCA/expression_pancan/matrix.pirna."$eachFile".10p\" \"BRCA/expression_pancan/heatmap_005_10."$eachFile".all\" \"BRCA/plots/plotMDS.BRCA."$eachFile".pdf\"\n" >> sourceTeste2; done 
+
+for eachFile in `ls PRAD/expression_ajcc/*.10p | grep -v ".all." | sed 's/.10p//g;s/PRAD\/expression_ajcc\/matrix\.pirna\.//g'`; do printf "Rscript scripts/plot_mds.r \"PRAD/expression_ajcc/matrix.pirna."$eachFile".10p\" \"PRAD/expression_ajcc/heatmap_005_10."$eachFile".all\" \"PRAD/plots/plotMDS.PRAD."$eachFile".pdf\"\n" >> sourceTeste2; done 
+for eachFile in `ls PRAD/expression_pancan/*.10p | grep -v ".all." | sed 's/.10p//g;s/PRAD\/expression_pancan\/matrix\.pirna\.//g'`; do printf "Rscript scripts/plot_mds.r \"PRAD/expression_pancan/matrix.pirna."$eachFile".10p\" \"PRAD/expression_pancan/heatmap_005_10."$eachFile".all\" \"PRAD/plots/plotMDS.PRAD."$eachFile".pdf\"\n" >> sourceTeste2; done 
+
+for eachFile in `ls PAAD/expression_ajcc/*.10p | grep -v ".all." | sed 's/.10p//g;s/PAAD\/expression_ajcc\/matrix\.pirna\.//g'`; do printf "Rscript scripts/plot_mds.r \"PAAD/expression_ajcc/matrix.pirna."$eachFile".10p\" \"PAAD/expression_ajcc/heatmap_005_10."$eachFile".all\" \"PAAD/plots/plotMDS.PAAD."$eachFile".pdf\"\n" >> sourceTeste2; done 
+for eachFile in `ls PAAD/expression_pancan/*.10p | grep -v ".all." | sed 's/.10p//g;s/PAAD\/expression_pancan\/matrix\.pirna\.//g'`; do printf "Rscript scripts/plot_mds.r \"PAAD/expression_pancan/matrix.pirna."$eachFile".10p\" \"PAAD/expression_pancan/heatmap_005_10."$eachFile".all\" \"PAAD/plots/plotMDS.PAAD."$eachFile".pdf\"\n" >> sourceTeste2; done 
+
+
+
+##
+ #
+ #
+ #
+
+rm -r sourceTeste2
+
+for eachFile in `ls COAD/expression_ajcc/*.10p | grep -v ".all." | sed 's/.10p//g;s/COAD\/expression_ajcc\/matrix\.pirna\.//g'`; do printf "Rscript scripts/plot_bcv.r \"COAD/expression_ajcc/matrix.pirna."$eachFile".10p\" \"COAD/plots/plotBCV.COAD."$eachFile".pdf\"\n" >> sourceTeste2; done
+for eachFile in `ls COAD/expression_pancan/*.10p | grep -v ".all." | sed 's/.10p//g;s/COAD\/expression_pancan\/matrix\.pirna\.//g'`; do printf "Rscript scripts/plot_bcv.r \"COAD/expression_pancan/matrix.pirna."$eachFile".10p\" \"COAD/plots/plotBCV.COAD."$eachFile".pdf\"\n" >> sourceTeste2; done
+
+for eachFile in `ls BRCA/expression_ajcc/*.10p | grep -v ".all." | sed 's/.10p//g;s/BRCA\/expression_ajcc\/matrix\.pirna\.//g'`; do printf "Rscript scripts/plot_bcv.r \"BRCA/expression_ajcc/matrix.pirna."$eachFile".10p\" \"BRCA/plots/plotBCV.BRCA."$eachFile".pdf\"\n" >> sourceTeste2; done
+for eachFile in `ls BRCA/expression_pancan/*.10p | grep -v ".all." | sed 's/.10p//g;s/BRCA\/expression_pancan\/matrix\.pirna\.//g'`; do printf "Rscript scripts/plot_bcv.r \"BRCA/expression_pancan/matrix.pirna."$eachFile".10p\" \"BRCA/plots/plotBCV.BRCA."$eachFile".pdf\"\n" >> sourceTeste2; done
+
+for eachFile in `ls PRAD/expression_ajcc/*.10p | grep -v ".all." | sed 's/.10p//g;s/PRAD\/expression_ajcc\/matrix\.pirna\.//g'`; do printf "Rscript scripts/plot_bcv.r \"PRAD/expression_ajcc/matrix.pirna."$eachFile".10p\" \"PRAD/plots/plotBCV.PRAD."$eachFile".pdf\"\n" >> sourceTeste2; done
+for eachFile in `ls PRAD/expression_pancan/*.10p | grep -v ".all." | sed 's/.10p//g;s/PRAD\/expression_pancan\/matrix\.pirna\.//g'`; do printf "Rscript scripts/plot_bcv.r \"PRAD/expression_pancan/matrix.pirna."$eachFile".10p\" \"PRAD/plots/plotBCV.PRAD."$eachFile".pdf\"\n" >> sourceTeste2; done
+
+for eachFile in `ls PAAD/expression_ajcc/*.10p | grep -v ".all." | sed 's/.10p//g;s/PAAD\/expression_ajcc\/matrix\.pirna\.//g'`; do printf "Rscript scripts/plot_bcv.r \"PAAD/expression_ajcc/matrix.pirna."$eachFile".10p\" \"PAAD/plots/plotBCV.PAAD."$eachFile".pdf\"\n" >> sourceTeste2; done
+for eachFile in `ls PAAD/expression_pancan/*.10p | grep -v ".all." | sed 's/.10p//g;s/PAAD\/expression_pancan\/matrix\.pirna\.//g'`; do printf "Rscript scripts/plot_bcv.r \"PAAD/expression_pancan/matrix.pirna."$eachFile".10p\" \"PAAD/plots/plotBCV.PAAD."$eachFile".pdf\"\n" >> sourceTeste2; done
+
+
+
+
+
+
+
+tar -cf heatmap.COAD.tar COAD/heatmap/*.pdf COAD/expression_ajcc/heatmap_005_10_down*.txt COAD/expression_pancan/heatmap_005_10_up*.txt COAD/expression_pancan/heatmap_005_10_down*.txt COAD/expression_ajcc/heatmap_005_10_up*.txt
+tar -cf heatmap.BRCA.tar BRCA/heatmap/*.pdf BRCA/expression_ajcc/heatmap_005_10_down*.txt BRCA/expression_pancan/heatmap_005_10_up*.txt BRCA/expression_pancan/heatmap_005_10_down*.txt BRCA/expression_ajcc/heatmap_005_10_up*.txt
+tar -cf heatmap.PRAD.tar PRAD/heatmap/*.pdf PRAD/expression_ajcc/heatmap_005_10_down*.txt PRAD/expression_pancan/heatmap_005_10_up*.txt PRAD/expression_pancan/heatmap_005_10_down*.txt PRAD/expression_ajcc/heatmap_005_10_up*.txt
+tar -cf heatmap.PAAD.tar PAAD/heatmap/*.pdf PAAD/expression_ajcc/heatmap_005_10_down*.txt PAAD/expression_pancan/heatmap_005_10_up*.txt PAAD/expression_pancan/heatmap_005_10_down*.txt PAAD/expression_ajcc/heatmap_005_10_up*.txt
+
+tar -cf pcc.COAD.tar COAD/pcc/*.pdf COAD/pcc/*.txt
+tar -cf pcc.BRCA.tar BRCA/pcc/*.pdf BRCA/pcc/*.txt
+tar -cf pcc.PRAD.tar PRAD/pcc/*.pdf PRAD/pcc/*.txt
+tar -cf pcc.PAAD.tar PAAD/pcc/*.pdf PAAD/pcc/*.txt
+
+tar -cf plots.COAD.tar COAD/plots/*.pdf
+tar -cf plots.BRCA.tar BRCA/plots/*.pdf
+tar -cf plots.PRAD.tar PRAD/plots/*.pdf
+tar -cf plots.PAAD.tar PAAD/plots/*.pdf
+
+tar -cf overlaps.COAD.tar COAD/overlaps/*
+tar -cf overlaps.BRCA.tar BRCA/overlaps/*
+tar -cf overlaps.PRAD.tar PRAD/overlaps/*
+tar -cf overlaps.PAAD.tar PAAD/overlaps/*
+
+tar -cf targets.COAD.tar COAD/targets/*
+tar -cf targets.BRCA.tar BRCA/targets/*
+tar -cf targets.PRAD.tar PRAD/targets/*
+tar -cf targets.PAAD.tar PAAD/targets/*
+
+
+mv *.tar /home/users/rpiuco/plots/
+
+scp -P 1717 rpiuco@bioinfo.mochsl.org.br:/home/users/rpiuco/plots/targets.COAD.tar .

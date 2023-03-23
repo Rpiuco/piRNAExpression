@@ -1,0 +1,780 @@
+##
+ #
+ #
+for eachFile in `more COAD/bamFilesInputCOAD`; do printf "$eachFile\t" >> COAD/metadata_ajcc.txt; sed -n '2p' metadata/metadataCOAD/metadata.$eachFile.txt | cut -f2 | sed 's/ /_/' >> COAD/metadata_ajcc.txt; done
+for eachFile in `more BRCA/bamFilesInputBRCA`; do printf "$eachFile\t" >> BRCA/metadata_ajcc.txt; sed -n '2p' metadata/metadataBRCA/metadata.$eachFile.txt | cut -f2 | sed 's/ /_/' >> BRCA/metadata_ajcc.txt; done
+for eachFile in `more PRAD/bamFilesInputPRAD`; do printf "$eachFile\t" >> PRAD/metadata_ajcc.txt; sed -n '2p' metadata/metadataPRAD/metadata.$eachFile.txt | cut -f2 | sed 's/ /_/' >> PRAD/metadata_ajcc.txt; done
+for eachFile in `more PAAD/bamFilesInputPAAD`; do printf "$eachFile\t" >> PAAD/metadata_ajcc.txt; sed -n '2p' metadata/metadataPAAD/metadata.$eachFile.txt | cut -f2 | sed 's/ /_/' >> PAAD/metadata_ajcc.txt; done
+
+
+#alternativo
+awk -F "\t" 'NR==FNR{a[$1]=$0;next}{if($2 in a){print $1}}' metadata/files_ajcc.COAD.normal rawData/oldAndNewUuids.coad.txt > metadata/files_ajcc.COAD.normal.old
+awk -F "\t" 'NR==FNR{a[$1]=$0;next}{if($2 in a){print $1}}' metadata/files_ajcc.COAD.tumor rawData/oldAndNewUuids.coad.txt > metadata/files_ajcc.COAD.tumor.old
+awk -F "\t" 'NR==FNR{a[$1]=$0;next}{if($2 in a){print $1}}' metadata/files_ajcc.BRCA.normal rawData/oldAndNewUuids.brca.txt > metadata/files_ajcc.BRCA.normal.old
+awk -F "\t" 'NR==FNR{a[$1]=$0;next}{if($2 in a){print $1}}' metadata/files_ajcc.BRCA.tumor rawData/oldAndNewUuids.brca.txt > metadata/files_ajcc.BRCA.tumor.old
+awk -F "\t" 'NR==FNR{a[$1]=$0;next}{if($2 in a){print $1}}' metadata/files_ajcc.PRAD.normal rawData/oldAndNewUuids.prad.txt > metadata/files_ajcc.PRAD.normal.old
+awk -F "\t" 'NR==FNR{a[$1]=$0;next}{if($2 in a){print $1}}' metadata/files_ajcc.PRAD.tumor rawData/oldAndNewUuids.prad.txt > metadata/files_ajcc.PRAD.tumor.old
+awk -F "\t" 'NR==FNR{a[$1]=$0;next}{if($2 in a){print $1}}' metadata/files_ajcc.PAAD.normal rawData/oldAndNewUuids.paad.txt > metadata/files_ajcc.PAAD.normal.old
+awk -F "\t" 'NR==FNR{a[$1]=$0;next}{if($2 in a){print $1}}' metadata/files_ajcc.PAAD.normal rawData/oldAndNewUuids.paad.txt > metadata/files_ajcc.PAAD.tumor.old
+
+#alternativo
+awk -F "\t" '{print "ln -sf /home/scratch60/pirnaExpressionTcga5/COAD/pirnaExist/pirnaExist."$1".counted.txt /home/scratch60/pirnaExpressionTcga5/COAD/pirnaExist/pirnaExist."$2".counted.txt"}' /home/scratch60/pirnaExpressionTcga5/rawData/oldAndNewUuids.coad.txt > sourceTeste
+source sourceTeste
+awk -F "\t" '{print "ln -sf /home/scratch60/pirnaExpressionTcga5/BRCA/pirnaExist/pirnaExist."$1".counted.txt /home/scratch60/pirnaExpressionTcga5/BRCA/pirnaExist/pirnaExist."$2".counted.txt"}' /home/scratch60/pirnaExpressionTcga5/rawData/oldAndNewUuids.brca.txt > sourceTeste
+source sourceTeste
+awk -F "\t" '{print "ln -sf /home/scratch60/pirnaExpressionTcga5/PRAD/pirnaExist/pirnaExist."$1".counted.txt /home/scratch60/pirnaExpressionTcga5/PRAD/pirnaExist/pirnaExist."$2".counted.txt"}' /home/scratch60/pirnaExpressionTcga5/rawData/oldAndNewUuids.prad.txt > sourceTeste
+source sourceTeste
+awk -F "\t" '{print "ln -sf /home/scratch60/pirnaExpressionTcga5/PAAD/pirnaExist/pirnaExist."$1".counted.txt /home/scratch60/pirnaExpressionTcga5/PAAD/pirnaExist/pirnaExist."$2".counted.txt"}' /home/scratch60/pirnaExpressionTcga5/rawData/oldAndNewUuids.paad.txt > sourceTeste
+source sourceTeste
+
+
+
+##
+ #
+ #
+awk '{if($2=="stage_i" || $2=="stage_ia"){print$1"\tstage_i"}}' COAD/metadata_ajcc.txt > COAD/metadata_ajcc.stagei
+awk '{if($2=="stage_ii" || $2=="stage_iia" || $2=="stage_iib" || $2=="stage_iic"){print$1"\tstage_ii"}}' COAD/metadata_ajcc.txt > COAD/metadata_ajcc.stageii
+awk '{if($2=="stage_iii" || $2=="stage_iiia" || $2=="stage_iiib" || $2=="stage_iiic"){print$1"\tstage_iii"}}' COAD/metadata_ajcc.txt > COAD/metadata_ajcc.stageiii
+awk '{if($2=="stage_iv" || $2=="stage_iva" || $2=="stage_ivb"){print$1"\tstage_iv"}}' COAD/metadata_ajcc.txt > COAD/metadata_ajcc.stageiv
+awk '{print$1"\tcontrol"}' metadata/files_ajcc.COAD.normal.old > COAD/metadata_ajcc.control
+awk '{if(NR>1){print$1"\ttumor"}}' metadata/files_ajcc.COAD.tumor.old > COAD/metadata_ajcc.tumor
+
+awk '{if($2=="stage_i" || $2=="stage_ia" || $2=="stage_ib"){print$1"\tstage_i"}}' BRCA/metadata_ajcc.txt > BRCA/metadata_ajcc.stagei
+awk '{if($2=="stage_ii" || $2=="stage_iia" || $2=="stage_iib"){print$1"\tstage_ii"}}' BRCA/metadata_ajcc.txt > BRCA/metadata_ajcc.stageii
+awk '{if($2=="stage_iii" || $2=="stage_iiia" || $2=="stage_iiib" || $2=="stage_iiic"){print$1"\tstage_iii"}}' BRCA/metadata_ajcc.txt > BRCA/metadata_ajcc.stageiii
+awk '{if($2=="stage_iv"){print$1"\tstage_iv"}}' BRCA/metadata_ajcc.txt > BRCA/metadata_ajcc.stageiv
+awk '{if($2=="stage_x"){print$1"\tstage_x"}}' BRCA/metadata_ajcc.txt > BRCA/metadata_ajcc.stagex
+awk '{print$1"\tcontrol"}' metadata/files_ajcc.BRCA.normal.old > BRCA/metadata_ajcc.control
+awk '{if(NR>1){print$1"\ttumor"}}' metadata/files_ajcc.BRCA.tumor.old > BRCA/metadata_ajcc.tumor
+
+awk '{print$1"\tcontrol"}' metadata/files_ajcc.PRAD.normal.old > PRAD/metadata_ajcc.control
+awk '{if(NR>1){print$1"\ttumor"}}' metadata/files_ajcc.PRAD.tumor.old > PRAD/metadata_ajcc.tumor
+
+awk '{if($2=="stage_ia" || $2=="stage_ib"){print$1"\tstage_i"}}' PAAD/metadata_ajcc.txt > PAAD/metadata_ajcc.stagei
+awk '{if($2=="stage_iia" || $2=="stage_iib"){print$1"\tstage_ii"}}' PAAD/metadata_ajcc.txt > PAAD/metadata_ajcc.stageii
+awk '{if($2=="stage_iii"){print$1"\tstage_iii"}}' PAAD/metadata_ajcc.txt > PAAD/metadata_ajcc.stageiii
+awk '{if($2=="stage_iv"){print$1"\tstage_iv"}}' PAAD/metadata_ajcc.txt > PAAD/metadata_ajcc.stageiv
+awk '{print$1"\tcontrol"}' metadata/files_ajcc.PAAD.normal.old > PAAD/metadata_ajcc.control
+awk '{if(NR>1){print$1"\ttumor"}}' metadata/files_ajcc.PAAD.tumor.old > PAAD/metadata_ajcc.tumor
+
+
+##
+ #
+ #
+rm -r COAD/sampleHeader*
+rm -r PRAD/sampleHeader*
+rm -r PAAD/sampleHeader*
+rm -r BRCA/sampleHeader*
+rm -r COAD/table_ajcc*
+rm -r PRAD/table_ajcc*
+rm -r PAAD/table_ajcc*
+rm -r BRCA/table_ajcc*
+rm -r COAD/metadata_ajcc.clean.*.temp
+rm -r BRCA/metadata_ajcc.clean.*.temp
+rm -r PRAD/metadata_ajcc.clean.*.temp
+rm -r PAAD/metadata_ajcc.clean.*.temp
+
+
+
+##
+ #
+ #
+paste rawData/pirnadb_pirna_list.txt > COAD/expression_ajcc/matrix.pirna.expression.txt
+
+export num=0;
+for eachRow in `cut -f1 COAD/metadata_ajcc.stagei`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s COAD/pirnaExist/pirnaExist.$eachRow.counted.txt > COAD/matrixFiles_ajcc/SI_$num.matrix.stagei; printf "SI_"$num"\tstagei\n" >> COAD/metadata_ajcc.clean.stagei.temp;printf "\tSI_"$num >> COAD/sampleHeader_ajcc.stagei.txt; printf "SI_"$num"\t"$eachRow"\n" >> COAD/table_ajcc.cat.stagei;let num++; done 
+mv COAD/metadata_ajcc.clean.stagei.temp COAD/metadata_ajcc.clean.stagei
+paste COAD/expression_ajcc/matrix.pirna.expression.txt COAD/matrixFiles_ajcc/*.matrix.stagei > COAD/expression_ajcc/matrix.pirna.expression.temp.stagei
+
+export num=0;
+for eachRow in `cut -f1 COAD/metadata_ajcc.stageii`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s COAD/pirnaExist/pirnaExist.$eachRow.counted.txt > COAD/matrixFiles_ajcc/SII_$num.matrix.stageii; printf "SII_"$num"\tstageii\n" >> COAD/metadata_ajcc.clean.stageii.temp;printf "\tSII_"$num >> COAD/sampleHeader_ajcc.stageii.txt; printf "SII_"$num"\t"$eachRow"\n" >> COAD/table_ajcc.cat.stageii;let num++; done 
+mv COAD/metadata_ajcc.clean.stageii.temp COAD/metadata_ajcc.clean.stageii
+paste COAD/expression_ajcc/matrix.pirna.expression.txt COAD/matrixFiles_ajcc/*.matrix.stageii > COAD/expression_ajcc/matrix.pirna.expression.temp.stageii
+
+export num=0;
+for eachRow in `cut -f1 COAD/metadata_ajcc.stageiii`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s COAD/pirnaExist/pirnaExist.$eachRow.counted.txt > COAD/matrixFiles_ajcc/SIII_$num.matrix.stageiii; printf "SIII_"$num"\tstageiii\n" >> COAD/metadata_ajcc.clean.stageiii.temp;printf "\tSIII_"$num >> COAD/sampleHeader_ajcc.stageiii.txt; printf "SIII_"$num"\t"$eachRow"\n" >> COAD/table_ajcc.cat.stageiii;let num++; done 
+mv COAD/metadata_ajcc.clean.stageiii.temp COAD/metadata_ajcc.clean.stageiii
+paste COAD/expression_ajcc/matrix.pirna.expression.txt COAD/matrixFiles_ajcc/*.matrix.stageiii > COAD/expression_ajcc/matrix.pirna.expression.temp.stageiii
+
+export num=0;
+for eachRow in `cut -f1 COAD/metadata_ajcc.stageiv`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s COAD/pirnaExist/pirnaExist.$eachRow.counted.txt > COAD/matrixFiles_ajcc/SIV_$num.matrix.stageiv; printf "SIV_"$num"\tstageiv\n" >> COAD/metadata_ajcc.clean.stageiv.temp;printf "\tSIV_"$num >> COAD/sampleHeader_ajcc.stageiv.txt; printf "SIV_"$num"\t"$eachRow"\n" >> COAD/table_ajcc.cat.stageiv;let num++; done 
+mv COAD/metadata_ajcc.clean.stageiv.temp COAD/metadata_ajcc.clean.stageiv
+paste COAD/expression_ajcc/matrix.pirna.expression.txt COAD/matrixFiles_ajcc/*.matrix.stageiv > COAD/expression_ajcc/matrix.pirna.expression.temp.stageiv
+
+export num=0;
+for eachRow in `cut -f1 COAD/metadata_ajcc.control`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s COAD/pirnaExist/pirnaExist.$eachRow.counted.txt > COAD/matrixFiles_ajcc/C_$num.matrix.control; printf "C_"$num"\tcontrol\n" >> COAD/metadata_ajcc.clean.control.temp;printf "\tC_"$num >> COAD/sampleHeader_ajcc.control.txt; printf "C_"$num"\t"$eachRow"\n" >> COAD/table_ajcc.cat.control;let num++; done 
+mv COAD/metadata_ajcc.clean.control.temp COAD/metadata_ajcc.clean.control
+paste COAD/expression_ajcc/matrix.pirna.expression.txt COAD/matrixFiles_ajcc/*.matrix.control > COAD/expression_ajcc/matrix.pirna.expression.temp.control
+
+export num=0;
+for eachRow in `cut -f1 COAD/metadata_ajcc.tumor`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s COAD/pirnaExist/pirnaExist.$eachRow.counted.txt > COAD/matrixFiles_ajcc/T_$num.matrix.tumor; printf "T_"$num"\ttumor\n" >> COAD/metadata_ajcc.clean.tumor.temp;printf "\tT_"$num >> COAD/sampleHeader_ajcc.tumor.txt; printf "T_"$num"\t"$eachRow"\n" >> COAD/table_ajcc.cat.tumor;let num++; done 
+mv COAD/metadata_ajcc.clean.tumor.temp COAD/metadata_ajcc.clean.tumor
+paste COAD/expression_ajcc/matrix.pirna.expression.txt COAD/matrixFiles_ajcc/*.matrix.tumor > COAD/expression_ajcc/matrix.pirna.expression.temp.tumor
+
+
+
+cat metadata_ajcc.stagei metadata_ajcc.control | cut -f 1 | sort -k 1,1 | uniq -c | sort -k 1,1 -n | awk -F " " '{if($1==2){print $2}}' > double.temp1
+grep -f double.temp1 -v metadata_ajcc.stagei | awk -F " " '{print $1"\t"$2}' > metadata_ajcc.stagei.temp1
+mv metadata_ajcc.stagei.temp1 metadata_ajcc.stagei
+
+cat metadata_ajcc.stageii metadata_ajcc.control | cut -f 1 | sort -k 1,1 | uniq -c | sort -k 1,1 -n | awk -F " " '{if($1==2){print $2}}' > double.temp2
+grep -f double.temp2 -v metadata_ajcc.stageii | awk -F " " '{print $1"\t"$2}' > metadata_ajcc.stageii.temp1
+mv metadata_ajcc.stageii.temp1 metadata_ajcc.stageii
+
+cat metadata_ajcc.stageiii metadata_ajcc.control | cut -f 1 | sort -k 1,1 | uniq -c | sort -k 1,1 -n | awk -F " " '{if($1==2){print $2}}' > double.temp3
+grep -f double.temp3 -v metadata_ajcc.stageiii | awk -F " " '{print $1"\t"$2}' > metadata_ajcc.stageiii.temp1
+mv metadata_ajcc.stageiii.temp1 metadata_ajcc.stageiii
+
+cat metadata_ajcc.stageiv metadata_ajcc.control | cut -f 1 | sort -k 1,1 | uniq -c | sort -k 1,1 -n | awk -F " " '{if($1==2){print $2}}' > double.temp4
+grep -f double.temp4 -v metadata_ajcc.stageiv | awk -F " " '{print $1"\t"$2}' > metadata_ajcc.stageiv.temp1
+mv metadata_ajcc.stageiv.temp1 metadata_ajcc.stageiv
+
+cat metadata_ajcc.stagex metadata_ajcc.control | cut -f 1 | sort -k 1,1 | uniq -c | sort -k 1,1 -n | awk -F " " '{if($1==2){print $2}}' > double.temp5
+grep -f double.temp5 -v metadata_ajcc.stagex | awk -F " " '{print $1"\t"$2}' > metadata_ajcc.stagex.temp1
+mv metadata_ajcc.stagex.temp1 metadata_ajcc.stagex
+
+rm -r double.temp1 double.temp2 double.temp3 double.temp4
+
+
+rm --r BRCA/matrixFiles_ajcc/SI*.matrix.stagei BRCA/matrixFiles_ajcc/SII*.matrix.stageii BRCA/matrixFiles_ajcc/SIII*.matrix.stageiii BRCA/matrixFiles_ajcc/SIV*.matrix.stageiv
+rm --r BRCA/sampleHeader_ajcc.stagei.txt BRCA/sampleHeader_ajcc.stageii.txt BRCA/sampleHeader_ajcc.stageiii.txt BRCA/sampleHeader_ajcc.stageiv.txt
+rm --r BRCA/table_ajcc.cat.stagei BRCA/table_ajcc.cat.stageii BRCA/table_ajcc.cat.stageiii BRCA/table_ajcc.cat.stageiv
+rm --r BRCA/metadata_ajcc.clean.stagei BRCA/metadata_ajcc.clean.stageii BRCA/metadata_ajcc.clean.stageiii BRCA/metadata_ajcc.clean.stageiv
+rm --r BRCA/expression_ajcc/matrix.pirna.expression.txt
+rm --r BRCA/expression_ajcc/matrix.pirna.expression.temp.stagei BRCA/expression_ajcc/matrix.pirna.expression.temp.stageii BRCA/expression_ajcc/matrix.pirna.expression.temp.stageiii BRCA/expression_ajcc/matrix.pirna.expression.temp.stageiv
+
+
+paste rawData/pirnadb_pirna_list.txt > BRCA/expression_ajcc/matrix.pirna.expression.txt
+export num=0;
+for eachRow in `cut -f1 BRCA/metadata_ajcc.stagei`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_ajcc/SI_$num.matrix.stagei; printf "SI_"$num"\tstagei\n" >> BRCA/metadata_ajcc.clean.stagei.temp;printf "\tSI_"$num >> BRCA/sampleHeader_ajcc.stagei.txt; printf "SI_"$num"\t"$eachRow"\n" >> BRCA/table_ajcc.cat.stagei;let num++; done 
+mv BRCA/metadata_ajcc.clean.stagei.temp BRCA/metadata_ajcc.clean.stagei
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_ajcc/*.matrix.stagei > BRCA/expression_ajcc/matrix.pirna.expression.temp.stagei
+
+export num=0;
+for eachRow in `cut -f1 BRCA/metadata_ajcc.stageii`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_ajcc/SII_$num.matrix.stageii; printf "SII_"$num"\tstageii\n" >> BRCA/metadata_ajcc.clean.stageii.temp;printf "\tSII_"$num >> BRCA/sampleHeader_ajcc.stageii.txt; printf "SII_"$num"\t"$eachRow"\n" >> BRCA/table_ajcc.cat.stageii;let num++; done 
+mv BRCA/metadata_ajcc.clean.stageii.temp BRCA/metadata_ajcc.clean.stageii
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_ajcc/*.matrix.stageii > BRCA/expression_ajcc/matrix.pirna.expression.temp.stageii
+
+export num=0;
+for eachRow in `cut -f1 BRCA/metadata_ajcc.stageiii`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_ajcc/SIII_$num.matrix.stageiii; printf "SIII_"$num"\tstageiii\n" >> BRCA/metadata_ajcc.clean.stageiii.temp;printf "\tSIII_"$num >> BRCA/sampleHeader_ajcc.stageiii.txt; printf "SIII_"$num"\t"$eachRow"\n" >> BRCA/table_ajcc.cat.stageiii;let num++; done 
+mv BRCA/metadata_ajcc.clean.stageiii.temp BRCA/metadata_ajcc.clean.stageiii
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_ajcc/*.matrix.stageiii > BRCA/expression_ajcc/matrix.pirna.expression.temp.stageiii
+
+export num=0;
+for eachRow in `cut -f1 BRCA/metadata_ajcc.stageiv`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_ajcc/SIV_$num.matrix.stageiv; printf "SIV_"$num"\tstageiv\n" >> BRCA/metadata_ajcc.clean.stageiv.temp;printf "\tSIV_"$num >> BRCA/sampleHeader_ajcc.stageiv.txt; printf "SIV_"$num"\t"$eachRow"\n" >> BRCA/table_ajcc.cat.stageiv;let num++; done 
+mv BRCA/metadata_ajcc.clean.stageiv.temp BRCA/metadata_ajcc.clean.stageiv
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_ajcc/*.matrix.stageiv > BRCA/expression_ajcc/matrix.pirna.expression.temp.stageiv
+
+export num=0;
+for eachRow in `cut -f1 BRCA/metadata_ajcc.stagex`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_ajcc/SX_$num.matrix.stagex; printf "SX_"$num"\tstagex\n" >> BRCA/metadata_ajcc.clean.stagex.temp;printf "\tSX_"$num >> BRCA/sampleHeader_ajcc.stagex.txt; printf "SX_"$num"\t"$eachRow"\n" >> BRCA/table_ajcc.cat.stagex;let num++; done 
+mv BRCA/metadata_ajcc.clean.stagex.temp BRCA/metadata_ajcc.clean.stagex
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_ajcc/*.matrix.stagex > BRCA/expression_ajcc/matrix.pirna.expression.temp.stagex
+
+export num=0;
+for eachRow in `cut -f1 BRCA/metadata_ajcc.control`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_ajcc/C_$num.matrix.control; printf "C_"$num"\tcontrol\n" >> BRCA/metadata_ajcc.clean.control.temp;printf "\tC_"$num >> BRCA/sampleHeader_ajcc.control.txt; printf "C_"$num"\t"$eachRow"\n" >> BRCA/table_ajcc.cat.control;let num++; done 
+mv BRCA/metadata_ajcc.clean.control.temp BRCA/metadata_ajcc.clean.control
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_ajcc/*.matrix.control > BRCA/expression_ajcc/matrix.pirna.expression.temp.control
+
+export num=0;
+for eachRow in `cut -f1 BRCA/metadata_ajcc.tumor`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_ajcc/T_$num.matrix.tumor; printf "T_"$num"\ttumor\n" >> BRCA/metadata_ajcc.clean.tumor.temp;printf "\tT_"$num >> BRCA/sampleHeader_ajcc.tumor.txt; printf "T_"$num"\t"$eachRow"\n" >> BRCA/table_ajcc.cat.tumor;let num++; done 
+mv BRCA/metadata_ajcc.clean.tumor.temp BRCA/metadata_ajcc.clean.tumor
+
+paste BRCA/matrixFiles_ajcc/T_[0-9].matrix.tumor > BRCA/matrixFiles_ajcc/matrix.tumor.zero.temp
+paste BRCA/matrixFiles_ajcc/T_[1-9][0-9].matrix.tumor > BRCA/matrixFiles_ajcc/matrix.tumor.one.temp
+paste BRCA/matrixFiles_ajcc/T_[1-5][0-9][0-9].matrix.tumor > BRCA/matrixFiles_ajcc/matrix.tumor.two.temp
+paste BRCA/matrixFiles_ajcc/T_[6-9][0-9][0-9].matrix.tumor > BRCA/matrixFiles_ajcc/matrix.tumor.three.temp
+paste BRCA/matrixFiles_ajcc/T_[1-9][0-9][0-9][0-9].matrix.tumor > BRCA/matrixFiles_ajcc/matrix.tumor.four.temp
+
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_ajcc/matrix.tumor.zero.temp BRCA/matrixFiles_ajcc/matrix.tumor.one.temp BRCA/matrixFiles_ajcc/matrix.tumor.two.temp BRCA/matrixFiles_ajcc/matrix.tumor.three.temp BRCA/matrixFiles_ajcc/matrix.tumor.four.temp > BRCA/expression_ajcc/matrix.pirna.expression.temp.tumor
+
+
+rm -r BRCA/matrixFiles_ajcc/matrix.tumor.zero.temp
+rm -r BRCA/matrixFiles_ajcc/matrix.tumor.one.temp
+rm -r BRCA/matrixFiles_ajcc/matrix.tumor.two.temp
+rm -r BRCA/matrixFiles_ajcc/matrix.tumor.three.temp
+rm -r BRCA/matrixFiles_ajcc/matrix.tumor.four.temp
+
+
+paste rawData/pirnadb_pirna_list.txt > PRAD/expression_ajcc/matrix.pirna.expression.txt
+export num=0;
+for eachRow in `cut -f1 PRAD/metadata_ajcc.control`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PRAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PRAD/matrixFiles_ajcc/C_$num.matrix.control; printf "C_"$num"\tcontrol\n" >> PRAD/metadata_ajcc.clean.control.temp;printf "\tC_"$num >> PRAD/sampleHeader_ajcc.control.txt; printf "C_"$num"\t"$eachRow"\n" >> PRAD/table_ajcc.cat.control;let num++; done 
+mv PRAD/metadata_ajcc.clean.control.temp PRAD/metadata_ajcc.clean.control
+paste PRAD/expression_ajcc/matrix.pirna.expression.txt PRAD/matrixFiles_ajcc/*.matrix.control > PRAD/expression_ajcc/matrix.pirna.expression.temp.control
+
+export num=0;
+for eachRow in `cut -f1 PRAD/metadata_ajcc.tumor`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PRAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PRAD/matrixFiles_ajcc/T_$num.matrix.tumor; printf "T_"$num"\ttumor\n" >> PRAD/metadata_ajcc.clean.tumor.temp;printf "\tT_"$num >> PRAD/sampleHeader_ajcc.tumor.txt; printf "T_"$num"\t"$eachRow"\n" >> PRAD/table_ajcc.cat.tumor;let num++; done 
+mv PRAD/metadata_ajcc.clean.tumor.temp PRAD/metadata_ajcc.clean.tumor
+paste PRAD/expression_ajcc/matrix.pirna.expression.txt PRAD/matrixFiles_ajcc/*.matrix.tumor > PRAD/expression_ajcc/matrix.pirna.expression.temp.tumor
+
+
+paste rawData/pirnadb_pirna_list.txt > PAAD/expression_ajcc/matrix.pirna.expression.txt
+export num=0;
+for eachRow in `cut -f1 PAAD/metadata_ajcc.stagei`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PAAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PAAD/matrixFiles_ajcc/SI_$num.matrix.stagei; printf "SI_"$num"\tstagei\n" >> PAAD/metadata_ajcc.clean.stagei.temp;printf "\tSI_"$num >> PAAD/sampleHeader_ajcc.stagei.txt; printf "SI_"$num"\t"$eachRow"\n" >> PAAD/table_ajcc.cat.stagei;let num++; done 
+mv PAAD/metadata_ajcc.clean.stagei.temp PAAD/metadata_ajcc.clean.stagei
+paste PAAD/expression_ajcc/matrix.pirna.expression.txt PAAD/matrixFiles_ajcc/*.matrix.stagei > PAAD/expression_ajcc/matrix.pirna.expression.temp.stagei
+
+export num=0;
+for eachRow in `cut -f1 PAAD/metadata_ajcc.stageii`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PAAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PAAD/matrixFiles_ajcc/SII_$num.matrix.stageii; printf "SII_"$num"\tstageii\n" >> PAAD/metadata_ajcc.clean.stageii.temp;printf "\tSII_"$num >> PAAD/sampleHeader_ajcc.stageii.txt; printf "SII_"$num"\t"$eachRow"\n" >> PAAD/table_ajcc.cat.stageii;let num++; done 
+mv PAAD/metadata_ajcc.clean.stageii.temp PAAD/metadata_ajcc.clean.stageii
+paste PAAD/expression_ajcc/matrix.pirna.expression.txt PAAD/matrixFiles_ajcc/*.matrix.stageii > PAAD/expression_ajcc/matrix.pirna.expression.temp.stageii
+
+export num=0;
+for eachRow in `cut -f1 PAAD/metadata_ajcc.stageiii`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PAAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PAAD/matrixFiles_ajcc/SIII_$num.matrix.stageiii; printf "SIII_"$num"\tstageiii\n" >> PAAD/metadata_ajcc.clean.stageiii.temp;printf "\tSIII_"$num >> PAAD/sampleHeader_ajcc.stageiii.txt; printf "SIII_"$num"\t"$eachRow"\n" >> PAAD/table_ajcc.cat.stageiii;let num++; done 
+mv PAAD/metadata_ajcc.clean.stageiii.temp PAAD/metadata_ajcc.clean.stageiii
+paste PAAD/expression_ajcc/matrix.pirna.expression.txt PAAD/matrixFiles_ajcc/*.matrix.stageiii > PAAD/expression_ajcc/matrix.pirna.expression.temp.stageiii
+
+export num=0;
+for eachRow in `cut -f1 PAAD/metadata_ajcc.stageiv`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PAAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PAAD/matrixFiles_ajcc/SIV_$num.matrix.stageiv; printf "SIV_"$num"\tstageiv\n" >> PAAD/metadata_ajcc.clean.stageiv.temp;printf "\tSIV_"$num >> PAAD/sampleHeader_ajcc.stageiv.txt; printf "SIV_"$num"\t"$eachRow"\n" >> PAAD/table_ajcc.cat.stageiv;let num++; done 
+mv PAAD/metadata_ajcc.clean.stageiv.temp PAAD/metadata_ajcc.clean.stageiv
+paste PAAD/expression_ajcc/matrix.pirna.expression.txt PAAD/matrixFiles_ajcc/*.matrix.stageiv > PAAD/expression_ajcc/matrix.pirna.expression.temp.stageiv
+
+export num=0;
+for eachRow in `cut -f1 PAAD/metadata_ajcc.control`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PAAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PAAD/matrixFiles_ajcc/C_$num.matrix.control; printf "C_"$num"\tcontrol\n" >> PAAD/metadata_ajcc.clean.control.temp;printf "\tC_"$num >> PAAD/sampleHeader_ajcc.control.txt; printf "C_"$num"\t"$eachRow"\n" >> PAAD/table_ajcc.cat.control;let num++; done 
+mv PAAD/metadata_ajcc.clean.control.temp PAAD/metadata_ajcc.clean.control
+paste PAAD/expression_ajcc/matrix.pirna.expression.txt PAAD/matrixFiles_ajcc/*.matrix.control > PAAD/expression_ajcc/matrix.pirna.expression.temp.control
+
+export num=0;
+for eachRow in `cut -f1 PAAD/metadata_ajcc.tumor`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PAAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PAAD/matrixFiles_ajcc/T_$num.matrix.tumor; printf "T_"$num"\ttumor\n" >> PAAD/metadata_ajcc.clean.tumor.temp;printf "\tT_"$num >> PAAD/sampleHeader_ajcc.tumor.txt; printf "T_"$num"\t"$eachRow"\n" >> PAAD/table_ajcc.cat.tumor;let num++; done 
+mv PAAD/metadata_ajcc.clean.tumor.temp PAAD/metadata_ajcc.clean.tumor
+paste PAAD/expression_ajcc/matrix.pirna.expression.txt PAAD/matrixFiles_ajcc/*.matrix.tumor > PAAD/expression_ajcc/matrix.pirna.expression.temp.tumor
+
+
+cut -f 13 metadata.coad_panCancer_data.txt | sort -k 1,1 | uniq -c
+## 2   NA
+## 11  T1
+## 72  T2
+## 284 T3
+## 25  T4
+## 19  T4A
+## 9   T4B
+## 1   TIS
+
+export num=0;
+awk -F "\t" '{if($13 =="T1"){print$1}}' metadata/metadataCOAD/metadata.coad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s COAD/pirnaExist/pirnaExist.$eachRow.counted.txt > COAD/matrixFiles_ajcc/T1_$num.matrix.t1; printf "\tT1_"$num >> COAD/sampleHeader_ajcc.t1.txt; printf "T1_"$num"\t"$eachRow"\n" >> COAD/table_ajcc.cat.t1;let num++; done;
+paste COAD/expression_ajcc/matrix.pirna.expression.txt COAD/matrixFiles_ajcc/*.matrix.t1 > COAD/expression_ajcc/matrix.pirna.expression.temp.t1
+
+export num=0;
+awk -F "\t" '{if($13 =="T2"){print$1}}' metadata/metadataCOAD/metadata.coad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s COAD/pirnaExist/pirnaExist.$eachRow.counted.txt > COAD/matrixFiles_ajcc/T2_$num.matrix.t2; printf "\tT2_"$num >> COAD/sampleHeader_ajcc.t2.txt; printf "T2_"$num"\t"$eachRow"\n" >> COAD/table_ajcc.cat.t2;let num++; done;
+paste COAD/expression_ajcc/matrix.pirna.expression.txt COAD/matrixFiles_ajcc/*.matrix.t2 > COAD/expression_ajcc/matrix.pirna.expression.temp.t2
+
+export num=0;
+awk -F "\t" '{if($13 =="T3"){print$1}}' metadata/metadataCOAD/metadata.coad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s COAD/pirnaExist/pirnaExist.$eachRow.counted.txt > COAD/matrixFiles_ajcc/T3_$num.matrix.t3; printf "\tT3_"$num >> COAD/sampleHeader_ajcc.t3.txt; printf "T3_"$num"\t"$eachRow"\n" >> COAD/table_ajcc.cat.t3;let num++; done;
+paste COAD/expression_ajcc/matrix.pirna.expression.txt COAD/matrixFiles_ajcc/*.matrix.t3 > COAD/expression_ajcc/matrix.pirna.expression.temp.t3
+
+export num=0;
+awk -F "\t" '{if($13 =="T4" || $13 =="T4A" || $13 =="T4B"){print$1}}' metadata/metadataCOAD/metadata.coad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s COAD/pirnaExist/pirnaExist.$eachRow.counted.txt > COAD/matrixFiles_ajcc/T4_$num.matrix.t4; printf "\tT4_"$num >> COAD/sampleHeader_ajcc.t4.txt; printf "T4_"$num"\t"$eachRow"\n" >> COAD/table_ajcc.cat.t4;let num++; done;
+paste COAD/expression_ajcc/matrix.pirna.expression.txt COAD/matrixFiles_ajcc/*.matrix.t4 > COAD/expression_ajcc/matrix.pirna.expression.temp.t4
+
+export num=0;
+awk -F "\t" '{if($13 =="TIS"){print$1}}' metadata/metadataCOAD/metadata.coad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s COAD/pirnaExist/pirnaExist.$eachRow.counted.txt > COAD/matrixFiles_ajcc/TIS_$num.matrix.tis; printf "\tTIS_"$num >> COAD/sampleHeader_ajcc.tis.txt; printf "TIS_"$num"\t"$eachRow"\n" >> COAD/table_ajcc.cat.tis;let num++; done;
+paste COAD/expression_ajcc/matrix.pirna.expression.txt COAD/matrixFiles_ajcc/*.matrix.tis > COAD/expression_ajcc/matrix.pirna.expression.temp.tis
+
+export num=0;
+awk -F "\t" '{if($13 =="NA"){print$1}}' metadata/metadataCOAD/metadata.coad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s COAD/pirnaExist/pirnaExist.$eachRow.counted.txt > COAD/matrixFiles_ajcc/TNA_$num.matrix.tna; printf "\tTNA_"$num >> COAD/sampleHeader_ajcc.tna.txt; printf "TNA_"$num"\t"$eachRow"\n" >> COAD/table_ajcc.cat.tna;let num++; done;
+paste COAD/expression_ajcc/matrix.pirna.expression.txt COAD/matrixFiles_ajcc/*.matrix.tna > COAD/expression_ajcc/matrix.pirna.expression.temp.tna
+
+
+cut -f 12 metadata.coad_panCancer_data.txt | sort -k 1,1 | uniq -c
+## 246 N0
+## 67  N1
+## 15  N1A
+## 15  N1B
+## 2   N1C
+## 55  N2
+## 8   N2A
+## 13  N2B
+## 2   NA
+
+export num=0;
+awk -F "\t" '{if($12 =="N0"){print$1}}' metadata/metadataCOAD/metadata.coad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s COAD/pirnaExist/pirnaExist.$eachRow.counted.txt > COAD/matrixFiles_ajcc/N0_$num.matrix.n0; printf "\tN0_"$num >> COAD/sampleHeader_ajcc.n0.txt; printf "N0_"$num"\t"$eachRow"\n" >> COAD/table_ajcc.cat.n0;let num++; done;
+paste COAD/expression_ajcc/matrix.pirna.expression.txt COAD/matrixFiles_ajcc/*.matrix.n0 > COAD/expression_ajcc/matrix.pirna.expression.temp.n0
+
+export num=0;
+awk -F "\t" '{if($12 =="N1" || $12 =="N1A" || $12 =="N1B" || $12 =="N1C"){print$1}}' metadata/metadataCOAD/metadata.coad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s COAD/pirnaExist/pirnaExist.$eachRow.counted.txt > COAD/matrixFiles_ajcc/N1_$num.matrix.n1; printf "\tN1_"$num >> COAD/sampleHeader_ajcc.n1.txt; printf "N1_"$num"\t"$eachRow"\n" >> COAD/table_ajcc.cat.n1;let num++; done;
+paste COAD/expression_ajcc/matrix.pirna.expression.txt COAD/matrixFiles_ajcc/*.matrix.n1 > COAD/expression_ajcc/matrix.pirna.expression.temp.n1
+
+export num=0;
+awk -F "\t" '{if($12 =="N2" || $12 =="N2A" || $12 =="N2B"){print$1}}' metadata/metadataCOAD/metadata.coad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s COAD/pirnaExist/pirnaExist.$eachRow.counted.txt > COAD/matrixFiles_ajcc/N2_$num.matrix.n2; printf "\tN2_"$num >> COAD/sampleHeader_ajcc.n2.txt; printf "N2_"$num"\t"$eachRow"\n" >> COAD/table_ajcc.cat.n2;let num++; done;
+paste COAD/expression_ajcc/matrix.pirna.expression.txt COAD/matrixFiles_ajcc/*.matrix.n2 > COAD/expression_ajcc/matrix.pirna.expression.temp.n2
+
+export num=0;
+awk -F "\t" '{if($12 =="NA"){print$1}}' metadata/metadataCOAD/metadata.coad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s COAD/pirnaExist/pirnaExist.$eachRow.counted.txt > COAD/matrixFiles_ajcc/NNA_$num.matrix.nna; printf "\tNNA_"$num >> COAD/sampleHeader_ajcc.nna.txt; printf "NNA_"$num"\t"$eachRow"\n" >> COAD/table_ajcc.cat.nna;let num++; done;
+paste COAD/expression_ajcc/matrix.pirna.expression.txt COAD/matrixFiles_ajcc/*.matrix.nna > COAD/expression_ajcc/matrix.pirna.expression.temp.nna
+
+
+cut -f 11 metadata/metadataCOAD/metadata.coad_panCancer_data.txt | sort -k 1,1 | uniq -c
+## 303 M0
+## 49  M1
+## 9   M1A
+## 3   M1B
+## 50  MX
+## 9   NA
+
+export num=0;
+awk -F "\t" '{if($11 =="M0"){print$1}}' metadata/metadataCOAD/metadata.coad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s COAD/pirnaExist/pirnaExist.$eachRow.counted.txt > COAD/matrixFiles_ajcc/M0_$num.matrix.m0; printf "\tM0_"$num >> COAD/sampleHeader_ajcc.m0.txt; printf "M0_"$num"\t"$eachRow"\n" >> COAD/table_ajcc.cat.m0;let num++; done;
+paste COAD/expression_ajcc/matrix.pirna.expression.txt COAD/matrixFiles_ajcc/*.matrix.m0 > COAD/expression_ajcc/matrix.pirna.expression.temp.m0
+
+export num=0;
+awk -F "\t" '{if($11 =="M1" || $11 =="M1A" || $11 =="M1B"){print$1}}' metadata/metadataCOAD/metadata.coad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s COAD/pirnaExist/pirnaExist.$eachRow.counted.txt > COAD/matrixFiles_ajcc/M1_$num.matrix.m1; printf "\tM1_"$num >> COAD/sampleHeader_ajcc.m1.txt; printf "M1_"$num"\t"$eachRow"\n" >> COAD/table_ajcc.cat.m1;let num++; done;
+paste COAD/expression_ajcc/matrix.pirna.expression.txt COAD/matrixFiles_ajcc/*.matrix.m1 > COAD/expression_ajcc/matrix.pirna.expression.temp.m1
+
+export num=0;
+awk -F "\t" '{if($11 =="MX"){print$1}}' metadata/metadataCOAD/metadata.coad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s COAD/pirnaExist/pirnaExist.$eachRow.counted.txt > COAD/matrixFiles_ajcc/MX_$num.matrix.mx; printf "\tMX_"$num >> COAD/sampleHeader_ajcc.mx.txt; printf "MX_"$num"\t"$eachRow"\n" >> COAD/table_ajcc.cat.mx;let num++; done;
+paste COAD/expression_ajcc/matrix.pirna.expression.txt COAD/matrixFiles_ajcc/*.matrix.mx > COAD/expression_ajcc/matrix.pirna.expression.temp.mx
+
+export num=0;
+awk -F "\t" '{if($11 =="NA"){print$1}}' metadata/metadataCOAD/metadata.coad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s COAD/pirnaExist/pirnaExist.$eachRow.counted.txt > COAD/matrixFiles_ajcc/MNA_$num.matrix.mna; printf "\tMNA_"$num >> COAD/sampleHeader_ajcc.mna.txt; printf "MNA_"$num"\t"$eachRow"\n" >> COAD/table_ajcc.cat.mna;let num++; done;
+paste COAD/expression_ajcc/matrix.pirna.expression.txt COAD/matrixFiles_ajcc/*.matrix.mna > COAD/expression_ajcc/matrix.pirna.expression.temp.mna
+
+
+
+cut -f 14 metadata/metadataCOAD/metadata.coad_panCancer_data.txt | sort -k 1,1 | uniq -c
+## 225 COAD_CIN
+## 49  COAD_GS
+## 60  COAD_MSI
+## 6   COAD_POLE
+## 83  NA
+
+export num=0;
+awk -F "\t" '{if($14 =="COAD_CIN"){print$1}}' metadata/metadataCOAD/metadata.coad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s COAD/pirnaExist/pirnaExist.$eachRow.counted.txt > COAD/matrixFiles_pancan/cin_$num.matrix.cin; printf "\tCIN_"$num >> COAD/sampleHeader_pancan.cin.txt; printf "CIN_"$num"\t"$eachRow"\n" >> COAD/table_pancan.cat.cin;let num++; done;
+paste COAD/expression_ajcc/matrix.pirna.expression.txt COAD/matrixFiles_pancan/*.matrix.cin > COAD/expression_pancan/matrix.pirna.expression.temp.cin
+
+export num=0;
+awk -F "\t" '{if($14 =="COAD_GS"){print$1}}' metadata/metadataCOAD/metadata.coad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s COAD/pirnaExist/pirnaExist.$eachRow.counted.txt > COAD/matrixFiles_pancan/gs_$num.matrix.gs; printf "\tGS_"$num >> COAD/sampleHeader_pancan.gs.txt; printf "GS_"$num"\t"$eachRow"\n" >> COAD/table_pancan.cat.gs;let num++; done;
+paste COAD/expression_ajcc/matrix.pirna.expression.txt COAD/matrixFiles_pancan/*.matrix.gs > COAD/expression_pancan/matrix.pirna.expression.temp.gs
+
+export num=0;
+awk -F "\t" '{if($14 =="COAD_MSI"){print$1}}' metadata/metadataCOAD/metadata.coad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s COAD/pirnaExist/pirnaExist.$eachRow.counted.txt > COAD/matrixFiles_pancan/msi_$num.matrix.msi; printf "\tMSI_"$num >> COAD/sampleHeader_pancan.msi.txt; printf "MSI_"$num"\t"$eachRow"\n" >> COAD/table_pancan.cat.msi;let num++; done;
+paste COAD/expression_ajcc/matrix.pirna.expression.txt COAD/matrixFiles_pancan/*.matrix.msi > COAD/expression_pancan/matrix.pirna.expression.temp.msi
+
+export num=0;
+awk -F "\t" '{if($14 =="COAD_POLE"){print$1}}' metadata/metadataCOAD/metadata.coad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s COAD/pirnaExist/pirnaExist.$eachRow.counted.txt > COAD/matrixFiles_pancan/pole_$num.matrix.pole; printf "\tPOLE_"$num >> COAD/sampleHeader_pancan.pole.txt; printf "POLE_"$num"\t"$eachRow"\n" >> COAD/table_pancan.cat.pole;let num++; done;
+paste COAD/expression_ajcc/matrix.pirna.expression.txt COAD/matrixFiles_pancan/*.matrix.pole > COAD/expression_pancan/matrix.pirna.expression.temp.pole
+
+export num=0;
+awk -F "\t" '{if($14 =="NA"){print$1}}' metadata/metadataCOAD/metadata.coad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s COAD/pirnaExist/pirnaExist.$eachRow.counted.txt > COAD/matrixFiles_pancan/coadna_$num.matrix.coadna; printf "\tCOADNA_"$num >> COAD/sampleHeader_pancan.coadna.txt; printf "COADNA_"$num"\t"$eachRow"\n" >> COAD/table_pancan.cat.coadna;let num++; done;
+paste COAD/expression_ajcc/matrix.pirna.expression.txt COAD/matrixFiles_pancan/*.matrix.coadna > COAD/expression_pancan/matrix.pirna.expression.temp.coadna
+
+
+
+
+cut -f 13 metadata.brca_panCancer_data.txt | sort -k 1,1 | uniq -c
+## 40  T1
+## 2   T1A
+## 14  T1B
+## 206 T1C
+## 584 T2
+## 1   T2A
+## 1   T2B
+## 122 T3
+## 1   T3A
+## 9   T4
+## 26  T4B
+## 2   T4D
+## 2   TX
+
+export num=0;
+awk -F "\t" '{if($13 =="T1" || $13 =="T1A" || $13 =="T1B" || $13 =="T1C"){print$1}}' metadata/metadataBRCA/metadata.brca_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/T1_$num.matrix.t1; printf "\tT1_"$num >> BRCA/sampleHeader_pancan.t1.txt; printf "T1_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.t1;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.t1 > BRCA/expression_pancan/matrix.pirna.expression.temp.t1
+
+export num=0;
+awk -F "\t" '{if($13 =="T2" || $13 =="T2A" || $13 =="T2B"){print$1}}' metadata/metadataBRCA/metadata.brca_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/T2_$num.matrix.t2; printf "\tT2_"$num >> BRCA/sampleHeader_pancan.t2.txt; printf "T2_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.t2;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.t2 > BRCA/expression_pancan/matrix.pirna.expression.temp.t2
+
+export num=0;
+awk -F "\t" '{if($13 =="T3" || $13 =="T3A"){print$1}}' metadata/metadataBRCA/metadata.brca_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/T3_$num.matrix.t3; printf "\tT3_"$num >> BRCA/sampleHeader_pancan.t3.txt; printf "T3_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.t3;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.t3 > BRCA/expression_pancan/matrix.pirna.expression.temp.t3
+
+export num=0;
+awk -F "\t" '{if($13 =="T4" || $13 =="T4B" || $13 =="T4D"){print$1}}' metadata/metadataBRCA/metadata.brca_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/T4_$num.matrix.t4; printf "\tT4_"$num >> BRCA/sampleHeader_pancan.t4.txt; printf "T4_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.t4;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.t4 > BRCA/expression_pancan/matrix.pirna.expression.temp.t4
+
+export num=0;
+awk -F "\t" '{if($13 =="TX"){print$1}}' metadata/metadataBRCA/metadata.brca_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/TX_$num.matrix.tx; printf "\tTX_"$num >> BRCA/sampleHeader_pancan.tx.txt; printf "TX_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.tx;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.tx > BRCA/expression_pancan/matrix.pirna.expression.temp.tx
+
+
+cut -f 12 metadata/metadataBRCA/metadata.brca_panCancer_data.txt | sort -k 1,1 | uniq -c
+## 306 N0
+## 25  N0 (I+)
+## 146 N0 (I-)
+## 1   N0 (MOL+)
+## 112 N1
+## 153 N1A
+## 32  N1B
+## 2   N1C
+## 32  N1MI
+## 53  N2
+## 57  N2A
+## 24  N3
+## 45  N3A
+## 2   N3B
+## 1   N3C
+## 19  NX
+
+export num=0;
+awk -F "\t" '{if($12 =="N0" || $12 =="N0 (I+)" || $12 =="N0 (I-)" || $12 =="N0 (MOL+)"){print$1}}' metadata/metadataBRCA/metadata.brca_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/N0_$num.matrix.n0; printf "\tN0_"$num >> BRCA/sampleHeader_pancan.n0.txt; printf "N0_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.n0;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.n0 > BRCA/expression_pancan/matrix.pirna.expression.temp.n0
+
+export num=0;
+awk -F "\t" '{if($12 =="N1" || $12 =="N1A" || $12 =="N1B" || $12 =="N1C" || $12 =="N1MI"){print$1}}' metadata/metadataBRCA/metadata.brca_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/N1_$num.matrix.n1; printf "\tN1_"$num >> BRCA/sampleHeader_pancan.n1.txt; printf "N1_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.n1;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.n1 > BRCA/expression_pancan/matrix.pirna.expression.temp.n1
+
+export num=0;
+awk -F "\t" '{if($12 =="N2" || $12 =="N2A"){print$1}}' metadata/metadataBRCA/metadata.brca_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/N2_$num.matrix.n2; printf "\tN2_"$num >> BRCA/sampleHeader_pancan.n2.txt; printf "N2_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.n2;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.n2 > BRCA/expression_pancan/matrix.pirna.expression.temp.n2
+
+export num=0;
+awk -F "\t" '{if($12 =="N3" || $12 =="N3A" || $12 =="N3B" || $12 =="N3C"){print$1}}' metadata/metadataBRCA/metadata.brca_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/N3_$num.matrix.n3; printf "\tN3_"$num >> BRCA/sampleHeader_pancan.n3.txt; printf "N3_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.n3;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.n3 > BRCA/expression_pancan/matrix.pirna.expression.temp.n3
+
+export num=0;
+awk -F "\t" '{if($12 =="NX"){print$1}}' metadata/metadataBRCA/metadata.brca_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/NX_$num.matrix.nx; printf "\tNX_"$num >> BRCA/sampleHeader_pancan.nx.txt; printf "NX_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.nx;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.nx > BRCA/expression_pancan/matrix.pirna.expression.temp.nx
+
+
+
+cut -f 11 metadata/metadataBRCA/metadata.brca_panCancer_data.txt | sort -k 1,1 | uniq -c
+## 5   CM0 (I+)
+## 841 M0
+## 18  M1
+## 146 MX
+
+export num=0;
+awk -F "\t" '{if($11 =="CM0 (I+)" || $11 =="M0"){print$1}}' metadata/metadataBRCA/metadata.brca_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/M0_$num.matrix.m0; printf "\tM0_"$num >> BRCA/sampleHeader_pancan.m0.txt; printf "CM0_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.cm0;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.m0 > BRCA/expression_pancan/matrix.pirna.expression.temp.m0
+
+export num=0;
+awk -F "\t" '{if($11 =="M1"){print$1}}' metadata/metadataBRCA/metadata.brca_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/M1_$num.matrix.m1; printf "\tM1_"$num >> BRCA/sampleHeader_pancan.m1.txt; printf "M1_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.m1;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.m1 > BRCA/expression_pancan/matrix.pirna.expression.temp.m1
+
+export num=0;
+awk -F "\t" '{if($11 =="MX"){print$1}}' metadata/metadataBRCA/metadata.brca_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/MX_$num.matrix.mx; printf "\tMX_"$num >> BRCA/sampleHeader_pancan.mx.txt; printf "MX_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.mx;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.mx > BRCA/expression_pancan/matrix.pirna.expression.temp.mx
+
+
+cut -f 14 metadata/metadataBRCA/metadata.brca_panCancer_data.txt | sort -k 1,1 | uniq -c
+## 160 BRCA_Basal
+## 72  BRCA_Her2
+## 469 BRCA_LumA
+## 187 BRCA_LumB
+## 32  BRCA_Normal
+## 90  NA
+
+export num=0;
+awk -F "\t" '{if($14 =="BRCA_Basal"){print$1}}' metadata/metadataBRCA/metadata.brca_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/BASAL_$num.matrix.basal; printf "\tBASAL_"$num >> BRCA/sampleHeader_pancan.basal.txt; printf "BASAL_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.basal;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.basal > BRCA/expression_pancan/matrix.pirna.expression.temp.basal
+
+export num=0;
+awk -F "\t" '{if($14 =="BRCA_Her2"){print$1}}' metadata/metadataBRCA/metadata.brca_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/HER2_$num.matrix.her2; printf "\tHER2_"$num >> BRCA/sampleHeader_pancan.her2.txt; printf "HER2_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.her2;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.her2 > BRCA/expression_pancan/matrix.pirna.expression.temp.her2
+
+export num=0;
+awk -F "\t" '{if($14 =="BRCA_LumA"){print$1}}' metadata/metadataBRCA/metadata.brca_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/LUMA_$num.matrix.luma; printf "\tLUMA_"$num >> BRCA/sampleHeader_pancan.luma.txt; printf "LUMA_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.luma;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.luma > BRCA/expression_pancan/matrix.pirna.expression.temp.luma
+
+export num=0;
+awk -F "\t" '{if($14 =="BRCA_LumB"){print$1}}' metadata/metadataBRCA/metadata.brca_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/LUMB_$num.matrix.lumb; printf "\tLUMB_"$num >> BRCA/sampleHeader_pancan.lumb.txt; printf "LUMB_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.lumb;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.lumb > BRCA/expression_pancan/matrix.pirna.expression.temp.lumb
+
+export num=0;
+awk -F "\t" '{if($14 =="BRCA_Normal"){print$1}}' metadata/metadataBRCA/metadata.brca_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/PCNORMAL_$num.matrix.pcnormal; printf "\tPCNORMAL_"$num >> BRCA/sampleHeader_pancan.pcnormal.txt; printf "PCNORMAL_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.pcnormal;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.pcnormal > BRCA/expression_pancan/matrix.pirna.expression.temp.pcnormal
+
+export num=0;
+awk -F "\t" '{if($14 =="NA"){print$1}}' metadata/metadataBRCA/metadata.brca_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/PCNA_$num.matrix.pcna; printf "\tPCNA_"$num >> BRCA/sampleHeader_pancan.pcna.txt; printf "PCNA_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.pcna;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.pcna > BRCA/expression_pancan/matrix.pirna.expression.temp.pcna
+
+
+#ER status
+cut -f 5 metadata/metadataBRCA/metadata.brca_2012_data.txt | sort -k 1,1 | uniq -c
+## 2   Indeterminate
+## 67  NA
+## 173 Negative
+## 31  Not Performed
+## 5   Performed but Not Available
+## 585 Positive
+##Coloco "Indeterminate", "Not Performed" e "Performed but Not Available" juntos pois posso predizer onde podem estar mesmo sem ter esse dado
+
+export num=0;
+awk -F "\t" '{if($5 =="Negative"){print$1}}' metadata/metadataBRCA/metadata.brca_2012_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/ERNEGATIVO_$num.matrix.ernegativo; printf "\tERNEGATIVO_"$num >> BRCA/sampleHeader_pancan.ernegativo.txt; printf "ERNEGATIVO_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.ernegativo;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.ernegativo > BRCA/expression_pancan/matrix.pirna.expression.temp.ernegativo
+
+export num=0;
+awk -F "\t" '{if($5 =="Positive"){print$1}}' metadata/metadataBRCA/metadata.brca_2012_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/ERPOSITIVO_$num.matrix.erpositivo; printf "\tERPOSITIVO_"$num >> BRCA/sampleHeader_pancan.erpositivo.txt; printf "ERPOSITIVO_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.erpositivo;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.erpositivo > BRCA/expression_pancan/matrix.pirna.expression.temp.erpositivo
+
+export num=0;
+awk -F "\t" '{if($5 =="NA"){print$1}}' metadata/metadataBRCA/metadata.brca_2012_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/ERNA_$num.matrix.erna; printf "\tERNA_"$num >> BRCA/sampleHeader_pancan.erna.txt; printf "ERNA_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.erna;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.erna > BRCA/expression_pancan/matrix.pirna.expression.temp.erna
+
+export num=0;
+awk -F "\t" '{if($5 =="Indeterminate" || $5 =="Not Performed" || $5 =="Performed but Not Available"){print$1}}' metadata/metadataBRCA/metadata.brca_2012_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/ERNOTAVAILABLE_$num.matrix.ernotavailable; printf "\tERNOTAVAILABLE_"$num >> BRCA/sampleHeader_pancan.ernotavailable.txt; printf "ERNOTAVAILABLE_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.ernotavailable;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.ernotavailable > BRCA/expression_pancan/matrix.pirna.expression.temp.ernotavailable
+
+
+
+#Her2 status
+cut -f 7 metadata/metadataBRCA/metadata.brca_2012_data.txt | sort -k 1,1 | uniq -c
+## 10  Equivocal
+## 108 NA
+## 634 Negative
+## 111 Positive
+
+export num=0;
+awk -F "\t" '{if($7 =="Negative"){print$1}}' metadata/metadataBRCA/metadata.brca_2012_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/HER2NEGATIVO_$num.matrix.her2negativo; printf "\tHER2NEGATIVO_"$num >> BRCA/sampleHeader_pancan.her2negativo.txt; printf "HER2NEGATIVO_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.her2negativo;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.her2negativo > BRCA/expression_pancan/matrix.pirna.expression.temp.her2negativo
+
+export num=0;
+awk -F "\t" '{if($7 =="Positive"){print$1}}' metadata/metadataBRCA/metadata.brca_2012_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/HER2POSITIVO_$num.matrix.her2positivo; printf "\tHER2POSITIVO_"$num >> BRCA/sampleHeader_pancan.her2positivo.txt; printf "HER2POSITIVO_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.her2positivo;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.her2positivo > BRCA/expression_pancan/matrix.pirna.expression.temp.her2positivo
+
+export num=0;
+awk -F "\t" '{if($7 =="NA"){print$1}}' metadata/metadataBRCA/metadata.brca_2012_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/HER2NA_$num.matrix.her2na; printf "\tHER2NA_"$num >> BRCA/sampleHeader_pancan.her2na.txt; printf "HER2NA_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.her2na;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.her2na > BRCA/expression_pancan/matrix.pirna.expression.temp.her2na
+
+export num=0;
+awk -F "\t" '{if($7 =="Equivocal"){print$1}}' metadata/metadataBRCA/metadata.brca_2012_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/HER2EQUIVOCAL_$num.matrix.her2equivocal; printf "\tHER2EQUIVOCAL_"$num >> BRCA/sampleHeader_pancan.her2equivocal.txt; printf "HER2EQUIVOCAL_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.her2equivocal;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.her2equivocal > BRCA/expression_pancan/matrix.pirna.expression.temp.her2equivocal
+
+
+#PR status
+cut -f 11 metadata/metadataBRCA/metadata.brca_2012_data.txt | sort -k 1,1 | uniq -c
+## 4   Indeterminate
+## 67  NA
+## 243 Negative
+## 32  Not Performed
+## 5   Performed but Not Available
+## 512 Positive
+##Coloco "Indeterminate", "Not Performed" e "Performed but Not Available" juntos pois posso predizer onde podem estar mesmo sem ter esse dado
+
+export num=0;
+awk -F "\t" '{if($11 =="Negative"){print$1}}' metadata/metadataBRCA/metadata.brca_2012_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/PRNEGATIVO_$num.matrix.prnegativo; printf "\tPRNEGATIVO_"$num >> BRCA/sampleHeader_pancan.prnegativo.txt; printf "PRNEGATIVO_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.prnegativo;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.prnegativo > BRCA/expression_pancan/matrix.pirna.expression.temp.prnegativo
+
+export num=0;
+awk -F "\t" '{if($11 =="Positive"){print$1}}' metadata/metadataBRCA/metadata.brca_2012_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/PRPOSITIVO_$num.matrix.prpositivo; printf "\tPRPOSITIVO_"$num >> BRCA/sampleHeader_pancan.prpositivo.txt; printf "PRPOSITIVO_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.prpositivo;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.prpositivo > BRCA/expression_pancan/matrix.pirna.expression.temp.prpositivo
+
+export num=0;
+awk -F "\t" '{if($11 =="NA"){print$1}}' metadata/metadataBRCA/metadata.brca_2012_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/PRNA_$num.matrix.prna; printf "\tPRNA_"$num >> BRCA/sampleHeader_pancan.prna.txt; printf "PRNA_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.prna;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.prna > BRCA/expression_pancan/matrix.pirna.expression.temp.prna
+
+export num=0;
+awk -F "\t" '{if($11 =="Indeterminate" || $11 =="Not Performed" || $11 =="Performed but Not Available"){print$1}}' metadata/metadataBRCA/metadata.brca_2012_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/PRNOTAVAILABLE_$num.matrix.prnotavailable; printf "\tPRNOTAVAILABLE_"$num >> BRCA/sampleHeader_pancan.prnotavailable.txt; printf "PRNOTAVAILABLE_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.prnotavailable;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.prnotavailable > BRCA/expression_pancan/matrix.pirna.expression.temp.prnotavailable
+
+
+#TRIPLE NEGATIVE status
+
+export num=0;
+awk -F "\t" '{if($5 =="Negative" || $7 =="Negative" || $11 =="Negative"){print$1}}' metadata/metadataBRCA/metadata.brca_2012_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s BRCA/pirnaExist/pirnaExist.$eachRow.counted.txt > BRCA/matrixFiles_pancan/TN_$num.matrix.tn; printf "\tTN_"$num >> BRCA/sampleHeader_pancan.tn.txt; printf "TN_"$num"\t"$eachRow"\n" >> BRCA/table_pancan.cat.tn;let num++; done;
+paste BRCA/expression_ajcc/matrix.pirna.expression.txt BRCA/matrixFiles_pancan/*.matrix.tn > BRCA/expression_pancan/matrix.pirna.expression.temp.tn
+
+
+
+
+cut -f 11 metadata.prad_panCancer_data.txt | sort -k 1,1 | uniq -c
+## 375 NA
+###Sem dados de metastase eu nao posso avaliar
+
+
+cut -f 12 metadata.prad_panCancer_data.txt | sort -k 1,1 | uniq -c
+## 273 N0
+## 46  N1
+## 56  NA
+
+export num=0;
+awk -F "\t" '{if($12 =="N0"){print$1}}' metadata/metadataPRAD/metadata.prad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PRAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PRAD/matrixFiles_pancan/N0_$num.matrix.n0; printf "\tN0_"$num >> PRAD/sampleHeader_pancan.n0.txt; printf "N0_"$num"\t"$eachRow"\n" >> PRAD/table_pancan.cat.n0;let num++; done;
+paste PRAD/expression_ajcc/matrix.pirna.expression.txt PRAD/matrixFiles_pancan/*.matrix.n0 > PRAD/expression_pancan/matrix.pirna.expression.temp.n0
+
+export num=0;
+awk -F "\t" '{if($12 =="N1"){print$1}}' metadata/metadataPRAD/metadata.prad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PRAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PRAD/matrixFiles_pancan/N1_$num.matrix.n1; printf "\tN1_"$num >> PRAD/sampleHeader_pancan.n1.txt; printf "N1_"$num"\t"$eachRow"\n" >> PRAD/table_pancan.cat.n1;let num++; done;
+paste PRAD/expression_ajcc/matrix.pirna.expression.txt PRAD/matrixFiles_pancan/*.matrix.n1 > PRAD/expression_pancan/matrix.pirna.expression.temp.n1
+
+export num=0;
+awk -F "\t" '{if($12 =="NA"){print$1}}' metadata/metadataPRAD/metadata.prad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PRAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PRAD/matrixFiles_pancan/NNA_$num.matrix.nna; printf "\tNNA_"$num >> PRAD/sampleHeader_pancan.nna.txt; printf "NNA_"$num"\t"$eachRow"\n" >> PRAD/table_pancan.cat.nna;let num++; done;
+paste PRAD/expression_ajcc/matrix.pirna.expression.txt PRAD/matrixFiles_pancan/*.matrix.nna > PRAD/expression_pancan/matrix.pirna.expression.temp.nna
+
+
+cut -f 13 metadata/metadataPRAD/metadata.prad_panCancer_data.txt | sort -k 1,1 | uniq -c
+## 3   NA
+## 11  T2A
+## 7   T2B
+## 137 T2C
+## 127 T3A
+## 86  T3B
+## 4   T4
+
+export num=0;
+awk -F "\t" '{if($13 == "T2" || $13 == "T2A" || $13 == "T2B" || $13 == "T2C"){print$1}}' metadata/metadataPRAD/metadata.prad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PRAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PRAD/matrixFiles_pancan/T2_$num.matrix.t2; printf "\tT2_"$num >> PRAD/sampleHeader_pancan.t2.txt; printf "T2_"$num"\t"$eachRow"\n" >> PRAD/table_pancan.cat.t2;let num++; done;
+paste PRAD/expression_ajcc/matrix.pirna.expression.txt PRAD/matrixFiles_pancan/*.matrix.t2 > PRAD/expression_pancan/matrix.pirna.expression.temp.t2
+
+export num=0;
+awk -F "\t" '{if($13 == "T3A" || $13 == "T3B"){print$1}}' metadata/metadataPRAD/metadata.prad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PRAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PRAD/matrixFiles_pancan/T3_$num.matrix.t3; printf "\tT3_"$num >> PRAD/sampleHeader_pancan.t3.txt; printf "T3_"$num"\t"$eachRow"\n" >> PRAD/table_pancan.cat.t3;let num++; done;
+paste PRAD/expression_ajcc/matrix.pirna.expression.txt PRAD/matrixFiles_pancan/*.matrix.t3 > PRAD/expression_pancan/matrix.pirna.expression.temp.t3
+
+export num=0;
+awk -F "\t" '{if($13 == "T4"){print$1}}' metadata/metadataPRAD/metadata.prad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PRAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PRAD/matrixFiles_pancan/T4_$num.matrix.t4; printf "\tT4_"$num >> PRAD/sampleHeader_pancan.t4.txt; printf "T4_"$num"\t"$eachRow"\n" >> PRAD/table_pancan.cat.t4;let num++; done;
+paste PRAD/expression_ajcc/matrix.pirna.expression.txt PRAD/matrixFiles_pancan/*.matrix.t4 > PRAD/expression_pancan/matrix.pirna.expression.temp.t4
+
+export num=0;
+awk -F "\t" '{if($13 == "NA"){print$1}}' metadata/metadataPRAD/metadata.prad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PRAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PRAD/matrixFiles_pancan/TNA_$num.matrix.tna; printf "\tTNA_"$num >> PRAD/sampleHeader_pancan.tna.txt; printf "TNA_"$num"\t"$eachRow"\n" >> PRAD/table_pancan.cat.tna;let num++; done;
+paste PRAD/expression_ajcc/matrix.pirna.expression.txt PRAD/matrixFiles_pancan/*.matrix.tna > PRAD/expression_pancan/matrix.pirna.expression.temp.tna
+
+
+cut -f 17 metadata/metadataPRAD/metadata.prad_panCancer_data.txt | sort -k 1,1 | uniq -c
+## 362 Prostate Adenocarcinoma, Acinar Type
+## 13  Prostate Adenocarcinoma, Other Subtype
+
+export num=0;
+awk -F "\t" '{if($17 == "Prostate Adenocarcinoma, Acinar Type"){print$1}}' metadata/metadataPRAD/metadata.prad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PRAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PRAD/matrixFiles_pancan/ACINARTYPE_$num.matrix.acinartype; printf "\tACINARTYPE_"$num >> PRAD/sampleHeader_pancan.acinartype.txt; printf "ACINARTYPE_"$num"\t"$eachRow"\n" >> PRAD/table_pancan.cat.acinartype;let num++; done;
+paste PRAD/expression_ajcc/matrix.pirna.expression.txt PRAD/matrixFiles_pancan/*.matrix.acinartype > PRAD/expression_pancan/matrix.pirna.expression.temp.acinartype
+
+export num=0;
+awk -F "\t" '{if($17 == "Prostate Adenocarcinoma, Other Subtype"){print$1}}' metadata/metadataPRAD/metadata.prad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PRAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PRAD/matrixFiles_pancan/OTHERTYPE_$num.matrix.othertype; printf "\tOTHERTYPE_"$num >> PRAD/sampleHeader_pancan.othertype.txt; printf "OTHERTYPE_"$num"\t"$eachRow"\n" >> PRAD/table_pancan.cat.othertype;let num++; done;
+paste PRAD/expression_ajcc/matrix.pirna.expression.txt PRAD/matrixFiles_pancan/*.matrix.othertype > PRAD/expression_pancan/matrix.pirna.expression.temp.othertype
+
+
+
+
+cut -f 11 metadata/metadataPRAD/metadata.prad_2015_data.txt | sort -k 1,1 | uniq -c
+## 1   10
+## 52  6
+## 148 7
+## 36  8
+## 37  9
+## USO "MENOR OU IGUAL A 6", "7" e "MAIOR OU IGUAL A 8"
+
+export num=0;
+awk -F "\t" '{if($11 <= 6){print$1}}' metadata/metadataPRAD/metadata.prad_2015_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PRAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PRAD/matrixFiles_pancan/LESSEQUAL6_$num.matrix.lessequal6; printf "\tLESSEQUAL6_"$num >> PRAD/sampleHeader_pancan.lessequal6.txt; printf "LESSEQUAL6_"$num"\t"$eachRow"\n" >> PRAD/table_pancan.cat.lessequal6;let num++; done;
+paste PRAD/expression_ajcc/matrix.pirna.expression.txt PRAD/matrixFiles_pancan/*.matrix.lessequal6 > PRAD/expression_pancan/matrix.pirna.expression.temp.lessequal6
+
+export num=0;
+awk -F "\t" '{if($11 == 7){print$1}}' metadata/metadataPRAD/metadata.prad_2015_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PRAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PRAD/matrixFiles_pancan/EQUAL7_$num.matrix.equal7; printf "\tEQUAL7_"$num >> PRAD/sampleHeader_pancan.equal7.txt; printf "EQUAL7_"$num"\t"$eachRow"\n" >> PRAD/table_pancan.cat.equal7;let num++; done;
+paste PRAD/expression_ajcc/matrix.pirna.expression.txt PRAD/matrixFiles_pancan/*.matrix.equal7 > PRAD/expression_pancan/matrix.pirna.expression.temp.equal7
+
+export num=0;
+awk -F "\t" '{if($11 >= 8){print$1}}' metadata/metadataPRAD/metadata.prad_2015_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PRAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PRAD/matrixFiles_pancan/MOREEQUAL8_$num.matrix.moreequal8; printf "\tMOREEQUAL8_"$num >> PRAD/sampleHeader_pancan.moreequal8.txt; printf "MOREEQUAL8_"$num"\t"$eachRow"\n" >> PRAD/table_pancan.cat.moreequal8;let num++; done;
+paste PRAD/expression_ajcc/matrix.pirna.expression.txt PRAD/matrixFiles_pancan/*.matrix.moreequal8 > PRAD/expression_pancan/matrix.pirna.expression.temp.moreequal8
+
+
+cut -f 11 metadata.paad_panCancer_data.txt | sort -k 1,1 | uniq -c
+## 73 M0
+## 3  M1
+## 65 MX
+
+export num=0;
+awk -F "\t" '{if($11 == "M0"){print$1}}' metadata/metadataPAAD/metadata.paad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PAAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PAAD/matrixFiles_pancan/M0_$num.matrix.m0; printf "\tM0_"$num >> PAAD/sampleHeader_pancan.m0.txt; printf "M0_"$num"\t"$eachRow"\n" >> PAAD/table_pancan.cat.m0;let num++; done;
+paste PAAD/expression_ajcc/matrix.pirna.expression.txt PAAD/matrixFiles_pancan/*.matrix.m0 > PAAD/expression_pancan/matrix.pirna.expression.temp.m0
+
+export num=0;
+awk -F "\t" '{if($11 == "M1"){print$1}}' metadata/metadataPAAD/metadata.paad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PAAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PAAD/matrixFiles_pancan/M1_$num.matrix.m1; printf "\tM1_"$num >> PAAD/sampleHeader_pancan.m1.txt; printf "M1_"$num"\t"$eachRow"\n" >> PAAD/table_pancan.cat.m1;let num++; done;
+paste PAAD/expression_ajcc/matrix.pirna.expression.txt PAAD/matrixFiles_pancan/*.matrix.m1 > PAAD/expression_pancan/matrix.pirna.expression.temp.m1
+
+export num=0;
+awk -F "\t" '{if($11 == "MX"){print$1}}' metadata/metadataPAAD/metadata.paad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PAAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PAAD/matrixFiles_pancan/MX_$num.matrix.mx; printf "\tMX_"$num >> PAAD/sampleHeader_pancan.mx.txt; printf "MX_"$num"\t"$eachRow"\n" >> PAAD/table_pancan.cat.mx;let num++; done;
+paste PAAD/expression_ajcc/matrix.pirna.expression.txt PAAD/matrixFiles_pancan/*.matrix.mx > PAAD/expression_pancan/matrix.pirna.expression.temp.mx
+
+
+cut -f 12 metadata/metadataPAAD/metadata.paad_panCancer_data.txt | sort -k 1,1 | uniq -c
+## 35  N0
+## 101 N1
+## 3   N1B
+## 2   NX
+
+export num=0;
+awk -F "\t" '{if($12 == "N0"){print$1}}' metadata/metadataPAAD/metadata.paad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PAAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PAAD/matrixFiles_pancan/N0_$num.matrix.n0; printf "\tN0_"$num >> PAAD/sampleHeader_pancan.n0.txt; printf "N0_"$num"\t"$eachRow"\n" >> PAAD/table_pancan.cat.n0;let num++; done;
+paste PAAD/expression_ajcc/matrix.pirna.expression.txt PAAD/matrixFiles_pancan/*.matrix.n0 > PAAD/expression_pancan/matrix.pirna.expression.temp.n0
+
+export num=0;
+awk -F "\t" '{if($12 == "N1" || $12 == "N1B"){print$1}}' metadata/metadataPAAD/metadata.paad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PAAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PAAD/matrixFiles_pancan/N1_$num.matrix.n1; printf "\tN1_"$num >> PAAD/sampleHeader_pancan.n1.txt; printf "N1_"$num"\t"$eachRow"\n" >> PAAD/table_pancan.cat.n1;let num++; done;
+paste PAAD/expression_ajcc/matrix.pirna.expression.txt PAAD/matrixFiles_pancan/*.matrix.n1 > PAAD/expression_pancan/matrix.pirna.expression.temp.n1
+
+export num=0;
+awk -F "\t" '{if($12 == "NX"){print$1}}' metadata/metadataPAAD/metadata.paad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PAAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PAAD/matrixFiles_pancan/NX_$num.matrix.nx; printf "\tNX_"$num >> PAAD/sampleHeader_pancan.nx.txt; printf "N2_"$num"\t"$eachRow"\n" >> PAAD/table_pancan.cat.n2;let num++; done;
+paste PAAD/expression_ajcc/matrix.pirna.expression.txt PAAD/matrixFiles_pancan/*.matrix.nx > PAAD/expression_pancan/matrix.pirna.expression.temp.nx
+
+
+cut -f 13 metadata/metadataPAAD/metadata.paad_panCancer_data.txt | sort -k 1,1 | uniq -c
+## 3   T1
+## 15  T2
+## 121 T3
+## 2   T4
+
+export num=0;
+awk -F "\t" '{if($13 == "T1"){print$1}}' metadata/metadataPAAD/metadata.paad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PAAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PAAD/matrixFiles_pancan/T1_$num.matrix.t1; printf "\tT1_"$num >> PAAD/sampleHeader_pancan.t1.txt; printf "T1_"$num"\t"$eachRow"\n" >> PAAD/table_pancan.cat.t1;let num++; done;
+paste PAAD/expression_ajcc/matrix.pirna.expression.txt PAAD/matrixFiles_pancan/*.matrix.t1 > PAAD/expression_pancan/matrix.pirna.expression.temp.t1
+
+export num=0;
+awk -F "\t" '{if($13 == "T2"){print$1}}' metadata/metadataPAAD/metadata.paad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PAAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PAAD/matrixFiles_pancan/T2_$num.matrix.t2; printf "\tT2_"$num >> PAAD/sampleHeader_pancan.t2.txt; printf "T2_"$num"\t"$eachRow"\n" >> PAAD/table_pancan.cat.t2;let num++; done;
+paste PAAD/expression_ajcc/matrix.pirna.expression.txt PAAD/matrixFiles_pancan/*.matrix.t2 > PAAD/expression_pancan/matrix.pirna.expression.temp.t2
+
+export num=0;
+awk -F "\t" '{if($13 == "T3"){print$1}}' metadata/metadataPAAD/metadata.paad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PAAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PAAD/matrixFiles_pancan/T3_$num.matrix.t3; printf "\tT3_"$num >> PAAD/sampleHeader_pancan.t3.txt; printf "T3_"$num"\t"$eachRow"\n" >> PAAD/table_pancan.cat.t3;let num++; done;
+paste PAAD/expression_ajcc/matrix.pirna.expression.txt PAAD/matrixFiles_pancan/*.matrix.t3 > PAAD/expression_pancan/matrix.pirna.expression.temp.t3
+
+export num=0;
+awk -F "\t" '{if($13 == "T4"){print$1}}' metadata/metadataPAAD/metadata.paad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PAAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PAAD/matrixFiles_pancan/T4_$num.matrix.t4; printf "\tT4_"$num >> PAAD/sampleHeader_pancan.t4.txt; printf "T4_"$num"\t"$eachRow"\n" >> PAAD/table_pancan.cat.t4;let num++; done;
+paste PAAD/expression_ajcc/matrix.pirna.expression.txt PAAD/matrixFiles_pancan/*.matrix.t4 > PAAD/expression_pancan/matrix.pirna.expression.temp.t4
+
+
+cut -f 9 metadata/metadataPAAD/metadata.paad_panCancer_data.txt | sort -k 1,1 | uniq -c
+## 23 G1
+## 73 G2
+## 42 G3
+## 2  G4
+## 1  GX
+
+export num=0;
+awk -F "\t" '{if($9 == "G1"){print$1}}' metadata/metadataPAAD/metadata.paad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PAAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PAAD/matrixFiles_pancan/G1_$num.matrix.g1; printf "\tG1_"$num >> PAAD/sampleHeader_pancan.g1.txt; printf "G1_"$num"\t"$eachRow"\n" >> PAAD/table_pancan.cat.g1;let num++; done;
+paste PAAD/expression_ajcc/matrix.pirna.expression.txt PAAD/matrixFiles_pancan/*.matrix.g1 > PAAD/expression_pancan/matrix.pirna.expression.temp.g1
+
+export num=0;
+awk -F "\t" '{if($9 == "G2"){print$1}}' metadata/metadataPAAD/metadata.paad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PAAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PAAD/matrixFiles_pancan/G2_$num.matrix.g2; printf "\tG2_"$num >> PAAD/sampleHeader_pancan.g2.txt; printf "G2_"$num"\t"$eachRow"\n" >> PAAD/table_pancan.cat.g2;let num++; done;
+paste PAAD/expression_ajcc/matrix.pirna.expression.txt PAAD/matrixFiles_pancan/*.matrix.g2 > PAAD/expression_pancan/matrix.pirna.expression.temp.g2
+
+export num=0;
+awk -F "\t" '{if($9 == "G3"){print$1}}' metadata/metadataPAAD/metadata.paad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PAAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PAAD/matrixFiles_pancan/G3_$num.matrix.g3; printf "\tG3_"$num >> PAAD/sampleHeader_pancan.g3.txt; printf "G3_"$num"\t"$eachRow"\n" >> PAAD/table_pancan.cat.g3;let num++; done;
+paste PAAD/expression_ajcc/matrix.pirna.expression.txt PAAD/matrixFiles_pancan/*.matrix.g3 > PAAD/expression_pancan/matrix.pirna.expression.temp.g3
+
+export num=0;
+awk -F "\t" '{if($9 == "G4"){print$1}}' metadata/metadataPAAD/metadata.paad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PAAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PAAD/matrixFiles_pancan/G4_$num.matrix.g4; printf "\tG4_"$num >> PAAD/sampleHeader_pancan.g4.txt; printf "G4_"$num"\t"$eachRow"\n" >> PAAD/table_pancan.cat.g4;let num++; done;
+paste PAAD/expression_ajcc/matrix.pirna.expression.txt PAAD/matrixFiles_pancan/*.matrix.g4 > PAAD/expression_pancan/matrix.pirna.expression.temp.g4
+
+export num=0;
+awk -F "\t" '{if($9 == "GX"){print$1}}' metadata/metadataPAAD/metadata.paad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PAAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PAAD/matrixFiles_pancan/GX_$num.matrix.gx; printf "\tGX_"$num >> PAAD/sampleHeader_pancan.gx.txt; printf "GX_"$num"\t"$eachRow"\n" >> PAAD/table_pancan.cat.gx;let num++; done;
+paste PAAD/expression_ajcc/matrix.pirna.expression.txt PAAD/matrixFiles_pancan/*.matrix.gx > PAAD/expression_pancan/matrix.pirna.expression.temp.gx
+
+
+cut -f 17 metadata/metadataPAAD/metadata.paad_panCancer_data.txt | sort -k 1,1 | uniq -c
+## 119 Pancreas Adenocarcinoma, Ductal Type
+## 17  Pancreas Adenocarcinoma, Other Subtype
+## 4   Pancreas Carcinoma, Colloid (Mucinous Non-Cystic)
+## 1   Pancreas Carcinoma, Undifferentiated
+
+export num=0;
+awk -F "\t" '{if($17 == "Pancreas Adenocarcinoma, Ductal Type"){print$1}}' metadata/metadataPAAD/metadata.paad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PAAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PAAD/matrixFiles_pancan/DUCTALTYPE_$num.matrix.ductaltype; printf "\tDUCTALTYPE_"$num >> PAAD/sampleHeader_pancan.ductaltype.txt; printf "DUCTALTYPE_"$num"\t"$eachRow"\n" >> PAAD/table_pancan.cat.ductaltype;let num++; done;
+paste PAAD/expression_ajcc/matrix.pirna.expression.txt PAAD/matrixFiles_pancan/*.matrix.ductaltype > PAAD/expression_pancan/matrix.pirna.expression.temp.ductaltype
+
+export num=0;
+awk -F "\t" '{if($17 == "Pancreas Adenocarcinoma, Other Subtype"){print$1}}' metadata/metadataPAAD/metadata.paad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PAAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PAAD/matrixFiles_pancan/OTHERTYPE_$num.matrix.othertype; printf "\tOTHERTYPE_"$num >> PAAD/sampleHeader_pancan.othertype.txt; printf "OTHERTYPE_"$num"\t"$eachRow"\n" >> PAAD/table_pancan.cat.othertype;let num++; done;
+paste PAAD/expression_ajcc/matrix.pirna.expression.txt PAAD/matrixFiles_pancan/*.matrix.othertype > PAAD/expression_pancan/matrix.pirna.expression.temp.othertype
+
+export num=0;
+awk -F "\t" '{if($17 == "Pancreas Carcinoma, Colloid (Mucinous Non-Cystic)"){print$1}}' metadata/metadataPAAD/metadata.paad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PAAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PAAD/matrixFiles_pancan/COLLOIDTYPE_$num.matrix.colloidtype; printf "\tCOLLOIDTYPE_"$num >> PAAD/sampleHeader_pancan.colloidtype.txt; printf "COLLOIDTYPE_"$num"\t"$eachRow"\n" >> PAAD/table_pancan.cat.colloidtype;let num++; done;
+paste PAAD/expression_ajcc/matrix.pirna.expression.txt PAAD/matrixFiles_pancan/*.matrix.colloidtype > PAAD/expression_pancan/matrix.pirna.expression.temp.colloidtype
+
+export num=0;
+awk -F "\t" '{if($17 == "Pancreas Carcinoma, Undifferentiated"){print$1}}' metadata/metadataPAAD/metadata.paad_panCancer_data.txt | for eachRow in `cut -f1 -`; do perl scripts/joinColumns_2.pl -p rawData/pirnadb_pirna_list.txt -s PAAD/pirnaExist/pirnaExist.$eachRow.counted.txt > PAAD/matrixFiles_pancan/UNDIFFTYPE_$num.matrix.undifftype; printf "\tUNDIFFTYPE_"$num >> PAAD/sampleHeader_pancan.undifftype.txt; printf "UNDIFFTYPE_"$num"\t"$eachRow"\n" >> PAAD/table_pancan.cat.undifftype;let num++; done;
+paste PAAD/expression_ajcc/matrix.pirna.expression.txt PAAD/matrixFiles_pancan/*.matrix.undifftype > PAAD/expression_pancan/matrix.pirna.expression.temp.undifftype
+
+
+##
+ #
+ #
+ #
+for eachFile in `ls COAD | grep "sampleHeader_*"`; do printf "\n" >> COAD/$eachFile; done;
+for eachFile in `ls BRCA | grep "sampleHeader_*"`; do printf "\n" >> BRCA/$eachFile; done;
+for eachFile in `ls PRAD | grep "sampleHeader_*"`; do printf "\n" >> PRAD/$eachFile; done;
+for eachFile in `ls PAAD | grep "sampleHeader_*"`; do printf "\n" >> PAAD/$eachFile; done;

@@ -1,0 +1,345 @@
+##
+ #
+ #
+###Windows commandLine 
+C:\xampp\mysql\bin\mysql.exe -u root -p -h localhost pirna_db -e "SELECT rel_pirna_target.pirna_access, target.target_code, target.target_name FROM rel_pirna_target INNER JOIN pirna ON rel_pirna_target.pirna_access = pirna.pirna_access AND pirna.pirna_organism = 'Homo sapiens' INNER JOIN target ON rel_pirna_target.target_code = target.target_code" > C:\linuxFiles\pirnaTargetFile.txt
+
+
+for eachFile in `ls COAD/expression_ajcc/heatmap_005_10.*.all`; do IFS='.' read -a arr <<< "$eachFile"; cut -f 1 $eachFile > COAD/targets/targets.${arr[1]}.temp;awk -F " " 'NR==FNR{data[$2]=$1;next}{if(length(data[$3])>0){ data[$3]=substr(data[$3],0,15); print data[$3]"\t"$3"\t"$1 }}' rawData/ensemblToGenes.v28.txt rawData/pirnaTargetFile.txt | grep -w -f COAD/targets/targets.${arr[1]}.temp | sort -k1,1 | uniq -w 15 > COAD/targets/targets.${arr[1]}; rm -r COAD/targets/targets.${arr[1]}.temp; done;
+for eachFile in `ls COAD/expression_pancan/heatmap_005_10.*.all`; do IFS='.' read -a arr <<< "$eachFile"; cut -f 1 $eachFile > COAD/targets/targets.${arr[1]}.temp;awk -F " " 'NR==FNR{data[$2]=$1;next}{if(length(data[$3])>0){ data[$3]=substr(data[$3],0,15); print data[$3]"\t"$3"\t"$1 }}' rawData/ensemblToGenes.v28.txt rawData/pirnaTargetFile.txt | grep -w -f COAD/targets/targets.${arr[1]}.temp | sort -k1,1 | uniq -w 15 > COAD/targets/targets.${arr[1]}; rm -r COAD/targets/targets.${arr[1]}.temp; done;
+
+for eachFile in `ls BRCA/expression_ajcc/heatmap_005_10.*.all`; do IFS='.' read -a arr <<< "$eachFile"; cut -f 1 $eachFile > BRCA/targets/targets.${arr[1]}.temp;awk -F " " 'NR==FNR{data[$2]=$1;next}{if(length(data[$3])>0){ data[$3]=substr(data[$3],0,15); print data[$3]"\t"$3"\t"$1 }}' rawData/ensemblToGenes.v28.txt rawData/pirnaTargetFile.txt | grep -w -f BRCA/targets/targets.${arr[1]}.temp | sort -k1,1 | uniq -w 15 > BRCA/targets/targets.${arr[1]}; rm -r BRCA/targets/targets.${arr[1]}.temp; done;
+for eachFile in `ls BRCA/expression_pancan/heatmap_005_10.*.all`; do IFS='.' read -a arr <<< "$eachFile"; cut -f 1 $eachFile > BRCA/targets/targets.${arr[1]}.temp;awk -F " " 'NR==FNR{data[$2]=$1;next}{if(length(data[$3])>0){ data[$3]=substr(data[$3],0,15); print data[$3]"\t"$3"\t"$1 }}' rawData/ensemblToGenes.v28.txt rawData/pirnaTargetFile.txt | grep -w -f BRCA/targets/targets.${arr[1]}.temp | sort -k1,1 | uniq -w 15 > BRCA/targets/targets.${arr[1]}; rm -r BRCA/targets/targets.${arr[1]}.temp; done;
+
+for eachFile in `ls PRAD/expression_ajcc/heatmap_005_10.*.all`; do IFS='.' read -a arr <<< "$eachFile"; cut -f 1 $eachFile > PRAD/targets/targets.${arr[1]}.temp;awk -F " " 'NR==FNR{data[$2]=$1;next}{if(length(data[$3])>0){ data[$3]=substr(data[$3],0,15); print data[$3]"\t"$3"\t"$1 }}' rawData/ensemblToGenes.v28.txt rawData/pirnaTargetFile.txt | grep -w -f PRAD/targets/targets.${arr[1]}.temp | sort -k1,1 | uniq -w 15 > PRAD/targets/targets.${arr[1]}; rm -r PRAD/targets/targets.${arr[1]}.temp; done;
+for eachFile in `ls PRAD/expression_pancan/heatmap_005_10.*.all`; do IFS='.' read -a arr <<< "$eachFile"; cut -f 1 $eachFile > PRAD/targets/targets.${arr[1]}.temp;awk -F " " 'NR==FNR{data[$2]=$1;next}{if(length(data[$3])>0){ data[$3]=substr(data[$3],0,15); print data[$3]"\t"$3"\t"$1 }}' rawData/ensemblToGenes.v28.txt rawData/pirnaTargetFile.txt | grep -w -f PRAD/targets/targets.${arr[1]}.temp | sort -k1,1 | uniq -w 15 > PRAD/targets/targets.${arr[1]}; rm -r PRAD/targets/targets.${arr[1]}.temp; done;
+
+for eachFile in `ls PAAD/expression_ajcc/heatmap_005_10.*.all`; do IFS='.' read -a arr <<< "$eachFile"; cut -f 1 $eachFile > PAAD/targets/targets.${arr[1]}.temp;awk -F " " 'NR==FNR{data[$2]=$1;next}{if(length(data[$3])>0){ data[$3]=substr(data[$3],0,15); print data[$3]"\t"$3"\t"$1 }}' rawData/ensemblToGenes.v28.txt rawData/pirnaTargetFile.txt | grep -w -f PAAD/targets/targets.${arr[1]}.temp | sort -k1,1 | uniq -w 15 > PAAD/targets/targets.${arr[1]}; rm -r PAAD/targets/targets.${arr[1]}.temp; done;
+for eachFile in `ls PAAD/expression_pancan/heatmap_005_10.*.all`; do IFS='.' read -a arr <<< "$eachFile"; cut -f 1 $eachFile > PAAD/targets/targets.${arr[1]}.temp;awk -F " " 'NR==FNR{data[$2]=$1;next}{if(length(data[$3])>0){ data[$3]=substr(data[$3],0,15); print data[$3]"\t"$3"\t"$1 }}' rawData/ensemblToGenes.v28.txt rawData/pirnaTargetFile.txt | grep -w -f PAAD/targets/targets.${arr[1]}.temp | sort -k1,1 | uniq -w 15 > PAAD/targets/targets.${arr[1]}; rm -r PAAD/targets/targets.${arr[1]}.temp; done;
+
+
+##
+ #
+ #
+
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.all" "COAD/targets/targets.norxtum" "COAD" "norxtum_targets"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.all" "COAD/targets/targets.norxi" "COAD" "norxi_targets"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.all" "COAD/targets/targets.norxii" "COAD" "norxii_targets"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.all" "COAD/targets/targets.norxiii" "COAD" "norxiii_targets"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.all" "COAD/targets/targets.norxiv" "COAD" "norxiv_targets"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.all" "COAD/targets/targets.ixii" "COAD" "ixii_targets"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.all" "COAD/targets/targets.iixiii" "COAD" "iixiii_targets"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.all" "COAD/targets/targets.iiixiv" "COAD" "iiixiv_targets"
+
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.t.all" "COAD/targets/targets.norxtis" "COAD" "norxtis_targets"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.t.all" "COAD/targets/targets.norxt1" "COAD" "norxt1_targets"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.t.all" "COAD/targets/targets.norxt2" "COAD" "norxt2_targets"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.t.all" "COAD/targets/targets.norxt3" "COAD" "norxt3_targets"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.t.all" "COAD/targets/targets.norxt4" "COAD" "norxt4_targets"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.t.all" "COAD/targets/targets.tisxt1" "COAD" "tisxt1_targets"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.t.all" "COAD/targets/targets.t1xt2" "COAD" "t1xt2_targets"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.t.all" "COAD/targets/targets.t2xt3" "COAD" "t2xt3_targets"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.t.all" "COAD/targets/targets.t3xt4" "COAD" "t3xt3_targets"
+
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.n.all" "COAD/targets/targets.norxn0" "COAD" "norxn0_targets"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.n.all" "COAD/targets/targets.norxn1" "COAD" "norxn1_targets"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.n.all" "COAD/targets/targets.norxn2" "COAD" "norxn2_targets"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.n.all" "COAD/targets/targets.n0xn1" "COAD" "n0xn1_targets"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.n.all" "COAD/targets/targets.n1xn2" "COAD" "n1xn2_targets"
+
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.m.all" "COAD/targets/targets.norxm0" "COAD" "norxm0_targets"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.m.all" "COAD/targets/targets.norxm1" "COAD" "norxm1_targets"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.m.all" "COAD/targets/targets.norxmx" "COAD" "norxmx_targets"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.m.all" "COAD/targets/targets.m0xm1" "COAD" "m0xm1_targets"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.m.all" "COAD/targets/targets.m0xmx" "COAD" "m0xmx_targets"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.m.all" "COAD/targets/targets.m1xmx" "COAD" "m1xmx_targets"
+
+
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.all" "BRCA/targets/targets.norxtum" "BRCA" "norxtum_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.all" "BRCA/targets/targets.norxi" "BRCA" "norxi_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.all" "BRCA/targets/targets.norxii" "BRCA" "norxii_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.all" "BRCA/targets/targets.norxiii" "BRCA" "norxiii_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.all" "BRCA/targets/targets.norxiv" "BRCA" "norxiv_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.all" "BRCA/targets/targets.ixii" "BRCA" "ixii_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.all" "BRCA/targets/targets.iixiii" "BRCA" "iixiii_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.all" "BRCA/targets/targets.iiixiv" "BRCA" "iiixiv_targets"
+
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.t.all" "BRCA/targets/targets.norxt1" "BRCA" "norxt1_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.t.all" "BRCA/targets/targets.norxt2" "BRCA" "norxt2_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.t.all" "BRCA/targets/targets.norxt3" "BRCA" "norxt3_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.t.all" "BRCA/targets/targets.norxt4" "BRCA" "norxt4_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.t.all" "BRCA/targets/targets.t1xt2" "BRCA" "t1xt2_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.t.all" "BRCA/targets/targets.t2xt3" "BRCA" "t2xt3_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.t.all" "BRCA/targets/targets.t3xt4" "BRCA" "t3xt4_targets"
+
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.n.all" "BRCA/targets/targets.norxn0" "BRCA" "norxn0_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.n.all" "BRCA/targets/targets.norxn1" "BRCA" "norxn1_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.n.all" "BRCA/targets/targets.norxn2" "BRCA" "norxn2_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.n.all" "BRCA/targets/targets.norxn3" "BRCA" "norxn3_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.n.all" "BRCA/targets/targets.n0xn1" "BRCA" "n0xn1_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.n.all" "BRCA/targets/targets.n1xn2" "BRCA" "n1xn2_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.n.all" "BRCA/targets/targets.n2xn3" "BRCA" "n2xn3_targets"
+
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.m.all" "BRCA/targets/targets.norxm0" "BRCA" "norxm0_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.m.all" "BRCA/targets/targets.norxm1" "BRCA" "norxm1_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.m.all" "BRCA/targets/targets.m0xm1" "BRCA" "m0xm1_targets"
+
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/targets/targets.norxbasal" "BRCA" "norxbasal_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/targets/targets.norxher2" "BRCA" "norxher2_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/targets/targets.norxluma" "BRCA" "norxluma_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/targets/targets.norxlumb" "BRCA" "norxlumb_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/targets/targets.norxpcnormal" "BRCA" "norxpcnormal_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/targets/targets.basalxher2" "BRCA" "basalxher2_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/targets/targets.basalxluma" "BRCA" "basalxluma_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/targets/targets.basalxlumb" "BRCA" "basalxlumb_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/targets/targets.basalxpcnormal" "BRCA" "basalxpcnormal_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/targets/targets.her2xluma" "BRCA" "her2xluma_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/targets/targets.her2xlumb" "BRCA" "her2xlumb_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/targets/targets.her2xpcnormal" "BRCA" "her2xpcnormal_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/targets/targets.lumaxlumb" "BRCA" "lumaxlumb_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/targets/targets.lumaxpcnormal" "BRCA" "lumaxpcnormal_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/targets/targets.lumbxpcnormal" "BRCA" "lumbxpcnormal_targets"
+
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.er.all" "BRCA/targets/targets.norxerpositivo" "BRCA" "norxerpositivo_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.er.all" "BRCA/targets/targets.norxernegativo" "BRCA" "norxernegativo_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.er.all" "BRCA/targets/targets.ernegativoxerpositivo" "BRCA" "ernegativoxerpositivo_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.her.all" "BRCA/targets/targets.norxher2positivo" "BRCA" "norxher2positivo_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.her.all" "BRCA/targets/targets.norxher2negativo" "BRCA" "norxher2negativo_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.her.all" "BRCA/targets/targets.her2negativoxher2positivo" "BRCA" "her2negativoxher2positivo_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pr.all" "BRCA/targets/targets.norxprpositivo" "BRCA" "norxprpositivo_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pr.all" "BRCA/targets/targets.norxprnegativo" "BRCA" "norxprnegativo_targets"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pr.all" "BRCA/targets/targets.prnegativoxprpositivo" "BRCA" "prnegativoxprpositivo_targets"
+
+
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.all" "PRAD/targets/targets.norxtum" "PRAD" "norxtum_targets"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.all" "PRAD/targets/targets.norxii" "PRAD" "norxii_targets"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.all" "PRAD/targets/targets.norxiii" "PRAD" "norxiii_targets"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.all" "PRAD/targets/targets.norxiv" "PRAD" "norxiv_targets"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.all" "PRAD/targets/targets.iixiii" "PRAD" "iixiii_targets"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.all" "PRAD/targets/targets.iiixiv" "PRAD" "iiixiv_targets"
+
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.t.all" "PRAD/targets/targets.norxt1" "PRAD" "norxt1_targets"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.t.all" "PRAD/targets/targets.norxt2" "PRAD" "norxt2_targets"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.t.all" "PRAD/targets/targets.norxt3" "PRAD" "norxt3_targets"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.t.all" "PRAD/targets/targets.norxt4" "PRAD" "norxt4_targets"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.t.all" "PRAD/targets/targets.t1xt2" "PRAD" "t1xt2_targets"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.t.all" "PRAD/targets/targets.t2xt3" "PRAD" "t2xt3_targets"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.t.all" "PRAD/targets/targets.t3xt4" "PRAD" "t3xt4_targets"
+
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.n.all" "PRAD/targets/targets.norxn0" "PRAD" "norxn0_targets"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.n.all" "PRAD/targets/targets.norxn1" "PRAD" "norxn1_targets"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.n.all" "PRAD/targets/targets.n0xn1" "PRAD" "n0xn1_targets"
+
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.gleason.all" "PRAD/targets/targets.norxlessequal6" "PRAD" "norxlessequal6_targets"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.gleason.all" "PRAD/targets/targets.norxequal7" "PRAD" "norxequal7_targets"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.gleason.all" "PRAD/targets/targets.norxmoreequal8" "PRAD" "norxmoreequal8_targets"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.gleason.all" "PRAD/targets/targets.lessequal6xequal7" "PRAD" "lessequal6xequal7_targets"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.gleason.all" "PRAD/targets/targets.equal7xmoreequal8" "PRAD" "equal7xmoreequal8_targets"
+
+
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.all" "PAAD/targets/targets.norxtum" "PAAD" "norxtum_targets"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.all" "PAAD/targets/targets.norxi" "PAAD" "norxi_targets"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.all" "PAAD/targets/targets.norxii" "PAAD" "norxii_targets"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.all" "PAAD/targets/targets.norxiii" "PAAD" "norxiii_targets"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.all" "PAAD/targets/targets.norxiv" "PAAD" "norxiv_targets"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.all" "PAAD/targets/targets.ixii" "PAAD" "ixii_targets"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.all" "PAAD/targets/targets.iixiii" "PAAD" "iixiii_targets"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.all" "PAAD/targets/targets.iiixiv" "PAAD" "iiixiv_targets"
+
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.t.all" "PAAD/targets/targets.norxt1" "PAAD" "norxt1_targets"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.t.all" "PAAD/targets/targets.norxt2" "PAAD" "norxt2_targets"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.t.all" "PAAD/targets/targets.norxt3" "PAAD" "norxt3_targets"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.t.all" "PAAD/targets/targets.norxt4" "PAAD" "norxt4_targets"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.t.all" "PAAD/targets/targets.t1xt2" "PAAD" "t1xt2_targets"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.t.all" "PAAD/targets/targets.t2xt3" "PAAD" "t2xt3_targets"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.t.all" "PAAD/targets/targets.t3xt4" "PAAD" "t3xt4_targets"
+
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.n.all" "PAAD/targets/targets.norxn0" "PAAD" "norxn0_targets"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.n.all" "PAAD/targets/targets.norxn1" "PAAD" "norxn1_targets"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.n.all" "PAAD/targets/targets.n0xn1" "PAAD" "n0xn1_targets"
+
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.m.all" "PAAD/targets/targets.norxm0" "PAAD" "norxm0_targets"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.m.all" "PAAD/targets/targets.norxm1" "PAAD" "norxm1_targets"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.m.all" "PAAD/targets/targets.m0xm1" "PAAD" "m0xm1_targets"
+
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.g.all" "PAAD/targets/targets.norxg1" "PAAD" "norxg1_targets"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.g.all" "PAAD/targets/targets.norxg2" "PAAD" "norxg2_targets"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.g.all" "PAAD/targets/targets.norxg3" "PAAD" "norxg3_targets"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.g.all" "PAAD/targets/targets.norxg4" "PAAD" "norxg4_targets"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.g.all" "PAAD/targets/targets.g1xg2" "PAAD" "g1xg2_targets"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.g.all" "PAAD/targets/targets.g2xg3" "PAAD" "g2xg3_targets"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.g.all" "PAAD/targets/targets.g3xg4" "PAAD" "g3xg4_targets"
+
+
+
+##
+ #
+ #
+###Windows commandLine 
+C:\xampp\mysql\bin\mysql.exe -u root -p -h localhost pirna_db -e "SELECT rel_alignment_gene.gene_code, gene.gene_name, rel_pirna_alignment.pirna_access FROM rel_alignment_gene INNER JOIN rel_pirna_alignment ON rel_pirna_alignment.build_code = 'hg38' AND rel_pirna_alignment.alignment_id = rel_alignment_gene.alignment_id INNER JOIN gene ON rel_alignment_gene.gene_code = gene.gene_code" > C:\linuxFiles\pirnaOverlapFile.txt
+
+for eachFile in `ls COAD/expression_ajcc/heatmap_005_10.*.all`; do IFS='.' read -a arr <<< "$eachFile"; cut -f 1 $eachFile > COAD/overlaps/overlaps.${arr[1]}.temp; grep -w -f COAD/overlaps/overlaps.${arr[1]}.temp rawData/pirnaOverlapFile.txt | sort -k1,1 | uniq -w 15 > COAD/overlaps/overlaps.${arr[1]}; rm -r COAD/overlaps/overlaps.${arr[1]}.temp; done;
+for eachFile in `ls COAD/expression_pancan/heatmap_005_10.*.all`; do IFS='.' read -a arr <<< "$eachFile"; cut -f 1 $eachFile > COAD/overlaps/overlaps.${arr[1]}.temp; grep -w -f COAD/overlaps/overlaps.${arr[1]}.temp rawData/pirnaOverlapFile.txt | sort -k1,1 | uniq -w 15 > COAD/overlaps/overlaps.${arr[1]}; rm -r COAD/overlaps/overlaps.${arr[1]}.temp; done;
+
+for eachFile in `ls BRCA/expression_ajcc/heatmap_005_10.*.all`; do IFS='.' read -a arr <<< "$eachFile"; cut -f 1 $eachFile > BRCA/overlaps/overlaps.${arr[1]}.temp; grep -w -f BRCA/overlaps/overlaps.${arr[1]}.temp rawData/pirnaOverlapFile.txt | sort -k1,1 | uniq -w 15 > BRCA/overlaps/overlaps.${arr[1]}; rm -r BRCA/overlaps/overlaps.${arr[1]}.temp; done;
+for eachFile in `ls BRCA/expression_pancan/heatmap_005_10.*.all`; do IFS='.' read -a arr <<< "$eachFile"; cut -f 1 $eachFile > BRCA/overlaps/overlaps.${arr[1]}.temp; grep -w -f BRCA/overlaps/overlaps.${arr[1]}.temp rawData/pirnaOverlapFile.txt | sort -k1,1 | uniq -w 15 > BRCA/overlaps/overlaps.${arr[1]}; rm -r BRCA/overlaps/overlaps.${arr[1]}.temp; done;
+
+for eachFile in `ls PRAD/expression_ajcc/heatmap_005_10.*.all`; do IFS='.' read -a arr <<< "$eachFile"; cut -f 1 $eachFile > PRAD/overlaps/overlaps.${arr[1]}.temp; grep -w -f PRAD/overlaps/overlaps.${arr[1]}.temp rawData/pirnaOverlapFile.txt | sort -k1,1 | uniq -w 15 > PRAD/overlaps/overlaps.${arr[1]}; rm -r PRAD/overlaps/overlaps.${arr[1]}.temp; done;
+for eachFile in `ls PRAD/expression_pancan/heatmap_005_10.*.all`; do IFS='.' read -a arr <<< "$eachFile"; cut -f 1 $eachFile > PRAD/overlaps/overlaps.${arr[1]}.temp; grep -w -f PRAD/overlaps/overlaps.${arr[1]}.temp rawData/pirnaOverlapFile.txt | sort -k1,1 | uniq -w 15 > PRAD/overlaps/overlaps.${arr[1]}; rm -r PRAD/overlaps/overlaps.${arr[1]}.temp; done;
+
+for eachFile in `ls PAAD/expression_ajcc/heatmap_005_10.*.all`; do IFS='.' read -a arr <<< "$eachFile"; cut -f 1 $eachFile > PAAD/overlaps/overlaps.${arr[1]}.temp; grep -w -f PAAD/overlaps/overlaps.${arr[1]}.temp rawData/pirnaOverlapFile.txt | sort -k1,1 | uniq -w 15 > PAAD/overlaps/overlaps.${arr[1]}; rm -r PAAD/overlaps/overlaps.${arr[1]}.temp; done;
+for eachFile in `ls PAAD/expression_pancan/heatmap_005_10.*.all`; do IFS='.' read -a arr <<< "$eachFile"; cut -f 1 $eachFile > PAAD/overlaps/overlaps.${arr[1]}.temp; grep -w -f PAAD/overlaps/overlaps.${arr[1]}.temp rawData/pirnaOverlapFile.txt | sort -k1,1 | uniq -w 15 > PAAD/overlaps/overlaps.${arr[1]}; rm -r PAAD/overlaps/overlaps.${arr[1]}.temp; done;
+
+
+
+##
+ #
+ #
+
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.all" "COAD/overlaps/overlaps.norxtum" "COAD" "norxtum.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.all" "COAD/overlaps/overlaps.norxi" "COAD" "norxi.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.all" "COAD/overlaps/overlaps.norxii" "COAD" "norxii.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.all" "COAD/overlaps/overlaps.norxiii" "COAD" "norxiii.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.all" "COAD/overlaps/overlaps.norxiv" "COAD" "norxiv.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.all" "COAD/overlaps/overlaps.ixii" "COAD" "ixii.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.all" "COAD/overlaps/overlaps.iixiii" "COAD" "iixiii.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.all" "COAD/overlaps/overlaps.iiixiv" "COAD" "iiixiv.overlaps_overlaps"
+
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.t.all" "COAD/overlaps/overlaps.norxtis" "COAD" "norxtis.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.t.all" "COAD/overlaps/overlaps.norxt1" "COAD" "norxt1.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.t.all" "COAD/overlaps/overlaps.norxt2" "COAD" "norxt2.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.t.all" "COAD/overlaps/overlaps.norxt3" "COAD" "norxt3.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.t.all" "COAD/overlaps/overlaps.norxt4" "COAD" "norxt4.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.t.all" "COAD/overlaps/overlaps.tisxt1" "COAD" "tisxt1.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.t.all" "COAD/overlaps/overlaps.t1xt2" "COAD" "t1xt2.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.t.all" "COAD/overlaps/overlaps.t2xt3" "COAD" "t2xt3.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.t.all" "COAD/overlaps/overlaps.t3xt4" "COAD" "t3xt3.overlaps_overlaps"
+
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.n.all" "COAD/overlaps/overlaps.norxn0" "COAD" "norxn0.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.n.all" "COAD/overlaps/overlaps.norxn1" "COAD" "norxn1.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.n.all" "COAD/overlaps/overlaps.norxn2" "COAD" "norxn2.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.n.all" "COAD/overlaps/overlaps.n0xt1" "COAD" "n0xn1.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.n.all" "COAD/overlaps/overlaps.n1xt2" "COAD" "n1xn2.overlaps_overlaps"
+
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.m.all" "COAD/overlaps/overlaps.norxm0" "COAD" "norxm0.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.m.all" "COAD/overlaps/overlaps.norxm1" "COAD" "norxm1.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.m.all" "COAD/overlaps/overlaps.norxmx" "COAD" "norxmx.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.m.all" "COAD/overlaps/overlaps.m0xm1" "COAD" "m0xm1.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.m.all" "COAD/overlaps/overlaps.m0xmx" "COAD" "m0xmx.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "COAD/htSeqCount/matrixCount.genes.m.all" "COAD/overlaps/overlaps.m1xmx" "COAD" "m1xmx.overlaps_overlaps"
+
+
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.all" "BRCA/overlaps/overlaps.norxtum" "BRCA" "norxtum.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.all" "BRCA/overlaps/overlaps.norxi" "BRCA" "norxi.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.all" "BRCA/overlaps/overlaps.norxii" "BRCA" "norxii.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.all" "BRCA/overlaps/overlaps.norxiii" "BRCA" "norxiii.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.all" "BRCA/overlaps/overlaps.norxiv" "BRCA" "norxiv.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.all" "BRCA/overlaps/overlaps.ixii" "BRCA" "ixii.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.all" "BRCA/overlaps/overlaps.iixiii" "BRCA" "iixiii.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.all" "BRCA/overlaps/overlaps.iiixiv" "BRCA" "iiixiv.overlaps_overlaps"
+
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.t.all" "BRCA/overlaps/overlaps.norxt1" "BRCA" "norxt1.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.t.all" "BRCA/overlaps/overlaps.norxt2" "BRCA" "norxt2.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.t.all" "BRCA/overlaps/overlaps.norxt3" "BRCA" "norxt3.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.t.all" "BRCA/overlaps/overlaps.norxt4" "BRCA" "norxt4.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.t.all" "BRCA/overlaps/overlaps.t1xt2" "BRCA" "t1xt2.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.t.all" "BRCA/overlaps/overlaps.t2xt3" "BRCA" "t2xt3.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.t.all" "BRCA/overlaps/overlaps.t3xt4" "BRCA" "t3xt4.overlaps_overlaps"
+
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.n.all" "BRCA/overlaps/overlaps.norxn0" "BRCA" "norxn0.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.n.all" "BRCA/overlaps/overlaps.norxn1" "BRCA" "norxn1.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.n.all" "BRCA/overlaps/overlaps.norxn2" "BRCA" "norxn2.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.n.all" "BRCA/overlaps/overlaps.norxn3" "BRCA" "norxn3.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.n.all" "BRCA/overlaps/overlaps.n0xt1" "BRCA" "n0xn1.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.n.all" "BRCA/overlaps/overlaps.n1xt2" "BRCA" "n1xn2.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.n.all" "BRCA/overlaps/overlaps.n2xt3" "BRCA" "n2xn3.overlaps_overlaps"
+
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.m.all" "BRCA/overlaps/overlaps.norxm0" "BRCA" "norxm0.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.m.all" "BRCA/overlaps/overlaps.norxm1" "BRCA" "norxm1.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.m.all" "BRCA/overlaps/overlaps.m0xm1" "BRCA" "m0xm1.overlaps_overlaps"
+
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/overlaps/overlaps.norxbasal" "BRCA" "norxbasal.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/overlaps/overlaps.norxher2" "BRCA" "norxher2.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/overlaps/overlaps.norxluma" "BRCA" "norxluma.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/overlaps/overlaps.norxlumb" "BRCA" "norxlumb.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/overlaps/overlaps.norxpcnormal" "BRCA" "norxpcnormal.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/overlaps/overlaps.basalxher2" "BRCA" "basalxher2.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/overlaps/overlaps.basalxluma" "BRCA" "basalxluma.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/overlaps/overlaps.basalxlumb" "BRCA" "basalxlumb.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/overlaps/overlaps.basalxpcnormal" "BRCA" "basalxpcnormal.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/overlaps/overlaps.her2xluma" "BRCA" "her2xluma.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/overlaps/overlaps.her2xlumb" "BRCA" "her2xlumb.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/overlaps/overlaps.her2xpcnormal" "BRCA" "her2xpcnormal.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/overlaps/overlaps.lumaxlumb" "BRCA" "lumaxlumb.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/overlaps/overlaps.lumaxpcnormal" "BRCA" "lumaxpcnormal.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pc.all" "BRCA/overlaps/overlaps.lumbxpcnormal" "BRCA" "lumbxpcnormal.overlaps_overlaps"
+
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.er.all" "BRCA/overlaps/overlaps.norxerpositivo" "BRCA" "norxerpositivo.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.er.all" "BRCA/overlaps/overlaps.norxernegativo" "BRCA" "norxernegativo.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.er.all" "BRCA/overlaps/overlaps.ernegativoxerpositivo" "BRCA" "ernegativoxerpositivo.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.her.all" "BRCA/overlaps/overlaps.norxher2positivo" "BRCA" "norxher2positivo.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.her.all" "BRCA/overlaps/overlaps.norxher2negativo" "BRCA" "norxher2negativo.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.her.all" "BRCA/overlaps/overlaps.her2negativoxher2positivo" "BRCA" "her2negativoxher2positivo.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pr.all" "BRCA/overlaps/overlaps.norxprpositivo" "BRCA" "norxprpositivo.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pr.all" "BRCA/overlaps/overlaps.norxprnegativo" "BRCA" "norxprnegativo.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "BRCA/htSeqCount/matrixCount.genes.pr.all" "BRCA/overlaps/overlaps.prnegativoxprpositivo" "BRCA" "prnegativoxprpositivo.overlaps_overlaps"
+
+
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.all" "PRAD/overlaps/overlaps.norxtum" "PRAD" "norxtum.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.all" "PRAD/overlaps/overlaps.norxii" "PRAD" "norxii.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.all" "PRAD/overlaps/overlaps.norxiii" "PRAD" "norxiii.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.all" "PRAD/overlaps/overlaps.norxiv" "PRAD" "norxiv.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.all" "PRAD/overlaps/overlaps.iixiii" "PRAD" "iixiii.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.all" "PRAD/overlaps/overlaps.iiixiv" "PRAD" "iiixiv.overlaps_overlaps"
+
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.t.all" "PRAD/overlaps/overlaps.norxt1" "PRAD" "norxt1.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.t.all" "PRAD/overlaps/overlaps.norxt2" "PRAD" "norxt2.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.t.all" "PRAD/overlaps/overlaps.norxt3" "PRAD" "norxt3.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.t.all" "PRAD/overlaps/overlaps.norxt4" "PRAD" "norxt4.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.t.all" "PRAD/overlaps/overlaps.t1xt2" "PRAD" "t1xt2.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.t.all" "PRAD/overlaps/overlaps.t2xt3" "PRAD" "t2xt3.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.t.all" "PRAD/overlaps/overlaps.t3xt4" "PRAD" "t3xt4.overlaps_overlaps"
+
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.n.all" "PRAD/overlaps/overlaps.norxn0" "PRAD" "norxn0.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.n.all" "PRAD/overlaps/overlaps.norxn1" "PRAD" "norxn1.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.n.all" "PRAD/overlaps/overlaps.n0xt1" "PRAD" "n0xn1.overlaps_overlaps"
+
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.gleason.all" "PRAD/overlaps/overlaps.norxlessequal6" "PRAD" "norxlessequal6.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.gleason.all" "PRAD/overlaps/overlaps.norxequal7" "PRAD" "norxequal7.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.gleason.all" "PRAD/overlaps/overlaps.norxmoreequal8" "PRAD" "norxmoreequal8.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.gleason.all" "PRAD/overlaps/overlaps.lessequal6xequal7" "PRAD" "lessequal6xequal7.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PRAD/htSeqCount/matrixCount.genes.gleason.all" "PRAD/overlaps/overlaps.equal7xmoreequal8" "PRAD" "equal7xmoreequal8.overlaps_overlaps"
+
+
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.all" "PAAD/overlaps/overlaps.norxtum" "PAAD" "norxtum.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.all" "PAAD/overlaps/overlaps.norxi" "PAAD" "norxi.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.all" "PAAD/overlaps/overlaps.norxii" "PAAD" "norxii.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.all" "PAAD/overlaps/overlaps.norxiii" "PAAD" "norxiii.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.all" "PAAD/overlaps/overlaps.norxiv" "PAAD" "norxiv.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.all" "PAAD/overlaps/overlaps.ixii" "PAAD" "ixii.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.all" "PAAD/overlaps/overlaps.iixiii" "PAAD" "iixiii.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.all" "PAAD/overlaps/overlaps.iiixiv" "PAAD" "iiixiv.overlaps_overlaps"
+
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.t.all" "PAAD/overlaps/overlaps.norxt1" "PAAD" "norxt1.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.t.all" "PAAD/overlaps/overlaps.norxt2" "PAAD" "norxt2.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.t.all" "PAAD/overlaps/overlaps.norxt3" "PAAD" "norxt3.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.t.all" "PAAD/overlaps/overlaps.norxt4" "PAAD" "norxt4.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.t.all" "PAAD/overlaps/overlaps.t1xt2" "PAAD" "t1xt2.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.t.all" "PAAD/overlaps/overlaps.t2xt3" "PAAD" "t2xt3.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.t.all" "PAAD/overlaps/overlaps.t3xt4" "PAAD" "t3xt4.overlaps_overlaps"
+
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.n.all" "PAAD/overlaps/overlaps.norxn0" "PAAD" "norxn0.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.n.all" "PAAD/overlaps/overlaps.norxn1" "PAAD" "norxn1.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.n.all" "PAAD/overlaps/overlaps.n0xt1" "PAAD" "n0xn1.overlaps_overlaps"
+
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.m.all" "PAAD/overlaps/overlaps.norxm0" "PAAD" "norxm0.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.m.all" "PAAD/overlaps/overlaps.norxm1" "PAAD" "norxm1.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.m.all" "PAAD/overlaps/overlaps.m0xm1" "PAAD" "m0xm1.overlaps_overlaps"
+
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.g.all" "PAAD/overlaps/overlaps.norxg1" "PAAD" "norxg1.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.g.all" "PAAD/overlaps/overlaps.norxg2" "PAAD" "norxg2.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.g.all" "PAAD/overlaps/overlaps.norxg3" "PAAD" "norxg3.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.g.all" "PAAD/overlaps/overlaps.norxg4" "PAAD" "norxg4.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.g.all" "PAAD/overlaps/overlaps.g1xg2" "PAAD" "g1xg2.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.g.all" "PAAD/overlaps/overlaps.g2xg3" "PAAD" "g2xg3.overlaps_overlaps"
+Rscript scripts/plot_boxplot_genes.r "PAAD/htSeqCount/matrixCount.genes.g.all" "PAAD/overlaps/overlaps.g3xg4" "PAAD" "g3xg4.overlaps_overlaps"
