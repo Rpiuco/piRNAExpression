@@ -1,0 +1,36 @@
+##
+ # Count alignments overlapping my piRNA alignments positions
+ #
+ # @param -f 1.0    means that TCGA alignment need to be covered 100% by my piRNA alignment
+ # @param -r    my piRNA alignment need to be covered 100% too
+ # @param -wao    return all A file data with the counting of overlap or 0, for none overlap
+ # @param -bed    output format
+ # @input hsa_pirna.hg38.gf    file containing all piRNA alignments in GFF format
+ # @return file_count4.txt     file with all .bam alignments and the overlap
+ # 
+
+for eachFile in `more COAD/bamFilesInputCOAD`; do intersectBed -s -abam COAD/alignBwa/$eachFile.q20.sorted.bam -b rawData/pirnadb.v1_7_6.hg38.gff3 -f 1.0 -r -wao -bed > COAD/fileCount/file_count_$eachFile.txt; done &
+for eachFile in `more BRCA/bamFilesInputBRCA`; do intersectBed -s -abam BRCA/alignBwa/$eachFile.q20.sorted.bam -b rawData/pirnadb.v1_7_6.hg38.gff3 -f 1.0 -r -wao -bed > BRCA/fileCount/file_count_$eachFile.txt; done &
+for eachFile in `more PRAD/bamFilesInputPRAD`; do intersectBed -s -abam PRAD/alignBwa/$eachFile.q20.sorted.bam -b rawData/pirnadb.v1_7_6.hg38.gff3 -f 1.0 -r -wao -bed > PRAD/fileCount/file_count_$eachFile.txt; done &
+for eachFile in `more PAAD/bamFilesInputPAAD`; do intersectBed -s -abam PAAD/alignBwa/$eachFile.q20.sorted.bam -b rawData/pirnadb.v1_7_6.hg38.gff3 -f 1.0 -r -wao -bed > PAAD/fileCount/file_count_$eachFile.txt; done &
+
+
+##
+ # Count and groups all features found on inersectBed and send to a txt file.
+ # Also count the alignments that isnt on any feature
+ #
+ # @param $16   higher or equal to 0 indicated that a feature was caugth
+ # @param $16   lower than 0 indicates that none feature was found using this alignment
+ # @return .counted.txt     name of the feature and the count found
+ # @return .notfound.txt     quantity of alignments without a overlap on feature
+ #
+
+for eachFile in `more COAD/bamFilesInputCOAD`; do awk '{if ($16 >= 0){print$21}}' COAD/fileCount/file_count_$eachFile.txt | sort -V | uniq -c | sed 's/ h/\th/g' | sed 's/ //g' > COAD/fileCount/file_count_$eachFile.counted.txt; rm -r COAD/fileCount/file_count_$eachFile.txt; done &
+for eachFile in `more BRCA/bamFilesInputBRCA`; do awk '{if ($16 >= 0){print$21}}' BRCA/fileCount/file_count_$eachFile.txt | sort -V | uniq -c | sed 's/ h/\th/g' | sed 's/ //g' > BRCA/fileCount/file_count_$eachFile.counted.txt; rm -r BRCA/fileCount/file_count_$eachFile.txt; done &
+for eachFile in `more PRAD/bamFilesInputPRAD`; do awk '{if ($16 >= 0){print$21}}' PRAD/fileCount/file_count_$eachFile.txt | sort -V | uniq -c | sed 's/ h/\th/g' | sed 's/ //g' > PRAD/fileCount/file_count_$eachFile.counted.txt; rm -r PRAD/fileCount/file_count_$eachFile.txt; done &
+for eachFile in `more PAAD/bamFilesInputPAAD`; do awk '{if ($16 >= 0){print$21}}' PAAD/fileCount/file_count_$eachFile.txt | sort -V | uniq -c | sed 's/ h/\th/g' | sed 's/ //g' > PAAD/fileCount/file_count_$eachFile.counted.txt; rm -r PAAD/fileCount/file_count_$eachFile.txt; done &
+
+for eachFile in `more COAD/bamFilesInputCOAD`; do sort COAD/pirnaExist/pirnaExist.$eachFile.txt | uniq -c | sed 's/ h/\th/g' | sed 's/ //g' > COAD/pirnaExist/pirnaExist.$eachFile.counted.txt; rm -r COAD/pirnaExist/pirnaExist.$eachFile.txt; done &
+for eachFile in `more BRCA/bamFilesInputBRCA`; do sort BRCA/pirnaExist/pirnaExist.$eachFile.txt | uniq -c | sed 's/ h/\th/g' | sed 's/ //g' > BRCA/pirnaExist/pirnaExist.$eachFile.counted.txt; rm -r BRCA/pirnaExist/pirnaExist.$eachFile.txt; done &
+for eachFile in `more PRAD/bamFilesInputPRAD`; do sort PRAD/pirnaExist/pirnaExist.$eachFile.txt | uniq -c | sed 's/ h/\th/g' | sed 's/ //g' > PRAD/pirnaExist/pirnaExist.$eachFile.counted.txt; rm -r PRAD/pirnaExist/pirnaExist.$eachFile.txt; done &
+for eachFile in `more PAAD/bamFilesInputPAAD`; do sort PAAD/pirnaExist/pirnaExist.$eachFile.txt | uniq -c | sed 's/ h/\th/g' | sed 's/ //g' > PAAD/pirnaExist/pirnaExist.$eachFile.counted.txt; rm -r PAAD/pirnaExist/pirnaExist.$eachFile.txt; done &

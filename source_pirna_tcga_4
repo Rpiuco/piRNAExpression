@@ -1,0 +1,23 @@
+##
+ # Align sequences to genome using BWA
+ #
+ # @param -n 0   no mismatches allowed
+ # @return .my.bam     virtually only my piRNAs aligned
+ #
+
+for eachFile in `more COAD/bamFilesInputCOAD`; do bwa aln -t 10 -n 0 rawData/toBWA.25chrs/hg38.fa rawData/TCGA-COAD-fastq/$eachFile.fastq 2> COAD/alignBwa/$eachFile.bwalog | bwa samse -n 9999999 rawData/toBWA.25chrs/hg38.fa - rawData/TCGA-COAD-fastq/$eachFile.fastq | samtools view -bhS - -o COAD/alignBwa/$eachFile.my.bam; done &
+for eachFile in `more BRCA/bamFilesInputBRCA`; do bwa aln -t 10 -n 0 rawData/toBWA.25chrs/hg38.fa rawData/TCGA-BRCA-fastq/$eachFile.fastq 2> BRCA/alignBwa/$eachFile.bwalog | bwa samse -n 9999999 rawData/toBWA.25chrs/hg38.fa - rawData/TCGA-BRCA-fastq/$eachFile.fastq | samtools view -bhS - -o BRCA/alignBwa/$eachFile.my.bam; done &
+for eachFile in `more PRAD/bamFilesInputPRAD`; do bwa aln -t 10 -n 0 rawData/toBWA.25chrs/hg38.fa rawData/TCGA-PRAD-fastq/$eachFile.fastq 2> PRAD/alignBwa/$eachFile.bwalog | bwa samse -n 9999999 rawData/toBWA.25chrs/hg38.fa - rawData/TCGA-PRAD-fastq/$eachFile.fastq | samtools view -bhS - -o PRAD/alignBwa/$eachFile.my.bam; done &
+for eachFile in `more PAAD/bamFilesInputPAAD`; do bwa aln -t 10 -n 0 rawData/toBWA.25chrs/hg38.fa rawData/TCGA-PAAD-fastq/$eachFile.fastq 2> PAAD/alignBwa/$eachFile.bwalog | bwa samse -n 9999999 rawData/toBWA.25chrs/hg38.fa - rawData/TCGA-PAAD-fastq/$eachFile.fastq | samtools view -bhS - -o PAAD/alignBwa/$eachFile.my.bam; done &
+
+
+##
+ # Sort .bam file to numeric position
+ #
+ # @return .sorted.my.bam     Bam file sorted
+ #
+
+for eachFile in `more COAD/bamFilesInputCOAD`; do samtools view -b -q 20 COAD/alignBwa/$eachFile.my.bam | samtools sort -m 24G - -o COAD/alignBwa/$eachFile.q20.sorted.bam; rm -r COAD/alignBwa/$eachFile.my.bam; done &
+for eachFile in `more BRCA/bamFilesInputBRCA`; do samtools view -b -q 20 BRCA/alignBwa/$eachFile.my.bam | samtools sort -m 24G - -o BRCA/alignBwa/$eachFile.q20.sorted.bam; rm -r BRCA/alignBwa/$eachFile.my.bam; done &
+for eachFile in `more PRAD/bamFilesInputPRAD`; do samtools view -b -q 20 PRAD/alignBwa/$eachFile.my.bam | samtools sort -m 24G - -o PRAD/alignBwa/$eachFile.q20.sorted.bam; rm -r PRAD/alignBwa/$eachFile.my.bam; done &
+for eachFile in `more PAAD/bamFilesInputPAAD`; do samtools view -b -q 20 PAAD/alignBwa/$eachFile.my.bam | samtools sort -m 24G - -o PAAD/alignBwa/$eachFile.q20.sorted.bam; rm -r PAAD/alignBwa/$eachFile.my.bam; done &

@@ -1,0 +1,19 @@
+##
+ # 
+ #
+for eachFile in `cut -f 2 rawData/oldAndNewUuids.brca.txt`; do perl scripts/retrieveCaseId.pl -f $eachFile >> rawData/caseId.BRCA.tumor.txt; done &
+for eachFile in `cut -f 2 rawData/oldAndNewUuids.coad.txt`; do perl scripts/retrieveCaseId.pl -f $eachFile >> rawData/caseId.COAD.tumor.txt; done &
+for eachFile in `cut -f 2 rawData/oldAndNewUuids.prad.txt`; do perl scripts/retrieveCaseId.pl -f $eachFile >> rawData/caseId.PRAD.tumor.txt; done &
+for eachFile in `cut -f 2 rawData/oldAndNewUuids.paad.txt`; do perl scripts/retrieveCaseId.pl -f $eachFile >> rawData/caseId.PAAD.tumor.txt; done &
+
+awk -F "\t" '{split($2,data,"-");print$1"\t"data[1]"-"data[2]"-"data[3]"-"substr(data[4],0,2)}' rawData/manifest.BRCA.control.txt >> rawData/caseId.BRCA.normal.txt
+awk -F "\t" '{split($2,data,"-");print$1"\t"data[1]"-"data[2]"-"data[3]"-"substr(data[4],0,2)}' rawData/manifest.COAD.control.txt >> rawData/caseId.COAD.normal.txt
+awk -F "\t" '{split($2,data,"-");print$1"\t"data[1]"-"data[2]"-"data[3]"-"substr(data[4],0,2)}' rawData/manifest.PRAD.control.txt >> rawData/caseId.PRAD.normal.txt
+awk -F "\t" '{split($2,data,"-");print$1"\t"data[1]"-"data[2]"-"data[3]"-"substr(data[4],0,2)}' rawData/manifest.PAAD.control.txt >> rawData/caseId.PAAD.normal.txt
+#alternativo
+wget -O rawData/fileCaseId.tar 'https://docs.google.com/uc?export=download&id=1FVqY6hhul1nbEWmuk2TFFkLGPd5deJhK'
+cd rawData/
+tar -xvf fileCaseId.tar
+cd ..
+rm -r rawData/fileCaseId.tar
+

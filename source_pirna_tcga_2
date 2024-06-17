@@ -1,0 +1,59 @@
+##
+ # Bam alignments to fastq format and Phred score filter
+ #
+ # @param -Q 33     to force the Solexa code to be viewd like Sanger Code
+ # @param -q 20     score to filter the sequences 
+ # @return .fastq     all nucleotide sequences from a sample
+ #
+
+for eachFile in `more COAD/bamFilesInputCOAD`; do samtools bam2fq rawData/miRNASeq_COAD/$eachFile.bam | fastq_quality_filter -Q 33 -q 20 -i - -o rawData/TCGA-COAD-fastq/$eachFile.fastq; done &
+for eachFile in `more BRCA/bamFilesInputBRCA`; do samtools bam2fq rawData/miRNASeq_BRCA/$eachFile.bam | fastq_quality_filter -Q 33 -q 20 -i - -o rawData/TCGA-BRCA-fastq/$eachFile.fastq; done &
+for eachFile in `more PRAD/bamFilesInputPRAD`; do samtools bam2fq rawData/miRNASeq_PRAD/$eachFile.bam | fastq_quality_filter -Q 33 -q 20 -i - -o rawData/TCGA-PRAD-fastq/$eachFile.fastq; done &
+for eachFile in `more PAAD/bamFilesInputPAAD`; do samtools bam2fq rawData/miRNASeq_PAAD/$eachFile.bam | fastq_quality_filter -Q 33 -q 20 -i - -o rawData/TCGA-PAAD-fastq/$eachFile.fastq; done &
+
+
+##
+ # Get the number of sequences before length filter
+ #
+ # @return samples.beforetrimm     amount of sequences actually
+ #
+for eachFile in `more COAD/bamFilesInputCOAD`; do wc -l rawData/TCGA-COAD-fastq/$eachFile.fastq | awk '{print($1/4)"\t"$2}' >> COAD/samples.beforetrimm; done &
+for eachFile in `more PRAD/bamFilesInputPRAD`; do wc -l rawData/TCGA-PRAD-fastq/$eachFile.fastq | awk '{print($1/4)"\t"$2}' >> PRAD/samples.beforetrimm; done &
+for eachFile in `more PAAD/bamFilesInputPAAD`; do wc -l rawData/TCGA-PAAD-fastq/$eachFile.fastq | awk '{print($1/4)"\t"$2}' >> PAAD/samples.beforetrimm; done &
+for eachFile in `more BRCA/bamFilesInputBRCA`; do wc -l rawData/TCGA-BRCA-fastq/$eachFile.fastq | awk '{print($1/4)"\t"$2}' >> BRCA/samples.beforetrimm; done &
+
+
+##
+ # pega a distribuicao dos reads
+ #
+ # 
+ #
+
+#COAD - 465 -> 3
+#BRCA - 1149 -> 6
+#PRAD - 434 -> 3
+#PAAD - 145 -> 1
+
+
+split -l 200 COAD/bamFilesInputCOAD COAD/bamFilesInputCOAD.200
+split -l 200 BRCA/bamFilesInputBRCA BRCA/bamFilesInputBRCA.200
+split -l 200 PRAD/bamFilesInputPRAD PRAD/bamFilesInputPRAD.200
+split -l 200 PAAD/bamFilesInputPAAD PAAD/bamFilesInputPAAD.200
+
+
+for eachFile in `more COAD/bamFilesInputCOAD.200aa`; do awk 'NR%4 == 2 {lengths[length($0)]++} END {for (l in lengths) {print l, lengths[l]}}' rawData/TCGA-COAD-fastq/$eachFile.fastq > COAD/distribution/$eachFile.countReads.txt; done &
+for eachFile in `more COAD/bamFilesInputCOAD.200ab`; do awk 'NR%4 == 2 {lengths[length($0)]++} END {for (l in lengths) {print l, lengths[l]}}' rawData/TCGA-COAD-fastq/$eachFile.fastq > COAD/distribution/$eachFile.countReads.txt; done &
+for eachFile in `more COAD/bamFilesInputCOAD.200ac`; do awk 'NR%4 == 2 {lengths[length($0)]++} END {for (l in lengths) {print l, lengths[l]}}' rawData/TCGA-COAD-fastq/$eachFile.fastq > COAD/distribution/$eachFile.countReads.txt; done &
+
+for eachFile in `more BRCA/bamFilesInputBRCA.200aa`; do awk 'NR%4 == 2 {lengths[length($0)]++} END {for (l in lengths) {print l, lengths[l]}}' rawData/TCGA-BRCA-fastq/$eachFile.fastq > BRCA/distribution/$eachFile.countReads.txt; done &
+for eachFile in `more BRCA/bamFilesInputBRCA.200ab`; do awk 'NR%4 == 2 {lengths[length($0)]++} END {for (l in lengths) {print l, lengths[l]}}' rawData/TCGA-BRCA-fastq/$eachFile.fastq > BRCA/distribution/$eachFile.countReads.txt; done &
+for eachFile in `more BRCA/bamFilesInputBRCA.200ac`; do awk 'NR%4 == 2 {lengths[length($0)]++} END {for (l in lengths) {print l, lengths[l]}}' rawData/TCGA-BRCA-fastq/$eachFile.fastq > BRCA/distribution/$eachFile.countReads.txt; done &
+for eachFile in `more BRCA/bamFilesInputBRCA.200ad`; do awk 'NR%4 == 2 {lengths[length($0)]++} END {for (l in lengths) {print l, lengths[l]}}' rawData/TCGA-BRCA-fastq/$eachFile.fastq > BRCA/distribution/$eachFile.countReads.txt; done &
+for eachFile in `more BRCA/bamFilesInputBRCA.200ae`; do awk 'NR%4 == 2 {lengths[length($0)]++} END {for (l in lengths) {print l, lengths[l]}}' rawData/TCGA-BRCA-fastq/$eachFile.fastq > BRCA/distribution/$eachFile.countReads.txt; done &
+for eachFile in `more BRCA/bamFilesInputBRCA.200af`; do awk 'NR%4 == 2 {lengths[length($0)]++} END {for (l in lengths) {print l, lengths[l]}}' rawData/TCGA-BRCA-fastq/$eachFile.fastq > BRCA/distribution/$eachFile.countReads.txt; done &
+
+for eachFile in `more PRAD/bamFilesInputPRAD.200aa`; do awk 'NR%4 == 2 {lengths[length($0)]++} END {for (l in lengths) {print l, lengths[l]}}' rawData/TCGA-PRAD-fastq/$eachFile.fastq > PRAD/distribution/$eachFile.countReads.txt; done &
+for eachFile in `more PRAD/bamFilesInputPRAD.200ab`; do awk 'NR%4 == 2 {lengths[length($0)]++} END {for (l in lengths) {print l, lengths[l]}}' rawData/TCGA-PRAD-fastq/$eachFile.fastq > PRAD/distribution/$eachFile.countReads.txt; done &
+for eachFile in `more PRAD/bamFilesInputPRAD.200ac`; do awk 'NR%4 == 2 {lengths[length($0)]++} END {for (l in lengths) {print l, lengths[l]}}' rawData/TCGA-PRAD-fastq/$eachFile.fastq > PRAD/distribution/$eachFile.countReads.txt; done &
+
+for eachFile in `more PAAD/bamFilesInputPAAD.200aa`; do awk 'NR%4 == 2 {lengths[length($0)]++} END {for (l in lengths) {print l, lengths[l]}}' rawData/TCGA-PAAD-fastq/$eachFile.fastq > PAAD/distribution/$eachFile.countReads.txt; done &

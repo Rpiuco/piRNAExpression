@@ -1,0 +1,6 @@
+##
+ # Generate a one column txt file with all my piRNAs access codes
+ #
+ # @return pirnadb_pirna_list.txt     all piRNAdb access files
+ #
+awk 'BEGIN {OFS = "\n"} {header = $0 ; getline seq; print header}' rawData/piRNAdb.hsa.v1_7_6.fa | sed 's/>//g' > rawData/pirnadb_pirna_list.txt

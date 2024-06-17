@@ -1,0 +1,23 @@
+##
+ # Compare TCGA sequences to my piRNAdb sequences
+ #
+ # @use crossCheckPirna     perl script to retrieve TCGA sequences present on my database
+ # @return .txt     list all piRNAs that exist
+ #
+
+for eachFile in `more COAD/bamFilesInputCOAD.200aa`; do perl scripts/crossCheckPirna.pl -s rawData/piRNAdb.hsa.v1_7_6.fa -f rawData/TCGA-COAD-fastq/$eachFile.fastq > COAD/pirnaExist/pirnaExist.$eachFile.txt; done &
+for eachFile in `more COAD/bamFilesInputCOAD.200ab`; do perl scripts/crossCheckPirna.pl -s rawData/piRNAdb.hsa.v1_7_6.fa -f rawData/TCGA-COAD-fastq/$eachFile.fastq > COAD/pirnaExist/pirnaExist.$eachFile.txt; done &
+for eachFile in `more COAD/bamFilesInputCOAD.200ac`; do perl scripts/crossCheckPirna.pl -s rawData/piRNAdb.hsa.v1_7_6.fa -f rawData/TCGA-COAD-fastq/$eachFile.fastq > COAD/pirnaExist/pirnaExist.$eachFile.txt; done &
+
+for eachFile in `more BRCA/bamFilesInputBRCA.200aa`; do perl scripts/crossCheckPirna.pl -s rawData/piRNAdb.hsa.v1_7_6.fa -f rawData/TCGA-BRCA-fastq/$eachFile.fastq > BRCA/pirnaExist/pirnaExist.$eachFile.txt; done &
+for eachFile in `more BRCA/bamFilesInputBRCA.200ab`; do perl scripts/crossCheckPirna.pl -s rawData/piRNAdb.hsa.v1_7_6.fa -f rawData/TCGA-BRCA-fastq/$eachFile.fastq > BRCA/pirnaExist/pirnaExist.$eachFile.txt; done &
+for eachFile in `more BRCA/bamFilesInputBRCA.200ac`; do perl scripts/crossCheckPirna.pl -s rawData/piRNAdb.hsa.v1_7_6.fa -f rawData/TCGA-BRCA-fastq/$eachFile.fastq > BRCA/pirnaExist/pirnaExist.$eachFile.txt; done &
+for eachFile in `more BRCA/bamFilesInputBRCA.200ad`; do perl scripts/crossCheckPirna.pl -s rawData/piRNAdb.hsa.v1_7_6.fa -f rawData/TCGA-BRCA-fastq/$eachFile.fastq > BRCA/pirnaExist/pirnaExist.$eachFile.txt; done &
+for eachFile in `more BRCA/bamFilesInputBRCA.200ae`; do perl scripts/crossCheckPirna.pl -s rawData/piRNAdb.hsa.v1_7_6.fa -f rawData/TCGA-BRCA-fastq/$eachFile.fastq > BRCA/pirnaExist/pirnaExist.$eachFile.txt; done &
+for eachFile in `more BRCA/bamFilesInputBRCA.200af`; do perl scripts/crossCheckPirna.pl -s rawData/piRNAdb.hsa.v1_7_6.fa -f rawData/TCGA-BRCA-fastq/$eachFile.fastq > BRCA/pirnaExist/pirnaExist.$eachFile.txt; done &
+
+for eachFile in `more PRAD/bamFilesInputPRAD.200aa`; do perl scripts/crossCheckPirna.pl -s rawData/piRNAdb.hsa.v1_7_6.fa -f rawData/TCGA-PRAD-fastq/$eachFile.fastq > PRAD/pirnaExist/pirnaExist.$eachFile.txt; done &
+for eachFile in `more PRAD/bamFilesInputPRAD.200ab`; do perl scripts/crossCheckPirna.pl -s rawData/piRNAdb.hsa.v1_7_6.fa -f rawData/TCGA-PRAD-fastq/$eachFile.fastq > PRAD/pirnaExist/pirnaExist.$eachFile.txt; done &
+for eachFile in `more PRAD/bamFilesInputPRAD.200ac`; do perl scripts/crossCheckPirna.pl -s rawData/piRNAdb.hsa.v1_7_6.fa -f rawData/TCGA-PRAD-fastq/$eachFile.fastq > PRAD/pirnaExist/pirnaExist.$eachFile.txt; done &
+
+for eachFile in `more PAAD/bamFilesInputPAAD.200aa`; do perl scripts/crossCheckPirna.pl -s rawData/piRNAdb.hsa.v1_7_6.fa -f rawData/TCGA-PAAD-fastq/$eachFile.fastq > PAAD/pirnaExist/pirnaExist.$eachFile.txt; done &
